@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Weeknd India — 10 São Paulo Master Reels Studio</title>
+  <title>The Weeknd India — 4K Master Concert Reels Studio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
 
@@ -28,7 +28,7 @@
 
     header {
       text-align: center;
-      max-width: 800px;
+      max-width: 850px;
       margin: 0 auto 24px;
     }
 
@@ -89,7 +89,7 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(237,41,23,0.15);
     }
 
-    .canvas-wrap {
+    .video-wrap {
       width: 300px;
       height: 533px; /* 9:16 vertical */
       border-radius: 14px;
@@ -99,9 +99,10 @@
       border: 1px solid rgba(255,255,255,0.2);
     }
 
-    canvas {
+    video {
       width: 100%;
       height: 100%;
+      object-fit: cover;
       display: block;
     }
 
@@ -127,7 +128,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 13px 18px;
+      padding: 14px 18px;
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       font-weight: 700;
@@ -146,7 +147,7 @@
       box-shadow: 0 4px 15px rgba(237,41,23,0.4);
     }
 
-    .btn-primary:hover:not(:disabled) {
+    .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(237,41,23,0.6);
       background: #fff;
@@ -159,23 +160,7 @@
       border: 1px solid rgba(255,255,255,0.15);
     }
 
-    .btn-secondary:hover:not(:disabled) { border-color: #fff; }
-
-    .progress-bar-wrap {
-      width: 100%;
-      height: 6px;
-      background: #1a1b26;
-      border-radius: 3px;
-      overflow: hidden;
-      display: none;
-      margin-top: 4px;
-    }
-
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #ed2917, #ffb703);
-    }
+    .btn-secondary:hover { border-color: #fff; }
 
     .status-note {
       font-size: 10px;
@@ -221,6 +206,12 @@
       cursor: pointer;
     }
 
+    .reel-card.highlight {
+      border-color: #ffb703;
+      background: #15131a;
+      box-shadow: 0 0 25px rgba(255, 183, 3, 0.15);
+    }
+
     .reel-card:hover, .reel-card.active {
       border-color: #ed2917;
       transform: translateY(-3px);
@@ -228,7 +219,7 @@
     }
 
     .reel-card.active {
-      background: #14111a;
+      background: #18111c;
       border-color: #ff3b26;
     }
 
@@ -248,9 +239,15 @@
       letter-spacing: 1px;
     }
 
+    .reel-badge.gold {
+      background: rgba(255, 183, 3, 0.2);
+      color: #ffb703;
+    }
+
     .reel-time {
       font-size: 10px;
       color: #888;
+      font-weight: 700;
     }
 
     .reel-title {
@@ -283,8 +280,11 @@
       margin-top: 4px;
     }
 
-    .reel-actions button {
-      padding: 8px;
+    .reel-actions button, .reel-actions a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px;
       font-size: 10px;
       font-family: 'DM Mono', monospace;
       font-weight: 700;
@@ -294,6 +294,7 @@
       background: #171824;
       color: #fff;
       transition: all 0.2s;
+      text-decoration: none;
     }
 
     .reel-actions button.select-btn:hover {
@@ -301,13 +302,13 @@
       color: #000;
     }
 
-    .reel-actions button.download-btn {
+    .reel-actions a.download-btn {
       background: rgba(237,41,23,0.2);
       border-color: rgba(237,41,23,0.5);
       color: #ff4b36;
     }
 
-    .reel-actions button.download-btn:hover {
+    .reel-actions a.download-btn:hover {
       background: #ed2917;
       color: #fff;
     }
@@ -316,204 +317,178 @@
 <body>
 
   <header>
-    <div class="badge">🇧🇷 SÃO PAULO LIVESTREAM EXCLUSIVE</div>
-    <h1>The Weeknd — 10 Master Concert Reels</h1>
-    <p>100% Real Live Concert Footage from <strong>The Weeknd - São Paulo Livestream</strong> with live vocals. No city names — universal viral hooks for maximum reach.</p>
+    <div class="badge">🔥 4K BBMAs & SÃO PAULO EXCLUSIVE</div>
+    <h1>The Weeknd — Master Concert Reels Studio</h1>
+    <p>4K 2160p Source Footage from <strong>The 2021 Billboard Music Awards (Save Your Tears)</strong> & <strong>São Paulo Tour</strong> with real concert vocals. Zero city names — universal viral hooks only.</p>
   </header>
 
   <div class="main-layout">
-    <!-- Left Column: Live Player & Exporter -->
+    <!-- Left Column: Live Video Player -->
     <div class="player-col">
-      <div class="canvas-wrap">
-        <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+      <div class="video-wrap">
+        <video id="mainPlayer" playsinline controls loop autoplay></video>
       </div>
 
       <div class="player-controls">
-        <div class="now-playing-title" id="nowPlayingTitle">Reel 01: Timeless (Viral Drop)</div>
+        <div class="now-playing-title" id="nowPlayingTitle">Master 01: Save Your Tears (Part 1 - The Drive)</div>
 
-        <button class="btn btn-primary" id="recordBtn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
-          Export & Download Video
+        <a class="btn btn-primary" id="downloadMainBtn" href="Save-Your-Tears-Part-1-Web.mp4" download="Save-Your-Tears-Part-1-Drive-1080p.mp4">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Direct Download Video (HD)
+        </a>
+
+        <button class="btn btn-secondary" id="togglePlayBtn" onclick="togglePlay()">
+          ⏯ Play / Pause
         </button>
 
-        <button class="btn btn-secondary" id="previewBtn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Play Live Video with Audio
-        </button>
-
-        <div class="progress-bar-wrap" id="progressWrap">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div class="status-note" id="statusNote">Ready to play real concert video.</div>
+        <div class="status-note" id="statusNote">Playing 60s 4K Ultra HD Concert Video</div>
       </div>
     </div>
 
-    <!-- Right Column: 10-Reel Catalog -->
+    <!-- Right Column: Catalog -->
     <div class="studio-col">
       <div class="studio-header">
         <div>
-          <strong style="color: #fff; font-size: 14px;">10 SÃO PAULO REELS CATALOG</strong>
-          <div style="font-size: 11px; color: #888;">Select any Reel to load real concert video with Abel's live singing</div>
+          <strong style="color: #fff; font-size: 14px;">10 MASTER CONCERT REELS CATALOG</strong>
+          <div style="font-size: 11px; color: #888;">Select any video to preview live with high-fidelity live vocals</div>
         </div>
-        <div style="font-size: 11px; color: #00f0ff; font-weight: 700;">★ 100% SÃO PAULO HD ARCHIVE ★</div>
+        <div style="font-size: 11px; color: #00f0ff; font-weight: 700;">★ 4K 2160p MASTER CROPS ★</div>
       </div>
 
-      <div class="reels-grid" id="reelsGrid">
-        <!-- 10 Reels populated dynamically -->
-      </div>
+      <div class="reels-grid" id="reelsGrid"></div>
     </div>
   </div>
 
-  <!-- Video Element for Canvas Rendering -->
-  <video id="sourceVideo" playsinline preload="auto" crossorigin="anonymous" style="display: none;"></video>
-
   <script>
-    const canvas = document.getElementById('reelCanvas');
-    const ctx = canvas.getContext('2d');
-    const video = document.getElementById('sourceVideo');
-    const recordBtn = document.getElementById('recordBtn');
-    const previewBtn = document.getElementById('previewBtn');
-    const progressWrap = document.getElementById('progressWrap');
-    const progressBar = document.getElementById('progressBar');
-    const statusNote = document.getElementById('statusNote');
+    const player = document.getElementById('mainPlayer');
     const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+    const downloadMainBtn = document.getElementById('downloadMainBtn');
+    const statusNote = document.getElementById('statusNote');
     const reelsGrid = document.getElementById('reelsGrid');
 
-    // 10 Distinct São Paulo Concert Moments (No City Names, Universal Viral Hooks)
     const REELS = [
       {
         id: 1,
-        title: "Reel 01: Timeless Viral Anthem",
-        song: "🎵 Track: Timeless (Playboi Carti x The Weeknd)",
-        file: "sp-09-timeless-viral.mp4",
-        time: "25s",
-        duration: 25.0,
+        title: "Master 01: Save Your Tears (Part 1 - The Drive)",
+        song: "🎵 Track: Save Your Tears (Verse 1 & Chorus Live)",
+        file: "Save-Your-Tears-Part-1-Web.mp4",
+        time: "60s (1 MIN)",
         hook: "IMPOSSIBLE TO IGNORE.",
-        sub: "INDIA DESERVES THIS LEVEL OF ENERGY 🇮🇳",
-        cta: "VOTE NOW TO BRING ABEL TO INDIA ↗",
-        badge: "🔥 MOST VIRAL"
+        sub: "INDIA IS READY FOR ABEL • theweeknd.co.in",
+        badge: "👑 4K 60S MASTER",
+        is4k: true
       },
       {
         id: 2,
-        title: "Reel 02: Dancing in the Flames Live Debut",
-        song: "🎵 Track: Dancing In The Flames (Live Debut)",
-        file: "sp-08-dancing-flames.mp4",
-        time: "25s",
-        duration: 25.0,
-        hook: "A NIGHT LIKE NEVER BEFORE.",
-        sub: "ONE ARTIST. ONE STAGE. ONE NATION.",
-        cta: "MAKE YOUR VOICE HEARD AT theweeknd.co.in ↗",
-        badge: "✨ LIVE DEBUT"
+        title: "Master 02: Save Your Tears (Part 2 - Climax)",
+        song: "🎵 Track: Save Your Tears (Drifting Convertibles Bridge)",
+        file: "Save-Your-Tears-Part-2-Web.mp4",
+        time: "60s (1 MIN)",
+        hook: "1.4 BILLION PEOPLE. INDIA IS READY.",
+        sub: "THE GREATEST LIVE PERFORMER ON EARTH",
+        badge: "👑 4K 60S MASTER",
+        is4k: true
       },
       {
         id: 3,
-        title: "Reel 03: Starboy Stadium Explosion",
-        song: "🎵 Track: Starboy (Stadium Singalong)",
-        file: "sp-07-starboy-drop.mp4",
+        title: "Master 03: Timeless Mega Viral Collab",
+        song: "🎵 Track: Timeless (Playboi Carti x The Weeknd)",
+        file: "sp-09-timeless-viral.mp4",
         time: "25s",
-        duration: 25.0,
-        hook: "1.4 BILLION PEOPLE. INDIA IS READY.",
-        sub: "THE BIGGEST POP ANTHEM ON EARTH.",
-        cta: "LOCK IN YOUR FAN VOTE TODAY ↗",
-        badge: "⚡ HIGH ENERGY"
+        hook: "IMPOSSIBLE TO IGNORE.",
+        sub: "INDIA DESERVES THIS LEVEL OF ENERGY 🇮🇳",
+        badge: "🔥 VIRAL ANTHEM",
+        is4k: false
       },
       {
         id: 4,
-        title: "Reel 04: After Hours Close-Up Mic",
-        song: "🎵 Track: After Hours (Emotional Vocal Delivery)",
-        file: "sp-02-after-hours-mic.mp4",
+        title: "Master 04: Dancing In The Flames Live Debut",
+        song: "🎵 Track: Dancing In The Flames (Live Debut)",
+        file: "sp-08-dancing-flames.mp4",
         time: "25s",
-        duration: 25.0,
-        hook: "A VOICE THAT DEFINED A GENERATION.",
-        sub: "HE HAS FILLED STADIUMS WORLDWIDE. EXCEPT INDIA.",
-        cta: "OFFICIAL FAN CAMPAIGN: theweeknd.co.in ↗",
-        badge: "🎤 PURE VOCALS"
+        hook: "A NIGHT LIKE NEVER BEFORE.",
+        sub: "ONE ARTIST. ONE STAGE. ONE NATION.",
+        badge: "✨ LIVE DEBUT",
+        is4k: false
       },
       {
         id: 5,
-        title: "Reel 05: Take My Breath Lights Spectacle",
-        song: "🎵 Track: Take My Breath (80s Shimmering Beat)",
-        file: "sp-03-take-my-breath.mp4",
+        title: "Master 05: Starboy Stadium Explosion",
+        song: "🎵 Track: Starboy (Stadium Singalong)",
+        file: "sp-07-starboy-drop.mp4",
         time: "25s",
-        duration: 25.0,
-        hook: "IMAGINE THIS UNDER INDIAN STADIUM LIGHTS.",
-        sub: "CAN INDIA SING EVERY SINGLE WORD?",
-        cta: "100% FREE FAN DEMAND REGISTRATION ↗",
-        badge: "✨ LIGHT SHOW"
+        hook: "1.4 BILLION PEOPLE. INDIA IS READY.",
+        sub: "THE BIGGEST POP ANTHEM ON EARTH.",
+        badge: "⚡ HIGH ENERGY",
+        is4k: false
       },
       {
         id: 6,
-        title: "Reel 06: Sacrifice High Voltage Run",
-        song: "🎵 Track: Sacrifice (Intense Stage Stance)",
-        file: "sp-04-sacrifice-energy.mp4",
+        title: "Master 06: After Hours Close-Up Mic",
+        song: "🎵 Track: After Hours (Emotional Vocal Delivery)",
+        file: "sp-02-after-hours-mic.mp4",
         time: "25s",
-        duration: 25.0,
-        hook: "PROVE THE DEMAND TO PROMOTERS.",
-        sub: "WE ARE NOT WAITING ANYMORE.",
-        cta: "VERIFIED DEMAND DOSSIER: theweeknd.co.in ↗",
-        badge: "⚡ PURE HYPE"
+        hook: "A VOICE THAT DEFINED A GENERATION.",
+        sub: "HE HAS FILLED STADIUMS WORLDWIDE. EXCEPT INDIA.",
+        badge: "🎤 PURE VOCALS",
+        is4k: false
       },
       {
         id: 7,
-        title: "Reel 07: Cathedral Steps Intimate Singing",
-        song: "🎵 Track: Hurry Up Tomorrow Era (Live Vocals)",
-        file: "sp-05-cathedral-sing.mp4",
+        title: "Master 07: Take My Breath Lights Spectacle",
+        song: "🎵 Track: Take My Breath (80s Shimmering Beat)",
+        file: "sp-03-take-my-breath.mp4",
         time: "25s",
-        duration: 25.0,
-        hook: "THE TRILOGY CONCLUDES.",
-        sub: "INDIA MUST BE ON THE WORLD TOUR MAP.",
-        cta: "JOIN THE OFFICIAL MOVEMENT ↗",
-        badge: "👑 ERA FINALE"
+        hook: "IMAGINE THIS UNDER INDIAN STADIUM LIGHTS.",
+        sub: "CAN INDIA SING EVERY SINGLE WORD?",
+        badge: "✨ LIGHT SHOW",
+        is4k: false
       },
       {
         id: 8,
-        title: "Reel 08: House of Balloons Classics",
-        song: "🎵 Track: House of Balloons / Glass Table Girls",
-        file: "sp-06-house-of-balloons.mp4",
+        title: "Master 08: Sacrifice High Voltage Run",
+        song: "🎵 Track: Sacrifice (Intense Stage Stance)",
+        file: "sp-04-sacrifice-energy.mp4",
         time: "25s",
-        duration: 25.0,
-        hook: "FOR EVERY DAY-ONE XO FAN.",
-        sub: "THE NIGHT YOU CANNOT AFFORD TO MISS.",
-        cta: "VOTE NOW AT theweeknd.co.in ↗",
-        badge: "🖤 OG XO CLASSIC"
+        hook: "PROVE THE DEMAND TO PROMOTERS.",
+        sub: "WE ARE NOT WAITING ANYMORE.",
+        badge: "⚡ PURE HYPE",
+        is4k: false
       },
       {
         id: 9,
-        title: "Reel 09: Blinding Lights Drone Spectacle",
-        song: "🎵 Track: Blinding Lights (#1 Billboard Record)",
-        file: "sp-10-blinding-finale.mp4",
+        title: "Master 09: House of Balloons Classics",
+        song: "🎵 Track: House of Balloons / Glass Table Girls",
+        file: "sp-06-house-of-balloons.mp4",
         time: "25s",
-        duration: 25.0,
-        hook: "THE #1 SONG IN RECORDED HISTORY.",
-        sub: "OVER 4 BILLION STREAMS. READY FOR INDIA.",
-        cta: "CLAIM YOUR FREE VIP FAN PASS ↗",
-        badge: "🏆 RECORD BREAKER"
+        hook: "FOR EVERY DAY-ONE XO FAN.",
+        sub: "THE NIGHT YOU CANNOT AFFORD TO MISS.",
+        badge: "🖤 OG XO CLASSIC",
+        is4k: false
       },
       {
         id: 10,
-        title: "Reel 10: Apocalyptic Cathedral Intro",
-        song: "🎵 Track: The Arrival (Stadium Intro Drone)",
-        file: "sp-01-intro-cathedral.mp4",
+        title: "Master 10: Blinding Lights Drone Spectacle",
+        song: "🎵 Track: Blinding Lights (#1 Billboard Record)",
+        file: "sp-10-blinding-finale.mp4",
         time: "25s",
-        duration: 25.0,
-        hook: "THIS IS THE SCALE INDIA DESERVES.",
-        sub: "THE BIGGEST CONCERT PRODUCTION ON EARTH.",
-        cta: "HELP BRING ABEL TO INDIA: theweeknd.co.in ↗",
-        badge: "🏟️ SCALE & PROD"
+        hook: "THE #1 SONG IN RECORDED HISTORY.",
+        sub: "OVER 4 BILLION STREAMS. READY FOR INDIA.",
+        badge: "🏆 RECORD BREAKER",
+        is4k: false
       }
     ];
 
     let currentReel = REELS[0];
 
-    // Render 10 Cards in Catalog
     function renderCatalog() {
       reelsGrid.innerHTML = '';
       REELS.forEach(reel => {
         const card = document.createElement('div');
-        card.className = `reel-card ${reel.id === currentReel.id ? 'active' : ''}`;
+        card.className = `reel-card ${reel.is4k ? 'highlight' : ''} ${reel.id === currentReel.id ? 'active' : ''}`;
         card.innerHTML = `
           <div class="reel-meta">
-            <span class="reel-badge">${reel.badge}</span>
+            <span class="reel-badge ${reel.is4k ? 'gold' : ''}">${reel.badge}</span>
             <span class="reel-time">⏱️ ${reel.time}</span>
           </div>
           <div class="reel-title">${reel.title}</div>
@@ -521,237 +496,34 @@
           <div class="reel-hook">"${reel.hook}"<br><span style="color:#888;">${reel.sub}</span></div>
           <div class="reel-actions">
             <button class="select-btn" onclick="selectReel(${reel.id})">▶ Play Preview</button>
-            <button class="download-btn" onclick="quickDownload(${reel.id})">⬇ Export Video</button>
+            <a class="download-btn" href="${reel.file}" download="${reel.file}">⬇ Download</a>
           </div>
         `;
         reelsGrid.appendChild(card);
       });
     }
 
-    // Select Reel
     window.selectReel = function(id) {
       currentReel = REELS.find(r => r.id === id);
       nowPlayingTitle.textContent = currentReel.title;
-      video.src = currentReel.file;
-      video.load();
-      statusNote.textContent = `Loaded ${currentReel.title}`;
+      player.src = currentReel.file;
+      downloadMainBtn.href = currentReel.file;
+      downloadMainBtn.download = currentReel.file;
+      player.load();
+      player.play().catch(() => {});
+      statusNote.textContent = `Playing ${currentReel.title} (${currentReel.time})`;
       renderCatalog();
-
-      video.onloadeddata = () => {
-        renderFrame(0.5);
-      };
     };
 
-    window.quickDownload = function(id) {
-      selectReel(id);
-      setTimeout(() => {
-        recordBtn.click();
-      }, 400);
+    window.togglePlay = function() {
+      if (player.paused) {
+        player.play();
+      } else {
+        player.pause();
+      }
     };
 
-    // Render Canvas Frame
-    function renderFrame(t) {
-      ctx.fillStyle = '#040407';
-      ctx.fillRect(0, 0, 1080, 1920);
-
-      // 1. Draw Real Moving Video from São Paulo
-      if (video.readyState >= 2) {
-        ctx.save();
-        ctx.translate(540, 960);
-        const rRatio = Math.max(1080 / video.videoWidth, 1920 / video.videoHeight);
-        const rW = video.videoWidth * rRatio;
-        const rH = video.videoHeight * rRatio;
-        ctx.drawImage(video, -rW / 2, -rH / 2, rW, rH);
-        ctx.restore();
-      }
-
-      // 2. Cinematic Contrast Vignette
-      const grad = ctx.createLinearGradient(0, 0, 0, 1920);
-      grad.addColorStop(0, 'rgba(4, 4, 7, 0.94)');
-      grad.addColorStop(0.18, 'rgba(237, 41, 23, 0.2)');
-      grad.addColorStop(0.5, 'rgba(0, 0, 0, 0.0)');
-      grad.addColorStop(0.72, 'rgba(4, 4, 7, 0.35)');
-      grad.addColorStop(1, 'rgba(4, 4, 7, 0.96)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 1080, 1920);
-
-      // 3. TOP BRANDING HUD (No City Names)
-      ctx.textAlign = 'center';
-      ctx.fillStyle = '#ed2917';
-      ctx.font = '800 30px DM Mono';
-      ctx.fillText('★ SÃO PAULO LIVE ARCHIVE ★', 540, 180);
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '900 italic 76px Montserrat';
-      ctx.fillText('THE WEEKND', 540, 270);
-
-      ctx.fillStyle = '#ffb703';
-      ctx.font = '900 italic 66px Montserrat';
-      ctx.fillText('IN INDIA 🇮🇳', 540, 355);
-
-      // 4. MIDDLE VIRAL HOOK (Universal, High Impact)
-      ctx.fillStyle = 'rgba(237, 41, 23, 0.2)';
-      ctx.strokeStyle = '#ed2917';
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.roundRect(100, 1240, 880, 130, 20);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '900 italic 42px Montserrat';
-      ctx.fillText(currentReel.hook, 540, 1300);
-
-      ctx.fillStyle = '#ffdeda';
-      ctx.font = '600 28px DM Mono';
-      ctx.fillText(currentReel.sub, 540, 1345);
-
-      // 5. BOTTOM CALL TO ACTION
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
-      ctx.strokeStyle = '#ed2917';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.roundRect(140, 1400, 800, 90, 18);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.fillStyle = '#ed2917';
-      ctx.font = '800 italic 38px Montserrat';
-      ctx.fillText(currentReel.cta, 540, 1458);
-
-      // Big Domain
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '900 italic 82px Montserrat';
-      ctx.fillText('theweeknd.co.in', 540, 1580);
-
-      ctx.fillStyle = '#ffb703';
-      ctx.font = '600 28px DM Mono';
-      ctx.fillText('100% Free • Verified Demand • No Ticket Scalping', 540, 1645);
-
-      ctx.fillStyle = '#888';
-      ctx.font = '700 24px DM Mono';
-      ctx.fillText('@theweeknd.co.in • Built by @aayyuusshhw', 540, 1730);
-    }
-
-    // Audio Setup
-    let audioCtx = null;
-    let audioSource = null;
-    let audioDest = null;
-
-    function ensureAudioPipeline() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        audioDest = audioCtx.createMediaStreamDestination();
-        audioSource = audioCtx.createMediaElementSource(video);
-        audioSource.connect(audioDest);
-        audioSource.connect(audioCtx.destination);
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-    }
-
-    // Live Preview Playback
-    let isPlaying = false;
-    function playPreview() {
-      if (isPlaying) return;
-      isPlaying = true;
-      statusNote.textContent = `Playing ${currentReel.title} with concert audio...`;
-
-      ensureAudioPipeline();
-      video.currentTime = 0;
-      video.muted = false;
-      video.play();
-
-      function loop() {
-        if (video.ended || video.currentTime >= currentReel.duration) {
-          isPlaying = false;
-          video.pause();
-          statusNote.textContent = 'Preview finished! Click "Export Video" to save.';
-          return;
-        }
-        renderFrame(video.currentTime);
-        requestAnimationFrame(loop);
-      }
-      requestAnimationFrame(loop);
-    }
-
-    previewBtn.addEventListener('click', playPreview);
-
-    // High Bitrate Recording (MediaRecorder with Audio from Video)
-    recordBtn.addEventListener('click', async () => {
-      recordBtn.disabled = true;
-      previewBtn.disabled = true;
-      progressWrap.style.display = 'block';
-      progressBar.style.width = '0%';
-      statusNote.textContent = `Exporting ${currentReel.title} in Full HD...`;
-
-      ensureAudioPipeline();
-      video.currentTime = 0;
-      video.muted = false;
-      video.play();
-
-      const canvasStream = canvas.captureStream(30);
-      let combinedStream = canvasStream;
-      if (audioDest && audioDest.stream.getAudioTracks().length > 0) {
-        combinedStream = new MediaStream([
-          ...canvasStream.getVideoTracks(),
-          ...audioDest.stream.getAudioTracks()
-        ]);
-      }
-
-      let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 8000000 };
-      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
-        options = { mimeType: 'video/webm' };
-      }
-
-      const recorder = new MediaRecorder(combinedStream, options);
-      const chunks = [];
-
-      recorder.ondataavailable = (e) => {
-        if (e.data && e.data.size > 0) chunks.push(e.data);
-      };
-
-      recorder.onstop = () => {
-        statusNote.textContent = 'Finalizing HD video file...';
-        const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement('a');
-        a.href = url;
-        const cleanName = currentReel.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-        a.download = `${cleanName}.webm`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        statusNote.textContent = `🎉 Downloaded ${currentReel.title}! Ready to post.`;
-        recordBtn.disabled = false;
-        previewBtn.disabled = false;
-        progressBar.style.width = '100%';
-        video.pause();
-      };
-
-      recorder.start();
-
-      function recordLoop() {
-        const cur = video.currentTime;
-        const progress = Math.min((cur / currentReel.duration) * 100, 100);
-        progressBar.style.width = progress + '%';
-        statusNote.textContent = `Rendering: ${Math.round(progress)}% (${cur.toFixed(1)}s / ${currentReel.duration}s)`;
-
-        if (video.ended || cur >= currentReel.duration) {
-          recorder.stop();
-          return;
-        }
-
-        renderFrame(cur);
-        requestAnimationFrame(recordLoop);
-      }
-      requestAnimationFrame(recordLoop);
-    });
-
-    // Init Studio
+    // Init
     renderCatalog();
     selectReel(1);
   </script>
