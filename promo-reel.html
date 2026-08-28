@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Weeknd India — Instagram Reel Video Generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
+
+    :root {
+      --bg: #050506;
+      --card: #101015;
+      --red: #ed2917;
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f6f1ea;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 60px;
+    }
+
+    header {
+      text-align: center;
+      max-width: 600px;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(237, 41, 23, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(237, 41, 23, 0.4);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(24px, 5vw, 36px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #a19ba0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .preview-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(237,41,23,0.12);
+    }
+
+    /* 9:16 aspect ratio canvas preview */
+    .canvas-wrap {
+      width: 320px;
+      height: 568px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .panel {
+      flex: 1;
+      min-width: 320px;
+      max-width: 480px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12px;
+      color: #b5adb3;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .features-list li span {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c31511 0%, #ed2917 50%, #ff4b36 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 6px 20px rgba(237,41,23,0.4);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(237,41,23,0.6);
+      background: #fff;
+      color: #050506;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      border-color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #1c1b22;
+      border-radius: 4px;
+      overflow: hidden;
+      display: none;
+      margin-top: 6px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ed2917, #ff9800);
+      transition: width 0.1s linear;
+    }
+
+    .status-note {
+      font-size: 11px;
+      color: #ff9800;
+      text-align: center;
+      min-height: 18px;
+    }
+
+    .info-box {
+      background: rgba(237, 41, 23, 0.05);
+      border: 1px dashed rgba(237, 41, 23, 0.3);
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 11px;
+      color: #d1c7c9;
+      line-height: 1.6;
+    }
+
+    .info-box strong { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">🔥 100% Free Promo Video Tool</div>
+    <h1>The Weeknd India — Reel Video Generator</h1>
+    <p>1-Click me official 9:16 Instagram Reel & Story video render karo aur download karo (HD 1080x1920 with Synthwave Bass & Beat Drop).</p>
+  </header>
+
+  <div class="container">
+    <!-- 9:16 Phone Frame Preview -->
+    <div class="preview-card">
+      <div class="canvas-wrap">
+        <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+      </div>
+      <div style="font-size: 10px; color: #726b70; margin-top: 10px; letter-spacing: 1px;">9:16 INSTAGRAM REEL FORMAT (1080 × 1920)</div>
+    </div>
+
+    <!-- Controls Panel -->
+    <div class="panel">
+      <h2>🎬 Video Details</h2>
+      <ul class="features-list">
+        <li><span>✓</span> <strong>Length:</strong> 15 Seconds (Optimized for Instagram algorithm)</li>
+        <li><span>✓</span> <strong>Resolution:</strong> Full HD Vertical (1080x1920)</li>
+        <li><span>✓</span> <strong>Audio:</strong> Built-in 80s Synthwave Bass Pulse & Impact Beat Drop</li>
+        <li><span>✓</span> <strong>Scenes:</strong> Coldplay/Dua Lipa Tease ➔ Abel Silhouette Drop ➔ All Indian Cities Roll ➔ theweeknd.co.in Call to Action</li>
+        <li><span>✓</span> <strong>Branding:</strong> @theweeknd.co.in & Built by @aayyuusshhw</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>💡 Pro Tip:</strong> "Download Reel Video" dabaane par browser live video record karke directly <strong>theweeknd-india-promo.webm</strong> video file aapke device me save kar dega!
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="recordBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+          Record & Download Reel Video
+        </button>
+
+        <button class="btn btn-secondary" id="previewBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Play Live Preview
+        </button>
+      </div>
+
+      <div class="progress-bar-wrap" id="progressWrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="status-note" id="statusNote">Ready to play or record.</div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('reelCanvas');
+    const ctx = canvas.getContext('2d');
+    const recordBtn = document.getElementById('recordBtn');
+    const previewBtn = document.getElementById('previewBtn');
+    const progressWrap = document.getElementById('progressWrap');
+    const progressBar = document.getElementById('progressBar');
+    const statusNote = document.getElementById('statusNote');
+
+    const DURATION = 15; // 15 seconds
+    const FPS = 30;
+    const TOTAL_FRAMES = DURATION * FPS;
+
+    // Preload image assets
+    const images = {
+      silhouette: new Image(),
+      concert: new Image(),
+      fan: new Image()
+    };
+    images.silhouette.src = 'artist-silhouette-v1.png';
+    images.concert.src = 'hero-concert-v1.png';
+    images.fan.src = 'fan-energy-v1.png';
+
+    // Sound Synthesizer via Web Audio API
+    let audioCtx = null;
+    function getAudioStream() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const dest = audioCtx.createMediaStreamDestination();
+      
+      // Synth Bass Drone
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(55, audioCtx.currentTime); // A1 note
+      
+      // Pulse filter
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(300, audioCtx.currentTime);
+      filter.frequency.linearRampToValueAtTime(1400, audioCtx.currentTime + 3.0);
+      filter.frequency.linearRampToValueAtTime(400, audioCtx.currentTime + 6.0);
+      filter.frequency.linearRampToValueAtTime(2000, audioCtx.currentTime + 10.0);
+
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + DURATION);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(dest);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + DURATION);
+
+      // Impact Beat Drop at 3.0 seconds
+      setTimeout(() => {
+        if (!audioCtx) return;
+        const kick = audioCtx.createOscillator();
+        const kickGain = audioCtx.createGain();
+        kick.frequency.setValueAtTime(140, audioCtx.currentTime);
+        kick.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.5);
+        kickGain.gain.setValueAtTime(1.0, audioCtx.currentTime);
+        kickGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+        kick.connect(kickGain);
+        kickGain.connect(dest);
+        kickGain.connect(audioCtx.destination);
+        kick.start();
+        kick.stop(audioCtx.currentTime + 0.6);
+      }, 3000);
+
+      return dest.stream;
+    }
+
+    // Render a single frame based on time (t: 0 to 15s)
+    function renderFrame(t) {
+      ctx.fillStyle = '#050506';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // SCENE 1: 0.0s - 3.0s (The Stadium FOMO)
+      if (t < 3.0) {
+        // Red subtle strobe aura
+        const pulse = Math.sin(t * 8) * 0.3 + 0.7;
+        const grad = ctx.createRadialGradient(540, 960, 50, 540, 960, 800);
+        grad.addColorStop(0, `rgba(237, 41, 23, ${0.4 * pulse})`);
+        grad.addColorStop(1, 'rgba(5, 5, 6, 1)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '900 italic 44px Montserrat';
+        ctx.fillText('COLDPLAY CAME TO INDIA.', 540, 750);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 52px Montserrat';
+        ctx.fillText('DUA LIPA CAME TO INDIA.', 540, 860);
+
+        if (t > 1.4) {
+          ctx.fillStyle = '#ffd4ca';
+          ctx.font = '600 36px DM Mono';
+          ctx.fillText('STADIUMS WERE SOLD OUT IN SECONDS.', 540, 1020);
+        }
+
+        if (t > 2.2) {
+          ctx.fillStyle = '#ed2917';
+          ctx.font = '900 italic 72px Montserrat';
+          ctx.fillText('BUT WHO IS NEXT? 👀', 540, 1200);
+        }
+      }
+
+      // SCENE 2: 3.0s - 7.0s (The Abel Explosion & Silhouette)
+      else if (t >= 3.0 && t < 7.0) {
+        const sTime = t - 3.0; // 0 to 4s
+        
+        // Background silhouette image
+        if (images.silhouette.complete) {
+          ctx.save();
+          const zoom = 1.0 + (sTime * 0.05);
+          ctx.translate(540, 960);
+          ctx.scale(zoom, zoom);
+          ctx.globalAlpha = Math.min(sTime * 1.5, 0.85);
+          ctx.drawImage(images.silhouette, -540, -960, 1080, 1920);
+          ctx.restore();
+        }
+
+        // Fiery red/crimson overlay
+        const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+        grad.addColorStop(0, 'rgba(5, 5, 6, 0.85)');
+        grad.addColorStop(0.5, 'rgba(237, 41, 23, 0.25)');
+        grad.addColorStop(1, 'rgba(5, 5, 6, 0.95)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Flashy title text
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '900 38px DM Mono';
+        ctx.letterSpacing = '6px';
+        ctx.fillText('★ IT IS TIME FOR ABEL ★', 540, 420);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 108px Montserrat';
+        ctx.fillText('THE WEEKND', 540, 560);
+        ctx.fillText('IN INDIA 🇮🇳', 540, 680);
+
+        // Pulsing tag
+        ctx.fillStyle = '#ffdeda';
+        ctx.font = '600 italic 38px Montserrat';
+        ctx.fillText('"ONE ARTIST. ONE NATION. ONE NIGHT."', 540, 1400);
+
+        // XO Badge
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '900 italic 82px Montserrat';
+        ctx.fillText('XO', 540, 1550);
+      }
+
+      // SCENE 3: 7.0s - 11.0s (The Cities & Verified Fan Movement)
+      else if (t >= 7.0 && t < 11.0) {
+        const cTime = t - 7.0; // 0 to 4s
+
+        // Concert crowd in background
+        if (images.concert.complete) {
+          ctx.save();
+          ctx.globalAlpha = 0.45;
+          ctx.drawImage(images.concert, 0, 0, 1080, 1920);
+          ctx.restore();
+        }
+
+        // Dark gradient
+        ctx.fillStyle = 'rgba(5, 5, 6, 0.82)';
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '800 36px DM Mono';
+        ctx.fillText('OFFICIAL FAN CAMPAIGN', 540, 380);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 74px Montserrat';
+        ctx.fillText('WHICH CITY WILL', 540, 490);
+        ctx.fillText('WIN THE SHOW?', 540, 580);
+
+        // Rapid flashing cities list
+        const cities = ['📍 MUMBAI', '📍 DELHI NCR', '📍 BENGALURU', '📍 HYDERABAD', '📍 KOLKATA', '📍 AHMEDABAD', '📍 CHENNAI', '📍 PUNE', '📍 YOUR CITY!'];
+        const activeIdx = Math.floor((cTime * 3.5)) % cities.length;
+
+        // Big active city spotlight card
+        ctx.fillStyle = 'rgba(237, 41, 23, 0.18)';
+        ctx.strokeStyle = '#ed2917';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.roundRect(140, 750, 800, 240, 24);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 76px Montserrat';
+        ctx.fillText(cities[activeIdx], 540, 895);
+
+        ctx.fillStyle = '#ffb3a8';
+        ctx.font = '500 32px DM Mono';
+        ctx.fillText('100% FREE • NO TICKET SALES • PURE DEMAND', 540, 1200);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 36px DM Mono';
+        ctx.fillText('Proving live audience numbers to promoters', 540, 1280);
+      }
+
+      // SCENE 4: 11.0s - 15.0s (Call To Action & theweeknd.co.in)
+      else {
+        // High energy final call
+        const grad = ctx.createRadialGradient(540, 960, 80, 540, 960, 950);
+        grad.addColorStop(0, '#7a0004');
+        grad.addColorStop(0.5, '#200204');
+        grad.addColorStop(1, '#050506');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffd4ca';
+        ctx.font = '800 38px DM Mono';
+        ctx.fillText('🇮🇳 DO NOT WAIT. VOTE NOW:', 540, 480);
+
+        // Giant Domain Box
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 86px Montserrat';
+        ctx.fillText('theweeknd.co.in', 540, 620);
+
+        // Red CTA Button graphic
+        ctx.fillStyle = '#ed2917';
+        ctx.beginPath();
+        ctx.roundRect(190, 780, 700, 140, 70);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 46px Montserrat';
+        ctx.fillText('VOTE FOR YOUR CITY ↗', 540, 868);
+
+        // What you get
+        ctx.fillStyle = '#e2dad7';
+        ctx.font = '500 32px DM Mono';
+        ctx.fillText('Instant VIP Digital Fan Pass Confirmation', 540, 1040);
+        ctx.fillText('Direct to Your Email Inbox ✉️', 540, 1100);
+
+        // Instagram Handles
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(120, 1300, 840, 220, 20);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '800 34px DM Mono';
+        ctx.fillText('FOLLOW THE MOVEMENT ON INSTAGRAM:', 540, 1370);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 48px Montserrat';
+        ctx.fillText('@theweeknd.co.in', 540, 1445);
+
+        ctx.fillStyle = '#8a8388';
+        ctx.font = '500 26px DM Mono';
+        ctx.fillText('Campaign Platform Built by Ayush (@aayyuusshhw)', 540, 1680);
+      }
+    }
+
+    // Live Preview Playback
+    let isPlaying = false;
+    function playPreview() {
+      if (isPlaying) return;
+      isPlaying = true;
+      statusNote.textContent = 'Playing 15s preview with audio...';
+      
+      try { getAudioStream(); } catch (_) {}
+
+      let start = performance.now();
+      function loop(now) {
+        let elapsed = (now - start) / 1000;
+        if (elapsed > DURATION) {
+          renderFrame(DURATION);
+          isPlaying = false;
+          statusNote.textContent = 'Preview finished! Click "Record & Download" to save video.';
+          return;
+        }
+        renderFrame(elapsed);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+
+    previewBtn.addEventListener('click', playPreview);
+
+    // Initial first frame render
+    setTimeout(() => renderFrame(1.0), 300);
+
+    // High Quality Media Recording & Instant Download
+    recordBtn.addEventListener('click', async () => {
+      recordBtn.disabled = true;
+      previewBtn.disabled = true;
+      progressWrap.style.display = 'block';
+      progressBar.style.width = '0%';
+      statusNote.textContent = 'Rendering 1080x1920 HD video frames & audio...';
+
+      // Capture stream from canvas at 30fps
+      const canvasStream = canvas.captureStream(FPS);
+      
+      // Combine with audio stream
+      let combinedStream = canvasStream;
+      try {
+        const audioStream = getAudioStream();
+        combinedStream = new MediaStream([
+          ...canvasStream.getVideoTracks(),
+          ...audioStream.getAudioTracks()
+        ]);
+      } catch (e) {
+        console.warn('Audio capture note:', e);
+      }
+
+      // Check supported MIME types (webm / mp4)
+      let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 6000000 };
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        options = { mimeType: 'video/webm' };
+      }
+
+      const recorder = new MediaRecorder(combinedStream, options);
+      const chunks = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        statusNote.textContent = 'Finalizing video file...';
+        const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        
+        // Auto trigger download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'theweeknd-india-promo-reel.webm';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        statusNote.textContent = '🎉 Video Downloaded Successfully! Ready to post on Instagram Reel & Story.';
+        recordBtn.disabled = false;
+        previewBtn.disabled = false;
+        progressBar.style.width = '100%';
+      };
+
+      recorder.start();
+
+      // Step-by-step frame rendering loop
+      let start = performance.now();
+      function recordLoop(now) {
+        let elapsed = (now - start) / 1000;
+        let progress = Math.min((elapsed / DURATION) * 100, 100);
+        progressBar.style.width = progress + '%';
+        statusNote.textContent = `Rendering video... ${Math.round(progress)}% (${elapsed.toFixed(1)}s / 15s)`;
+
+        if (elapsed >= DURATION) {
+          renderFrame(DURATION);
+          recorder.stop();
+          return;
+        }
+
+        renderFrame(elapsed);
+        requestAnimationFrame(recordLoop);
+      }
+      requestAnimationFrame(recordLoop);
+    });
+  </script>
+</body>
+</html>
