@@ -325,8 +325,7 @@
         success.style.display = 'block';
         fetchVoteCount(); // refresh counter
         
-        // Trigger automated professional confirmation email
-        sendConfirmationEmail(cleanName, cleanEmail, selectedCity, data.budget);
+
       } catch (networkError) {
         submitButton.disabled = false;
         submitButton.textContent = 'Submit my vote →';
