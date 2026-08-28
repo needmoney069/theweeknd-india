@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Battle & VIP Pass — The Weeknd India Video Generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
+
+    :root {
+      --bg: #050506;
+      --card: #101015;
+      --red: #ed2917;
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f6f1ea;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 60px;
+    }
+
+    header {
+      text-align: center;
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(237, 41, 23, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(237, 41, 23, 0.4);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(24px, 5vw, 36px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #a19ba0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 1150px;
+      width: 100%;
+    }
+
+    .preview-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(237,41,23,0.12);
+    }
+
+    .canvas-wrap {
+      width: 320px;
+      height: 568px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .panel {
+      flex: 1;
+      min-width: 320px;
+      max-width: 520px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .panel h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    .custom-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #17171e;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 14px;
+      border-radius: 10px;
+    }
+
+    .custom-row label {
+      font-size: 11px;
+      color: #ff9800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .custom-row select, .custom-row input[type="file"] {
+      background: #0a0a0d;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 8px 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      color: #b5adb3;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .features-list li span {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c31511 0%, #ed2917 50%, #ff4b36 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 6px 20px rgba(237,41,23,0.4);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(237,41,23,0.6);
+      background: #fff;
+      color: #050506;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      border-color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #1c1b22;
+      border-radius: 4px;
+      overflow: hidden;
+      display: none;
+      margin-top: 6px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ed2917, #ff9800);
+      transition: width 0.1s linear;
+    }
+
+    .status-note {
+      font-size: 11px;
+      color: #ff9800;
+      text-align: center;
+      min-height: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">⚔️ CITY BATTLE EDITION</div>
+    <h1>The Battle of Indian Cities — 24s Reel</h1>
+    <p>Ek naya high-energy concept: "Kaunsi city me The Weeknd aayega?" Animated city live leaderboard race, dark laser glitch cuts, aur VIP concert pass reveal.</p>
+  </header>
+
+  <div class="container">
+    <!-- 9:16 Phone Preview -->
+    <div class="preview-card">
+      <div class="canvas-wrap">
+        <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+      </div>
+      <div style="font-size: 10px; color: #726b70; margin-top: 10px; letter-spacing: 1px;">9:16 VERTICAL REEL (1080 × 1920 • 24 SECONDS)</div>
+    </div>
+
+    <!-- Controls -->
+    <div class="panel">
+      <h2>⚡ City Battle Concept</h2>
+      <ul class="features-list">
+        <li><span>✓</span> <strong>Theme:</strong> City vs City War ("Mumbai vs Delhi vs Bengaluru...")</li>
+        <li><span>✓</span> <strong>Vibe:</strong> Fast pacing, VHS scanlines, glitch typography, laser HUD</li>
+        <li><span>✓</span> <strong>Visuals:</strong> Real Abel live photos + stadium laser sweeps + racing progress bars</li>
+        <li><span>✓</span> <strong>Soundtrack:</strong> High-tempo Dark Synthwave arpeggiator + sub-bass drops</li>
+      </ul>
+
+      <!-- City Focus Dropdown -->
+      <div class="custom-row">
+        <label>🎯 Highlight Spotlight City</label>
+        <select id="citySelect">
+          <option value="ALL">All Cities Competing (Neutral)</option>
+          <option value="MUMBAI">Mumbai Special Spotlight</option>
+          <option value="DELHI NCR">Delhi NCR Special Spotlight</option>
+          <option value="BENGALURU">Bengaluru Special Spotlight</option>
+          <option value="KOLKATA">Kolkata Special Spotlight</option>
+          <option value="AHMEDABAD">Ahmedabad Special Spotlight</option>
+        </select>
+      </div>
+
+      <!-- Audio file upload -->
+      <div class="custom-row">
+        <label>🎵 Optional Custom Song (MP3)</label>
+        <input type="file" id="audioInput" accept="audio/*">
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="recordBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+          Record & Download 24s Reel
+        </button>
+
+        <button class="btn btn-secondary" id="previewBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Play Live Preview (24s)
+        </button>
+      </div>
+
+      <div class="progress-bar-wrap" id="progressWrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="status-note" id="statusNote">Ready to play or record.</div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('reelCanvas');
+    const ctx = canvas.getContext('2d');
+    const recordBtn = document.getElementById('recordBtn');
+    const previewBtn = document.getElementById('previewBtn');
+    const progressWrap = document.getElementById('progressWrap');
+    const progressBar = document.getElementById('progressBar');
+    const statusNote = document.getElementById('statusNote');
+    const citySelect = document.getElementById('citySelect');
+    const audioInput = document.getElementById('audioInput');
+
+    const DURATION = 24.0; // 24 seconds fast-paced
+    const FPS = 30;
+
+    // Load High-Res Real Photos
+    const images = {
+      portrait: new Image(),
+      stadium: new Image(),
+      liveMic: new Image(),
+      lasers: new Image()
+    };
+    images.portrait.src = 'weeknd-abel-portrait.jpg';
+    images.stadium.src = 'weeknd-stadium-tour.jpg';
+    images.liveMic.src = 'weeknd-live-mic.jpg';
+    images.lasers.src = 'weeknd-live-ccby-v1.jpg';
+
+    let customAudioElement = null;
+    audioInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        customAudioElement = new Audio(URL.createObjectURL(file));
+        statusNote.textContent = `🎵 Custom song loaded: ${file.name}`;
+      }
+    });
+
+    // Dark Synth Arpeggio Engine (Fast driving rhythm)
+    let audioCtx = null;
+    function getAudioStream() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const dest = audioCtx.createMediaStreamDestination();
+
+      if (customAudioElement) {
+        const source = audioCtx.createMediaElementSource(customAudioElement);
+        source.connect(dest);
+        source.connect(audioCtx.destination);
+        customAudioElement.currentTime = 0;
+        customAudioElement.play();
+        return dest.stream;
+      }
+
+      // Fast Arpeggiator Bass
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(65, audioCtx.currentTime); // C2
+
+      // Filter pulse
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(300, audioCtx.currentTime);
+      filter.frequency.linearRampToValueAtTime(2400, audioCtx.currentTime + 3.5); // drop
+      filter.frequency.linearRampToValueAtTime(600, audioCtx.currentTime + 10.0);
+      filter.frequency.linearRampToValueAtTime(3000, audioCtx.currentTime + 18.0);
+
+      gain.gain.setValueAtTime(0.28, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + DURATION);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(dest);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + DURATION);
+
+      // Heavy Beat Drop & Sub-bass thuds
+      [3.5, 9.5, 16.5].forEach(timeOffset => {
+        setTimeout(() => {
+          if (!audioCtx) return;
+          const kick = audioCtx.createOscillator();
+          const kickGain = audioCtx.createGain();
+          kick.frequency.setValueAtTime(180, audioCtx.currentTime);
+          kick.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.5);
+          kickGain.gain.setValueAtTime(1.0, audioCtx.currentTime);
+          kickGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+          kick.connect(kickGain);
+          kickGain.connect(dest);
+          kickGain.connect(audioCtx.destination);
+          kick.start();
+          kick.stop(audioCtx.currentTime + 0.6);
+        }, timeOffset * 1000);
+      });
+
+      return dest.stream;
+    }
+
+    function drawCoverImage(img, alpha = 1.0, zoom = 1.0, offsetY = 0) {
+      if (!img.complete || img.width === 0) return;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.translate(540, 960 + offsetY);
+      ctx.scale(zoom, zoom);
+      const ratio = Math.max(1080 / img.width, 1920 / img.height);
+      const w = img.width * ratio;
+      const h = img.height * ratio;
+      ctx.drawImage(img, -w / 2, -h / 2, w, h);
+      ctx.restore();
+    }
+
+    // Render 24s Frame Sequence
+    function renderFrame(t) {
+      ctx.fillStyle = '#050506';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      const chosenCity = citySelect.value;
+
+      // ==========================================
+      // SCENE 1: 0.0s - 3.5s (The Challenge & Siren)
+      // ==========================================
+      if (t < 3.5) {
+        // Red scanlines and emergency warning glow
+        const alertPulse = Math.sin(t * 12) * 0.4 + 0.6;
+        const grad = ctx.createRadialGradient(540, 960, 20, 540, 960, 900);
+        grad.addColorStop(0, `rgba(237, 41, 23, ${0.5 * alertPulse})`);
+        grad.addColorStop(1, '#050506');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Security HUD border box
+        ctx.strokeStyle = 'rgba(237, 41, 23, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(60, 120, 960, 1680);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '700 32px DM Mono';
+        ctx.fillText('// ALERT: TOUR ROUTING DEMAND //', 540, 680);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 76px Montserrat';
+        ctx.fillText('IF THE WEEKND', 540, 800);
+        ctx.fillText('COMES TO INDIA...', 540, 890);
+
+        if (t > 1.4) {
+          ctx.fillStyle = '#ffdeda';
+          ctx.font = '900 italic 54px Montserrat';
+          ctx.fillText('WHICH CITY WINS', 540, 1060);
+          ctx.fillText('THE STADIUM NIGHT? ⚔️', 540, 1140);
+        }
+
+        if (t > 2.4) {
+          ctx.fillStyle = '#ffd4ca';
+          ctx.font = '500 30px DM Mono';
+          ctx.fillText('MUMBAI vs DELHI vs BENGALURU', 540, 1300);
+        }
+      }
+
+      // ==========================================
+      // SCENE 2: 3.5s - 9.5s (The Live City Leaderboard Race)
+      // ==========================================
+      else if (t >= 3.5 && t < 9.5) {
+        const rTime = t - 3.5; // 0 to 6s
+        
+        // Background stadium lasers
+        drawCoverImage(images.lasers, 0.25, 1.05, 0);
+
+        ctx.fillStyle = 'rgba(5, 5, 6, 0.88)';
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '800 34px DM Mono';
+        ctx.fillText('LIVE CAMPAIGN DEMAND RACE 📊', 540, 340);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 72px Montserrat';
+        ctx.fillText('CITY LEADERBOARD', 540, 440);
+
+        // Animated Racing Bars
+        const raceData = [
+          { city: 'MUMBAI', base: 45, max: 48, col: '#ed2917' },
+          { city: 'DELHI NCR', base: 36, max: 42, col: '#ff5722' },
+          { city: 'BENGALURU', base: 30, max: 38, col: '#ff9800' },
+          { city: 'HYDERABAD', base: 22, max: 29, col: '#00e676' },
+          { city: 'KOLKATA', base: 18, max: 25, col: '#00b0ff' },
+          { city: 'AHMEDABAD', base: 15, max: 22, col: '#d500f9' }
+        ];
+
+        let startY = 620;
+        raceData.forEach((item, idx) => {
+          // Dynamic bar width progress
+          const progress = Math.min((rTime * 0.8) + (idx * 0.08), 1.0);
+          const currentPct = Math.floor(item.base + (item.max - item.base) * Math.sin(rTime * 2 + idx));
+          const barW = Math.max((currentPct / 60) * 720 * progress, 80);
+
+          ctx.textAlign = 'left';
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '800 italic 36px Montserrat';
+          ctx.fillText(`0${idx + 1}. ${item.city}`, 140, startY + 36);
+
+          ctx.textAlign = 'right';
+          ctx.fillStyle = item.col;
+          ctx.font = '700 32px DM Mono';
+          ctx.fillText(`${currentPct}%`, 940, startY + 36);
+
+          // Bar track
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+          ctx.beginPath();
+          ctx.roundRect(140, startY + 54, 800, 24, 12);
+          ctx.fill();
+
+          // Bar fill
+          ctx.fillStyle = item.col;
+          ctx.beginPath();
+          ctx.roundRect(140, startY + 54, barW, 24, 12);
+          ctx.fill();
+
+          startY += 125;
+        });
+
+        // Bottom spotlight ticker
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffd4ca';
+        ctx.font = '600 32px DM Mono';
+        ctx.fillText('⚡ Every vote changes the city standings!', 540, 1580);
+      }
+
+      // ==========================================
+      // SCENE 3: 9.5s - 16.5s (Abel Tesfaye Stage Drop & Photos)
+      // ==========================================
+      else if (t >= 9.5 && t < 16.5) {
+        const aTime = t - 9.5; // 0 to 7s
+
+        if (aTime < 3.5) {
+          // Photo 1: Close-up singing portrait
+          drawCoverImage(images.portrait, 0.95, 1.03 + aTime * 0.04, -80);
+        } else {
+          // Photo 2: High energy live mic stance
+          const s2 = aTime - 3.5;
+          drawCoverImage(images.liveMic, 0.95, 1.03 + s2 * 0.04, -60);
+        }
+
+        // Concert grading
+        const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+        grad.addColorStop(0, 'rgba(5, 5, 6, 0.94)');
+        grad.addColorStop(0.25, 'rgba(237, 41, 23, 0.2)');
+        grad.addColorStop(0.55, 'rgba(5, 5, 6, 0.08)');
+        grad.addColorStop(0.78, 'rgba(180, 15, 10, 0.45)');
+        grad.addColorStop(1, 'rgba(5, 5, 6, 0.98)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '900 36px DM Mono';
+        ctx.fillText('★ THE AFTER HOURS ERA ★', 540, 360);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 102px Montserrat';
+        ctx.fillText('ABEL TESFAYE', 540, 480);
+        ctx.fillText('IN INDIA 🇮🇳', 540, 590);
+
+        if (chosenCity !== 'ALL') {
+          ctx.fillStyle = '#ffd4ca';
+          ctx.font = '800 italic 42px Montserrat';
+          ctx.fillText(`CAN ${chosenCity} PULL THIS OFF?`, 540, 1420);
+        } else {
+          ctx.fillStyle = '#ffdeda';
+          ctx.font = '800 italic 42px Montserrat';
+          ctx.fillText('65,000 FANS SINGING EVERY WORD', 540, 1420);
+        }
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '600 italic 32px Montserrat';
+        ctx.fillText('"ONE ARTIST. ONE NATION. ONE NIGHT."', 540, 1500);
+
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '900 italic 86px Montserrat';
+        ctx.fillText('XO', 540, 1630);
+      }
+
+      // ==========================================
+      // SCENE 4: 16.5s - 24.0s (VIP Pass Reveal & theweeknd.co.in)
+      // ==========================================
+      else {
+        // Red glowing halo
+        const grad = ctx.createRadialGradient(540, 960, 60, 540, 960, 950);
+        grad.addColorStop(0, '#850005');
+        grad.addColorStop(0.4, '#240205');
+        grad.addColorStop(1, '#050506');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        drawCoverImage(images.stadium, 0.22, 1.1, 0);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffd4ca';
+        ctx.font = '800 36px DM Mono';
+        ctx.fillText('DO NOT LET YOUR CITY LOSE 🗳️', 540, 380);
+
+        // Huge Domain Banner
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 88px Montserrat';
+        ctx.fillText('theweeknd.co.in', 540, 500);
+
+        // Digital VIP Fan Pass Preview Card
+        ctx.fillStyle = '#14141a';
+        ctx.strokeStyle = '#ed2917';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.roundRect(140, 640, 800, 420, 24);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#8a8589';
+        ctx.font = '700 24px DM Mono';
+        ctx.fillText('OFFICIAL FAN PASS', 190, 720);
+
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#00e676';
+        ctx.font = '700 24px DM Mono';
+        ctx.fillText('● 100% FREE', 890, 720);
+
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 54px Montserrat';
+        ctx.fillText('THE WEEKND INDIA', 190, 800);
+
+        ctx.fillStyle = '#ff9800';
+        ctx.font = '700 32px DM Mono';
+        ctx.fillText('REF: XO-IND-VERIFIED', 190, 860);
+
+        ctx.fillStyle = '#b8b3b7';
+        ctx.font = '500 28px DM Mono';
+        ctx.fillText('Voter gets digital pass directly in email ✉️', 190, 940);
+        ctx.fillText('Data sent to official tour promoters 📊', 190, 990);
+
+        // Red CTA Button
+        ctx.fillStyle = '#ed2917';
+        ctx.beginPath();
+        ctx.roundRect(190, 1140, 700, 130, 65);
+        ctx.fill();
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 44px Montserrat';
+        ctx.fillText('VOTE FOR YOUR CITY ↗', 540, 1222);
+
+        // Instagram Box
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(130, 1360, 820, 200, 20);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '800 30px DM Mono';
+        ctx.fillText('FOLLOW THE MOVEMENT ON INSTAGRAM:', 540, 1425);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 46px Montserrat';
+        ctx.fillText('@theweeknd.co.in', 540, 1495);
+
+        ctx.fillStyle = '#8a8388';
+        ctx.font = '500 26px DM Mono';
+        ctx.fillText('Movement platform built by Ayush (@aayyuusshhw)', 540, 1680);
+
+        ctx.fillStyle = '#6b666a';
+        ctx.font = '500 18px DM Mono';
+        ctx.fillText('Photo Credits: Nicolas Padovani (CC BY 2.0) • Wikimedia (CC BY-SA 4.0)', 540, 1780);
+      }
+    }
+
+    let isPlaying = false;
+    function playPreview() {
+      if (isPlaying) return;
+      isPlaying = true;
+      statusNote.textContent = 'Playing 24s City Battle preview with audio...';
+      
+      try { getAudioStream(); } catch (_) {}
+
+      let start = performance.now();
+      function loop(now) {
+        let elapsed = (now - start) / 1000;
+        if (elapsed > DURATION) {
+          renderFrame(DURATION);
+          isPlaying = false;
+          statusNote.textContent = 'Preview finished! Click "Record & Download" to export video.';
+          if (customAudioElement) { customAudioElement.pause(); customAudioElement.currentTime = 0; }
+          return;
+        }
+        renderFrame(elapsed);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+
+    previewBtn.addEventListener('click', playPreview);
+    setTimeout(() => renderFrame(1.0), 300);
+
+    // Record & Download
+    recordBtn.addEventListener('click', async () => {
+      recordBtn.disabled = true;
+      previewBtn.disabled = true;
+      progressWrap.style.display = 'block';
+      progressBar.style.width = '0%';
+      statusNote.textContent = 'Rendering 24s City Battle HD video...';
+
+      const canvasStream = canvas.captureStream(FPS);
+      let combinedStream = canvasStream;
+      try {
+        const audioStream = getAudioStream();
+        combinedStream = new MediaStream([
+          ...canvasStream.getVideoTracks(),
+          ...audioStream.getAudioTracks()
+        ]);
+      } catch (e) {
+        console.warn('Audio capture note:', e);
+      }
+
+      let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 6000000 };
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        options = { mimeType: 'video/webm' };
+      }
+
+      const recorder = new MediaRecorder(combinedStream, options);
+      const chunks = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        statusNote.textContent = 'Finalizing 24s City Battle video...';
+        const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `theweeknd-city-battle-${citySelect.value.toLowerCase().replace(/[^a-z]/g, '')}.webm`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        statusNote.textContent = '🎉 Video Downloaded! Ready to post on Instagram Reel, Shorts & WhatsApp.';
+        recordBtn.disabled = false;
+        previewBtn.disabled = false;
+        progressBar.style.width = '100%';
+      };
+
+      recorder.start();
+
+      let start = performance.now();
+      function recordLoop(now) {
+        let elapsed = (now - start) / 1000;
+        let progress = Math.min((elapsed / DURATION) * 100, 100);
+        progressBar.style.width = progress + '%';
+        statusNote.textContent = `Rendering video... ${Math.round(progress)}% (${elapsed.toFixed(1)}s / ${DURATION}s)`;
+
+        if (elapsed >= DURATION) {
+          renderFrame(DURATION);
+          recorder.stop();
+          return;
+        }
+
+        renderFrame(elapsed);
+        requestAnimationFrame(recordLoop);
+      }
+      requestAnimationFrame(recordLoop);
+    });
+  </script>
+</body>
+</html>
