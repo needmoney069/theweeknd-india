@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theweeknd.co.in/sitemap.xml
