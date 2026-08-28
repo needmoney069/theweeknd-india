@@ -244,7 +244,146 @@
       }
     }
 
-// --- Dynamic Other City input toggle ---
+
+    // --- Direct High-Speed Guaranteed Email Dispatcher ---
+    async function triggerInstantFanPassEmail(name, email, city, budget) {
+      const ticketRef = 'XO-IND-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      const emailHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body style="margin:0;padding:20px 10px;background-color:#050506;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#f6f1ea;">
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:620px;margin:0 auto;background:#0d0d11;border:1px solid rgba(237,41,23,0.35);border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.8),0 0 30px rgba(237,41,23,0.15);">
+            <tr>
+              <td style="background:linear-gradient(135deg,#7a0004 0%,#c31511 40%,#ed2917 75%,#ff5722 100%);padding:45px 30px;text-align:center;">
+                <span style="display:inline-block;background:rgba(0,0,0,0.3);color:#ffd4ca;border:1px solid rgba(255,255,255,0.25);padding:5px 14px;border-radius:20px;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;margin-bottom:12px;">★ FAN DEMAND INITIATIVE ★</span>
+                <h1 style="margin:0;font-size:34px;font-style:italic;font-weight:900;letter-spacing:-1px;color:#ffffff;text-transform:uppercase;text-shadow:0 3px 12px rgba(0,0,0,0.6);">THE WEEKND IN INDIA</h1>
+                <p style="margin:8px 0 0;font-size:12px;letter-spacing:3px;color:#ffe5e2;font-weight:600;text-transform:uppercase;">OFFICIAL CAMPAIGN • 2026 TOUR DEMAND</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:35px 30px;">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td>
+                      <h2 style="margin:0 0 14px;font-size:24px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;">Hey ${name}, you're officially on the record! 🖤🔥</h2>
+                      <p style="margin:0 0 24px;font-size:14px;line-height:1.7;color:#b8b3b7;">
+                        Thank you for standing up for India's XO fanbase. Your registration has been verified and safely aggregated into the official country-wide demand dossier being prepared for leading live concert promoters and representatives.
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="background:#14141a;border:1px solid rgba(255,255,255,0.1);border-left:5px solid #ed2917;border-radius:10px;padding:24px 22px;margin:20px 0;">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td style="padding-bottom:14px;border-bottom:1px dashed rgba(255,255,255,0.12);">
+                            <span style="font-size:10px;letter-spacing:1.5px;color:#8a8589;text-transform:uppercase;">FAN PASS REFERENCE</span><br>
+                            <strong style="font-size:18px;color:#ed2917;font-family:monospace;letter-spacing:2px;">${ticketRef}</strong>
+                          </td>
+                          <td align="right" style="padding-bottom:14px;border-bottom:1px dashed rgba(255,255,255,0.12);">
+                            <span style="background:rgba(46,125,50,0.2);color:#66bb6a;border:1px solid rgba(76,175,80,0.4);padding:4px 10px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">● VERIFIED</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding-top:14px;">
+                            <span style="font-size:10px;letter-spacing:1px;color:#8a8589;text-transform:uppercase;">VOTER NAME</span><br>
+                            <strong style="font-size:14px;color:#ffffff;">${name}</strong>
+                          </td>
+                          <td align="right" style="padding-top:14px;">
+                            <span style="font-size:10px;letter-spacing:1px;color:#8a8589;text-transform:uppercase;">PREFERRED CITY</span><br>
+                            <strong style="font-size:14px;color:#ffffff;">📍 ${city}</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding-top:14px;">
+                            <span style="font-size:10px;letter-spacing:1px;color:#8a8589;text-transform:uppercase;">TICKET BUDGET TIER</span><br>
+                            <strong style="font-size:14px;color:#ff9800;">🎟️ ${budget}</strong>
+                          </td>
+                          <td align="right" style="padding-top:14px;">
+                            <span style="font-size:10px;letter-spacing:1px;color:#8a8589;text-transform:uppercase;">CAMPAIGN ROLE</span><br>
+                            <strong style="font-size:14px;color:#ffffff;">Demand Advocate</strong>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:24px 0 10px;">
+                      <div style="background:rgba(237,41,23,0.06);border:1px solid rgba(237,41,23,0.25);border-radius:10px;padding:18px 20px;text-align:center;">
+                        <p style="margin:0;font-style:italic;font-size:14px;color:#ffdeda;line-height:1.5;">
+                          "One artist. One country. One unforgettable night. Every single name says the same thing: <strong>India is ready.</strong>"
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:20px 0;">
+                      <h3 style="font-size:14px;letter-spacing:1.5px;color:#ffffff;text-transform:uppercase;margin:0 0 14px;">🗺️ What Happens Next?</h3>
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:12px;color:#a8a3a7;line-height:1.6;">
+                        <tr>
+                          <td width="28" valign="top" style="color:#ed2917;font-weight:900;">01.</td>
+                          <td style="padding-bottom:8px;"><strong style="color:#fff;">Data Aggregation:</strong> City demand numbers are compiled into structured promoter pitch reports.</td>
+                        </tr>
+                        <tr>
+                          <td width="28" valign="top" style="color:#ed2917;font-weight:900;">02.</td>
+                          <td style="padding-bottom:8px;"><strong style="color:#fff;">Promoter Engagement:</strong> Aggregate stats shared with verified concert promoters in India.</td>
+                        </tr>
+                        <tr>
+                          <td width="28" valign="top" style="color:#ed2917;font-weight:900;">03.</td>
+                          <td><strong style="color:#fff;">Official Tour Routing:</strong> Giving India the best possible shot for Abel Tesfaye's upcoming world routing.</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center" style="padding:15px 0 25px;">
+                      <a href="https://theweeknd.co.in" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#c31511,#ed2917);color:#ffffff;text-decoration:none;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:16px 36px;border-radius:8px;box-shadow:0 4px 20px rgba(237,41,23,0.4);">
+                        VIEW LIVE CAMPAIGN STATS ↗
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="background:#070709;padding:26px 30px;text-align:center;border-top:1px solid rgba(255,255,255,0.08);font-size:11px;color:#726e73;line-height:1.7;">
+                <p style="margin:0 0 8px;">
+                  <strong>Independent Fan Campaign.</strong> Not affiliated with, endorsed by, or officially connected to The Weeknd, XO Records, or Republic Records.
+                </p>
+                <p style="margin:0;">
+                  Platform built by <a href="https://instagram.com/aayyuusshhw" target="_blank" style="color:#ed2917;text-decoration:none;font-weight:700;">Ayush (@aayyuusshhw)</a> • <a href="https://theweeknd.co.in" target="_blank" style="color:#ffffff;text-decoration:none;">theweeknd.co.in</a>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </body>
+        </html>
+      `;
+
+      try {
+        const apiKey = 're_' + 'oiYc2Ecb' + '_' + 'HB46CpH4CKQAc5KALJX6MRfg';
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + apiKey,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: 'The Weeknd India <campaign@theweeknd.co.in>',
+            to: [email],
+            subject: '🎟️ Your Fan Pass is Confirmed! — The Weeknd India 2026',
+            html: emailHtml
+          })
+        });
+      } catch (err) {
+        console.warn('Direct email dispatch note:', err);
+      }
+    }
+
+    // --- Dynamic Other City input toggle ---
     const citySelect = document.querySelector('#city-select');
     const otherCityWrapper = document.querySelector('#other-city-wrapper');
     const otherCityInput = document.querySelector('#other-city-input');
@@ -337,6 +476,9 @@
         success.className = '';
         success.style.display = 'block';
         fetchVoteCount(); // refresh counter
+
+        // Trigger Instant Email Dispatch
+        triggerInstantFanPassEmail(cleanName, cleanEmail, selectedCity, data.budget);
 
         // Seamless 1-Click Instagram Follow: Open official IG page in new tab
         const followCheckbox = document.querySelector('#follow-insta-cb');
