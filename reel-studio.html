@@ -6,7 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>The Weeknd India — 4K Master Concert Reels Studio</title>
+  <title>The Weeknd India — Master Reels & Slideshows Studio Hub</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
 
@@ -31,8 +31,8 @@
 
     header {
       text-align: center;
-      max-width: 850px;
-      margin: 0 auto 24px;
+      max-width: 900px;
+      margin: 0 auto 20px;
     }
 
     .badge {
@@ -65,6 +65,44 @@
       line-height: 1.6;
     }
 
+    /* Category Navigation Tabs */
+    .studio-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 12px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #c31511 0%, #ed2917 100%);
+      color: #fff;
+      border-color: #ff4b36;
+      box-shadow: 0 4px 20px rgba(237, 41, 23, 0.4);
+    }
+
     .main-layout {
       display: grid;
       grid-template-columns: 360px 1fr;
@@ -92,7 +130,7 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(237,41,23,0.15);
     }
 
-    .video-wrap {
+    .media-wrap {
       width: 300px;
       height: 533px; /* 9:16 vertical */
       border-radius: 14px;
@@ -102,7 +140,7 @@
       border: 1px solid rgba(255,255,255,0.2);
     }
 
-    video {
+    video, canvas {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -247,6 +285,11 @@
       color: #ffb703;
     }
 
+    .reel-badge.cyan {
+      background: rgba(0, 240, 255, 0.15);
+      color: #00f0ff;
+    }
+
     .reel-time {
       font-size: 10px;
       color: #888;
@@ -261,19 +304,11 @@
       line-height: 1.3;
     }
 
-    .reel-song {
+    .reel-desc {
       font-size: 11px;
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    .reel-hook {
-      font-size: 10px;
       color: #bbb;
       line-height: 1.4;
       flex: 1;
-      border-left: 2px solid #ed2917;
-      padding-left: 8px;
     }
 
     .reel-actions {
@@ -300,7 +335,7 @@
       text-decoration: none;
     }
 
-    .reel-actions button.select-btn:hover {
+    .reel-actions button.select-btn:hover, .reel-actions a.select-btn:hover {
       background: #fff;
       color: #000;
     }
@@ -320,42 +355,53 @@
 <body>
 
   <header>
-    <div class="badge">🔥 4K BBMAs & SÃO PAULO EXCLUSIVE</div>
-    <h1>The Weeknd — Master Concert Reels Studio</h1>
-    <p>4K 2160p Source Footage from <strong>The 2021 Billboard Music Awards (Save Your Tears)</strong> & <strong>São Paulo Tour</strong> with real concert vocals. Zero city names — universal viral hooks only.</p>
+    <div class="badge">🔥 ALL-IN-ONE MASTER STUDIO & ARCHIVE</div>
+    <h1>The Weeknd India — Video & Slideshow Studio</h1>
+    <p>Har tarah ke themes yahan ready hain: <strong>Purane Motion Slideshows</strong> (Coldplay hook, City leaderboard, 3D VIP pass) aur <strong>4K Real Concert Videos</strong> (Save Your Tears & São Paulo). Kisi bhi tab par click karo!</p>
   </header>
 
+  <!-- Section Switcher Tabs -->
+  <div class="studio-tabs">
+    <button class="tab-btn active" id="tabSlideshows" onclick="switchCategory('slideshows')">
+      🎞️ Purane Slideshow Themes (32s / 24s / 48s / 60s)
+    </button>
+    <button class="tab-btn" id="tabVideos" onclick="switchCategory('videos')">
+      🎥 4K Video Masters (Save Your Tears & São Paulo)
+    </button>
+  </div>
+
   <div class="main-layout">
-    <!-- Left Column: Live Video Player -->
+    <!-- Left Column: Live Player -->
     <div class="player-col">
-      <div class="video-wrap">
-        <video id="mainPlayer" playsinline controls loop autoplay></video>
+      <div class="media-wrap">
+        <video id="mainVideo" playsinline controls loop autoplay style="display: none;"></video>
+        <canvas id="slideshowCanvas" width="1080" height="1920"></canvas>
       </div>
 
       <div class="player-controls">
-        <div class="now-playing-title" id="nowPlayingTitle">Master 01: Save Your Tears (Part 1 - The Drive)</div>
+        <div class="now-playing-title" id="nowPlayingTitle">32s Classic Viral Slideshow</div>
 
-        <a class="btn btn-primary" id="downloadMainBtn" href="Save-Your-Tears-Part-1-Web.mp4" download="Save-Your-Tears-Part-1-Drive-1080p.mp4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Direct Download Video (HD)
+        <a class="btn btn-primary" id="mainActionBtn" href="promo-reel.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Open Generator & Export Video
         </a>
 
-        <button class="btn btn-secondary" id="togglePlayBtn" onclick="togglePlay()">
-          ⏯ Play / Pause
+        <button class="btn btn-secondary" id="previewBtn" onclick="triggerPlay()">
+          ▶ Play Live In Studio
         </button>
 
-        <div class="status-note" id="statusNote">Playing 60s 4K Ultra HD Concert Video</div>
+        <div class="status-note" id="statusNote">Ready to play or export.</div>
       </div>
     </div>
 
-    <!-- Right Column: Catalog -->
+    <!-- Right Column: Catalog Grid -->
     <div class="studio-col">
       <div class="studio-header">
         <div>
-          <strong style="color: #fff; font-size: 14px;">10 MASTER CONCERT REELS CATALOG</strong>
-          <div style="font-size: 11px; color: #888;">Select any video to preview live with high-fidelity live vocals</div>
+          <strong style="color: #fff; font-size: 14px;" id="catTitle">PURANE CLASSIC SLIDESHOW THEMES</strong>
+          <div style="font-size: 11px; color: #888;" id="catSubtitle">All original kinetic text, beat drops, city leaderboards & 3D VIP passes</div>
         </div>
-        <div style="font-size: 11px; color: #00f0ff; font-weight: 700;">★ 4K 2160p MASTER CROPS ★</div>
+        <div style="font-size: 11px; color: #00f0ff; font-weight: 700;">★ 100% READY & ACTIVE ★</div>
       </div>
 
       <div class="reels-grid" id="reelsGrid"></div>
@@ -363,172 +409,361 @@
   </div>
 
   <script>
-    const player = document.getElementById('mainPlayer');
+    const mainVideo = document.getElementById('mainVideo');
+    const slideshowCanvas = document.getElementById('slideshowCanvas');
+    const sCtx = slideshowCanvas.getContext('2d');
     const nowPlayingTitle = document.getElementById('nowPlayingTitle');
-    const downloadMainBtn = document.getElementById('downloadMainBtn');
+    const mainActionBtn = document.getElementById('mainActionBtn');
     const statusNote = document.getElementById('statusNote');
     const reelsGrid = document.getElementById('reelsGrid');
+    const catTitle = document.getElementById('catTitle');
+    const catSubtitle = document.getElementById('catSubtitle');
 
-    const REELS = [
+    let currentCategory = 'slideshows';
+    let currentItem = null;
+
+    // 1. Classic Slideshows Catalog
+    const SLIDESHOWS = [
       {
-        id: 1,
-        title: "Master 01: Save Your Tears (Part 1 - The Drive)",
-        song: "🎵 Track: Save Your Tears (Verse 1 & Chorus Live)",
-        file: "Save-Your-Tears-Part-1-Web.mp4?v=theme3",
-        time: "60s (1 MIN)",
-        hook: "IMPOSSIBLE TO IGNORE.",
-        sub: "INDIA IS READY FOR ABEL • theweeknd.co.in",
-        badge: "👑 4K 60S MASTER",
-        is4k: true
+        id: 'slide-1',
+        title: '32s Classic Viral Reel Generator',
+        badge: '🔥 MOST POPULAR',
+        time: '32s',
+        desc: 'Coldplay sold out Mumbai hook ➔ Abel portrait arrival ➔ 65k fans screaming ➔ Rotating City Vote race ➔ 3D VIP Fan Pass & Domain.',
+        pageUrl: 'promo-reel.html',
+        type: 'slideshow',
+        badgeClass: 'gold'
       },
       {
-        id: 2,
-        title: "Master 02: Save Your Tears (Part 2 - Climax)",
-        song: "🎵 Track: Save Your Tears (Drifting Convertibles Bridge)",
-        file: "Save-Your-Tears-Part-2-Web.mp4?v=theme3",
-        time: "60s (1 MIN)",
-        hook: "1.4 BILLION PEOPLE. INDIA IS READY.",
-        sub: "THE GREATEST LIVE PERFORMER ON EARTH",
-        badge: "👑 4K 60S MASTER",
-        is4k: true
+        id: 'slide-2',
+        title: '24s City Battle Speed Race',
+        badge: '🏎️ CITY BATTLE',
+        time: '24s',
+        desc: 'Fast racing leaderboard animation! Mumbai vs Delhi vs Bengaluru vote percentage sprint with beat-synced synthesizer drops.',
+        pageUrl: 'city-battle-reel.html',
+        type: 'slideshow',
+        badgeClass: ''
       },
       {
-        id: 3,
-        title: "Master 03: Timeless Mega Viral Collab",
-        song: "🎵 Track: Timeless (Playboi Carti x The Weeknd)",
-        file: "sp-09-timeless-viral.mp4",
-        time: "25s",
-        hook: "IMPOSSIBLE TO IGNORE.",
-        sub: "INDIA DESERVES THIS LEVEL OF ENERGY 🇮🇳",
-        badge: "🔥 VIRAL ANTHEM",
-        is4k: false
+        id: 'slide-3',
+        title: '48s Dawn FM 103.5 Cyber Cyan Edition',
+        badge: '⚡ DAWN FM CYBER',
+        time: '48s',
+        desc: 'Electric cyber cyan & gold neon palette, 103.5 FM radio frequency audio waveforms, and Paris stadium crowd visuals.',
+        pageUrl: 'dawn-fm-reel.html',
+        type: 'slideshow',
+        badgeClass: 'cyan'
       },
       {
-        id: 4,
-        title: "Master 04: Dancing In The Flames Live Debut",
-        song: "🎵 Track: Dancing In The Flames (Live Debut)",
-        file: "sp-08-dancing-flames.mp4",
-        time: "25s",
-        hook: "A NIGHT LIKE NEVER BEFORE.",
-        sub: "ONE ARTIST. ONE STAGE. ONE NATION.",
-        badge: "✨ LIVE DEBUT",
-        is4k: false
-      },
-      {
-        id: 5,
-        title: "Master 05: Starboy Stadium Explosion",
-        song: "🎵 Track: Starboy (Stadium Singalong)",
-        file: "sp-07-starboy-drop.mp4",
-        time: "25s",
-        hook: "1.4 BILLION PEOPLE. INDIA IS READY.",
-        sub: "THE BIGGEST POP ANTHEM ON EARTH.",
-        badge: "⚡ HIGH ENERGY",
-        is4k: false
-      },
-      {
-        id: 6,
-        title: "Master 06: After Hours Close-Up Mic",
-        song: "🎵 Track: After Hours (Emotional Vocal Delivery)",
-        file: "sp-02-after-hours-mic.mp4",
-        time: "25s",
-        hook: "A VOICE THAT DEFINED A GENERATION.",
-        sub: "HE HAS FILLED STADIUMS WORLDWIDE. EXCEPT INDIA.",
-        badge: "🎤 PURE VOCALS",
-        is4k: false
-      },
-      {
-        id: 7,
-        title: "Master 07: Take My Breath Lights Spectacle",
-        song: "🎵 Track: Take My Breath (80s Shimmering Beat)",
-        file: "sp-03-take-my-breath.mp4",
-        time: "25s",
-        hook: "IMAGINE THIS UNDER INDIAN STADIUM LIGHTS.",
-        sub: "CAN INDIA SING EVERY SINGLE WORD?",
-        badge: "✨ LIGHT SHOW",
-        is4k: false
-      },
-      {
-        id: 8,
-        title: "Master 08: Sacrifice High Voltage Run",
-        song: "🎵 Track: Sacrifice (Intense Stage Stance)",
-        file: "sp-04-sacrifice-energy.mp4",
-        time: "25s",
-        hook: "PROVE THE DEMAND TO PROMOTERS.",
-        sub: "WE ARE NOT WAITING ANYMORE.",
-        badge: "⚡ PURE HYPE",
-        is4k: false
-      },
-      {
-        id: 9,
-        title: "Master 09: House of Balloons Classics",
-        song: "🎵 Track: House of Balloons / Glass Table Girls",
-        file: "sp-06-house-of-balloons.mp4",
-        time: "25s",
-        hook: "FOR EVERY DAY-ONE XO FAN.",
-        sub: "THE NIGHT YOU CANNOT AFFORD TO MISS.",
-        badge: "🖤 OG XO CLASSIC",
-        is4k: false
-      },
-      {
-        id: 10,
-        title: "Master 10: Blinding Lights Drone Spectacle",
-        song: "🎵 Track: Blinding Lights (#1 Billboard Record)",
-        file: "sp-10-blinding-finale.mp4",
-        time: "25s",
-        hook: "THE #1 SONG IN RECORDED HISTORY.",
-        sub: "OVER 4 BILLION STREAMS. READY FOR INDIA.",
-        badge: "🏆 RECORD BREAKER",
-        is4k: false
+        id: 'slide-4',
+        title: '60s The Stadium Experience Concert Film',
+        badge: '🏟️ 60S FILM',
+        time: '60s',
+        desc: 'Full 1-minute cinematic film combining 8 high-res Paris & CDMX tour photos, deep bass synthesizer, and custom audio upload support.',
+        pageUrl: 'the-concert-film.html',
+        type: 'slideshow',
+        badgeClass: 'gold'
       }
     ];
 
-    let currentReel = REELS[0];
+    // 2. 4K Real Concert Videos Catalog
+    const VIDEOS = [
+      {
+        id: 'vid-1',
+        title: '4K Save Your Tears (Part 1 - The Drive)',
+        badge: '👑 4K 60S MASTER',
+        time: '60s (1 MIN)',
+        desc: 'Abel driving red convertibles singing Verse 1 & Chorus live on 2021 Billboard Music Awards. Signature red HUD theme burned in.',
+        file: 'Save-Your-Tears-Part-1-Web.mp4?v=theme3',
+        type: 'video',
+        badgeClass: 'gold'
+      },
+      {
+        id: 'vid-2',
+        title: '4K Save Your Tears (Part 2 - Climax)',
+        badge: '👑 4K 60S MASTER',
+        time: '60s (1 MIN)',
+        desc: 'Drifting convertibles around Abel with soaring falsetto bridge & final chorus live on 2021 Billboard Music Awards. Signature red HUD theme burned in.',
+        file: 'Save-Your-Tears-Part-2-Web.mp4?v=theme3',
+        type: 'video',
+        badgeClass: 'gold'
+      },
+      {
+        id: 'vid-3',
+        title: 'São Paulo: Timeless Mega Viral Collab',
+        badge: '🔥 VIRAL DROP',
+        time: '25s',
+        desc: 'Playboi Carti x The Weeknd live stage beat drop in Brazil with Abel vocals and screaming 80k crowd.',
+        file: 'sp-09-timeless-viral.mp4',
+        type: 'video',
+        badgeClass: ''
+      },
+      {
+        id: 'vid-4',
+        title: 'São Paulo: Dancing In The Flames Live Debut',
+        badge: '✨ LIVE DEBUT',
+        time: '25s',
+        desc: 'The worldwide live debut of Dancing In The Flames on cathedral stage with live singing into mic.',
+        file: 'sp-08-dancing-flames.mp4',
+        type: 'video',
+        badgeClass: 'cyan'
+      },
+      {
+        id: 'vid-5',
+        title: 'São Paulo: Starboy Stadium Explosion',
+        badge: '⚡ HIGH ENERGY',
+        time: '25s',
+        desc: 'Stadium jumping crowd with massive stage pyro flames and Starboy anthem vocals.',
+        file: 'sp-07-starboy-drop.mp4',
+        type: 'video',
+        badgeClass: ''
+      },
+      {
+        id: 'vid-6',
+        title: 'São Paulo: After Hours Close-Up Mic',
+        badge: '🎤 PURE VOCALS',
+        time: '25s',
+        desc: 'Emotional, raw, high-register live vocal delivery of After Hours on stage.',
+        file: 'sp-02-after-hours-mic.mp4',
+        type: 'video',
+        badgeClass: ''
+      },
+      {
+        id: 'vid-7',
+        title: 'São Paulo: Take My Breath Lights Spectacle',
+        badge: '✨ LIGHT SHOW',
+        time: '25s',
+        desc: 'Shimmering 80s synthesizer lights spectacle with Abel live vocals.',
+        file: 'sp-03-take-my-breath.mp4',
+        type: 'video',
+        badgeClass: 'cyan'
+      },
+      {
+        id: 'vid-8',
+        title: 'São Paulo: Sacrifice High Voltage Run',
+        badge: '⚡ PURE HYPE',
+        time: '25s',
+        desc: 'High energy stage run and vocal riff during Sacrifice.',
+        file: 'sp-04-sacrifice-energy.mp4',
+        type: 'video',
+        badgeClass: ''
+      },
+      {
+        id: 'vid-9',
+        title: 'São Paulo: House of Balloons Classics',
+        badge: '🖤 OG XO CLASSIC',
+        time: '25s',
+        desc: 'Nostalgic day-one XO fan favorite live on the cathedral steps.',
+        file: 'sp-06-house-of-balloons.mp4',
+        type: 'video',
+        badgeClass: ''
+      },
+      {
+        id: 'vid-10',
+        title: 'São Paulo: Blinding Lights Finale',
+        badge: '🏆 RECORD BREAKER',
+        time: '25s',
+        desc: 'The #1 Billboard record of all time with illuminated stadium drones and fireworks.',
+        file: 'sp-10-blinding-finale.mp4',
+        type: 'video',
+        badgeClass: 'gold'
+      }
+    ];
 
-    function renderCatalog() {
+    // Image Preloader for Canvas Slideshow Preview
+    const images = {
+      portrait: new Image(),
+      stadium: new Image()
+    };
+    images.portrait.src = 'weeknd-abel-portrait.jpg';
+    images.stadium.src = 'weeknd-stadium-tour.jpg';
+
+    function drawSlideshowFrame(t) {
+      sCtx.fillStyle = '#050506';
+      sCtx.fillRect(0, 0, 1080, 1920);
+
+      // Draw portrait with smooth zoom
+      if (images.portrait.complete && images.portrait.width > 0) {
+        sCtx.save();
+        sCtx.translate(540, 960);
+        const z = 1.0 + Math.sin(t * 0.5) * 0.05;
+        sCtx.scale(z, z);
+        const rRatio = Math.max(1080 / images.portrait.width, 1920 / images.portrait.height);
+        const rw = images.portrait.width * rRatio;
+        const rh = images.portrait.height * rRatio;
+        sCtx.drawImage(images.portrait, -rw / 2, -rh / 2, rw, rh);
+        sCtx.restore();
+      }
+
+      // Vignette
+      const grad = sCtx.createLinearGradient(0, 0, 0, 1920);
+      grad.addColorStop(0, 'rgba(5, 5, 6, 0.95)');
+      grad.addColorStop(0.25, 'rgba(237, 41, 23, 0.2)');
+      grad.addColorStop(0.5, 'rgba(0, 0, 0, 0.1)');
+      grad.addColorStop(0.75, 'rgba(180, 15, 10, 0.4)');
+      grad.addColorStop(1, 'rgba(5, 5, 6, 0.98)');
+      sCtx.fillStyle = grad;
+      sCtx.fillRect(0, 0, 1080, 1920);
+
+      // Kinetic Typography
+      sCtx.textAlign = 'center';
+      sCtx.fillStyle = '#ed2917';
+      sCtx.font = '900 36px DM Mono';
+      sCtx.fillText('★ IT IS TIME FOR ABEL ★', 540, 380);
+
+      sCtx.fillStyle = '#ffffff';
+      sCtx.font = '900 italic 88px Montserrat';
+      sCtx.fillText('THE WEEKND', 540, 490);
+      sCtx.fillText('IN INDIA 🇮🇳', 540, 590);
+
+      // Rotating Hook
+      const phrases = [
+        "COLDPLAY SOLD OUT MUMBAI.",
+        "DUA LIPA TOOK OVER INDIA.",
+        "NOW IT'S TIME FOR ABEL.",
+        "1.4 BILLION PEOPLE DEMAND IT."
+      ];
+      const ph = phrases[Math.floor(t * 0.8) % phrases.length];
+
+      sCtx.fillStyle = 'rgba(237, 41, 23, 0.25)';
+      sCtx.strokeStyle = '#ed2917';
+      sCtx.lineWidth = 4;
+      sCtx.beginPath();
+      sCtx.roundRect(120, 1260, 840, 140, 24);
+      sCtx.fill();
+      sCtx.stroke();
+
+      sCtx.fillStyle = '#ffffff';
+      sCtx.font = '900 italic 44px Montserrat';
+      sCtx.fillText(ph, 540, 1345);
+
+      // CTA & Domain
+      sCtx.fillStyle = '#ffffff';
+      sCtx.font = '900 italic 82px Montserrat';
+      sCtx.fillText('theweeknd.co.in', 540, 1560);
+
+      sCtx.fillStyle = '#ffb703';
+      sCtx.font = '600 28px DM Mono';
+      sCtx.fillText('100% Free • Verified Demand • No Ticket Scalping', 540, 1630);
+
+      sCtx.fillStyle = '#888';
+      sCtx.font = '700 24px DM Mono';
+      sCtx.fillText('@theweeknd.co.in • Built by @aayyuusshhw', 540, 1720);
+    }
+
+    let isSlideshowPlaying = false;
+    let animId = null;
+    function playSlideshowLoop() {
+      if (isSlideshowPlaying) return;
+      isSlideshowPlaying = true;
+      let start = performance.now();
+      function loop(now) {
+        if (!isSlideshowPlaying) return;
+        let t = (now - start) / 1000;
+        drawSlideshowFrame(t);
+        animId = requestAnimationFrame(loop);
+      }
+      animId = requestAnimationFrame(loop);
+    }
+
+    function stopSlideshowLoop() {
+      isSlideshowPlaying = false;
+      if (animId) cancelAnimationFrame(animId);
+    }
+
+    // Switch Category Tab
+    window.switchCategory = function(cat) {
+      currentCategory = cat;
+      document.getElementById('tabSlideshows').classList.toggle('active', cat === 'slideshows');
+      document.getElementById('tabVideos').classList.toggle('active', cat === 'videos');
+
+      if (cat === 'slideshows') {
+        catTitle.textContent = 'PURANE CLASSIC SLIDESHOW THEMES';
+        catSubtitle.textContent = 'All original kinetic text, beat drops, city leaderboards & 3D VIP passes';
+        renderGrid(SLIDESHOWS);
+        selectItem(SLIDESHOWS[0]);
+      } else {
+        catTitle.textContent = '4K VIDEO MASTERS & SÃO PAULO CLIPS';
+        catSubtitle.textContent = 'Real 4K concert performances with embedded signature campaign theme';
+        renderGrid(VIDEOS);
+        selectItem(VIDEOS[0]);
+      }
+    };
+
+    function renderGrid(list) {
       reelsGrid.innerHTML = '';
-      REELS.forEach(reel => {
+      list.forEach(item => {
         const card = document.createElement('div');
-        card.className = `reel-card ${reel.is4k ? 'highlight' : ''} ${reel.id === currentReel.id ? 'active' : ''}`;
+        card.className = `reel-card ${item.id === currentItem?.id ? 'active' : ''}`;
         card.innerHTML = `
           <div class="reel-meta">
-            <span class="reel-badge ${reel.is4k ? 'gold' : ''}">${reel.badge}</span>
-            <span class="reel-time">⏱️ ${reel.time}</span>
+            <span class="reel-badge ${item.badgeClass || ''}">${item.badge}</span>
+            <span class="reel-time">⏱️ ${item.time}</span>
           </div>
-          <div class="reel-title">${reel.title}</div>
-          <div class="reel-song">${reel.song}</div>
-          <div class="reel-hook">"${reel.hook}"<br><span style="color:#888;">${reel.sub}</span></div>
+          <div class="reel-title">${item.title}</div>
+          <div class="reel-desc">${item.desc}</div>
           <div class="reel-actions">
-            <button class="select-btn" onclick="selectReel(${reel.id})">▶ Play Preview</button>
-            <a class="download-btn" href="${reel.file}" download="${reel.file}">⬇ Download</a>
+            <button class="select-btn" onclick="selectItemById('${item.id}')">▶ Select</button>
+            ${item.type === 'slideshow' 
+              ? `<a class="download-btn" href="${item.pageUrl}" target="_blank">Open ↗</a>`
+              : `<a class="download-btn" href="${item.file}" download="${item.file}">⬇ Download</a>`
+            }
           </div>
         `;
         reelsGrid.appendChild(card);
       });
     }
 
-    window.selectReel = function(id) {
-      currentReel = REELS.find(r => r.id === id);
-      nowPlayingTitle.textContent = currentReel.title;
-      player.src = currentReel.file;
-      downloadMainBtn.href = currentReel.file;
-      downloadMainBtn.download = currentReel.file;
-      player.load();
-      player.play().catch(() => {});
-      statusNote.textContent = `Playing ${currentReel.title} (${currentReel.time})`;
-      renderCatalog();
+    window.selectItemById = function(id) {
+      const list = currentCategory === 'slideshows' ? SLIDESHOWS : VIDEOS;
+      const found = list.find(x => x.id === id);
+      if (found) selectItem(found);
     };
 
-    window.togglePlay = function() {
-      if (player.paused) {
-        player.play();
+    window.selectItem = function(item) {
+      currentItem = item;
+      nowPlayingTitle.textContent = item.title;
+      statusNote.textContent = `Selected: ${item.title}`;
+
+      if (item.type === 'slideshow') {
+        mainVideo.style.display = 'none';
+        slideshowCanvas.style.display = 'block';
+        mainVideo.pause();
+        mainActionBtn.href = item.pageUrl;
+        mainActionBtn.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Open Generator & Export Video
+        `;
+        playSlideshowLoop();
       } else {
-        player.pause();
+        stopSlideshowLoop();
+        slideshowCanvas.style.display = 'none';
+        mainVideo.style.display = 'block';
+        mainVideo.src = item.file;
+        mainVideo.load();
+        mainVideo.play().catch(() => {});
+        mainActionBtn.href = item.file;
+        mainActionBtn.setAttribute('download', item.file);
+        mainActionBtn.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Direct Download Video (HD)
+        `;
+      }
+
+      renderGrid(currentCategory === 'slideshows' ? SLIDESHOWS : VIDEOS);
+    };
+
+    window.triggerPlay = function() {
+      if (currentItem.type === 'slideshow') {
+        window.open(currentItem.pageUrl, '_blank');
+      } else {
+        if (mainVideo.paused) mainVideo.play();
+        else mainVideo.pause();
       }
     };
 
-    // Init
-    renderCatalog();
-    selectReel(1);
+    // Init with Slideshows!
+    switchCategory('slideshows');
   </script>
 </body>
 </html>
