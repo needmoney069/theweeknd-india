@@ -281,6 +281,13 @@
         <li><span>✓</span> <strong>Act V (52-60s):</strong> Grand Finale & Call to Action (theweeknd.co.in • VIP Fan Pass • Socials)</li>
       </ul>
 
+      <!-- Real Video Clip Support -->
+      <div class="custom-row" style="border: 1px solid #ed2917; background: rgba(237, 41, 23, 0.08);">
+        <label style="color: #ff3823;">🎬 Real Concert Video Clip (MP4 / MOV)</label>
+        <input type="file" id="videoInput" accept="video/*">
+        <span style="font-size: 10px; color: #ffd4ca;">Abel ka koi bhi real concert video clip (YouTube/Instagram se download karke) yahan daalo — canvas slideshow nahi, <strong>REAL LIVE MOVING VIDEO</strong> chalayega aur text/graphics overlay karke export karega!</span>
+      </div>
+
       <div class="custom-row">
         <label>🎵 Optional Custom Song Track (MP3)</label>
         <input type="file" id="audioInput" accept="audio/*">
@@ -319,6 +326,24 @@
     const progressBar = document.getElementById('progressBar');
     const statusNote = document.getElementById('statusNote');
     const audioInput = document.getElementById('audioInput');
+    const videoInput = document.getElementById('videoInput');
+
+    // Real moving video clip element
+    let realVideo = null;
+    videoInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        realVideo = document.createElement('video');
+        realVideo.src = URL.createObjectURL(file);
+        realVideo.muted = true;
+        realVideo.loop = true;
+        realVideo.playsInline = true;
+        realVideo.onloadeddata = () => {
+          realVideo.play();
+          statusNote.textContent = `🔥 REAL VIDEO LOADED: ${file.name} (Now playing real concert video!)`;
+        };
+      }
+    });
 
     const DURATION = 60.0; // Full 60 seconds
     const FPS = 30;
@@ -419,6 +444,22 @@
       ctx.restore();
     }
 
+    // Helper: Draw real video or fallback photo
+    function drawLiveContent(img, alpha = 1.0, zoom = 1.0, offsetY = 0) {
+      if (realVideo && realVideo.readyState >= 2) {
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.translate(540, 960);
+        const rRatio = Math.max(1080 / realVideo.videoWidth, 1920 / realVideo.videoHeight);
+        const rW = realVideo.videoWidth * rRatio;
+        const rH = realVideo.videoHeight * rRatio;
+        ctx.drawImage(realVideo, -rW / 2, -rH / 2, rW, rH);
+        ctx.restore();
+        return;
+      }
+      drawCoverImage(img, alpha, zoom, offsetY);
+    }
+
     // Render 60-Second Frame Sequence
     function renderFrame(t) {
       ctx.fillStyle = '#050506';
@@ -430,11 +471,11 @@
       if (t < 12.0) {
         if (t < 6.0) {
           // Recent Mexico City Stadium Panoramic
-          drawCoverImage(images.cdmxStadium, 0.85, 1.02 + t * 0.02, 0);
+          drawLiveContent(images.cdmxStadium, 0.85, 1.02 + t * 0.02, 0);
         } else {
           // Recent Paris Robot & Skyline Stage
           const pTime = t - 6.0;
-          drawCoverImage(images.parisRobot, 0.85, 1.02 + pTime * 0.02, 0);
+          drawLiveContent(images.parisRobot, 0.85, 1.02 + pTime * 0.02, 0);
         }
 
         // Dark grading overlay
@@ -478,11 +519,11 @@
 
         if (sTime < 6.5) {
           // Paris 2023 Stadium Stage Performance
-          drawCoverImage(images.parisStage, 0.95, 1.03 + sTime * 0.03, -60);
+          drawLiveContent(images.parisStage, 0.95, 1.03 + sTime * 0.03, -60);
         } else {
           // Abel close-up singing with microphone
           const cTime = sTime - 6.5;
-          drawCoverImage(images.singingMic, 0.95, 1.03 + cTime * 0.03, -80);
+          drawLiveContent(images.singingMic, 0.95, 1.03 + cTime * 0.03, -80);
         }
 
         // Fiery stage vignette
@@ -535,11 +576,11 @@
 
         if (iTime < 7.5) {
           // Illuminated Stadium crowd wristbands
-          drawCoverImage(images.parisCrowd, 0.85, 1.02 + iTime * 0.02, 0);
+          drawLiveContent(images.parisCrowd, 0.85, 1.02 + iTime * 0.02, 0);
         } else {
           // Stadium stage panoramic
           const s2 = iTime - 7.5;
-          drawCoverImage(images.cdmxStadium, 0.85, 1.02 + s2 * 0.02, 0);
+          drawLiveContent(images.cdmxStadium, 0.85, 1.02 + s2 * 0.02, 0);
         }
 
         ctx.fillStyle = 'rgba(5, 5, 6, 0.88)';
@@ -592,7 +633,7 @@
       else if (t >= 40.0 && t < 52.0) {
         const mTime = t - 40.0; // 0 to 12s
 
-        drawCoverImage(images.parisRobot, 0.35, 1.1, 0);
+        drawLiveContent(images.parisRobot, 0.35, 1.1, 0);
 
         ctx.fillStyle = 'rgba(5, 5, 6, 0.88)';
         ctx.fillRect(0, 0, 1080, 1920);
@@ -657,7 +698,7 @@
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 1080, 1920);
 
-        drawCoverImage(images.singingMic, 0.2, 1.15, 0);
+        drawLiveContent(images.singingMic, 0.2, 1.15, 0);
 
         ctx.textAlign = 'center';
         ctx.fillStyle = '#ffd4ca';
@@ -721,6 +762,7 @@
       statusNote.textContent = 'Playing 60s full stadium experience film with audio...';
 
       try { getAudioStream(); } catch (_) {}
+      if (realVideo) { realVideo.currentTime = 0; realVideo.play(); }
 
       let start = performance.now();
       function loop(now) {
@@ -749,6 +791,7 @@
       progressBar.style.width = '0%';
       statusNote.textContent = 'Rendering 60s 1080x1920 Full HD Concert Film...';
 
+      if (realVideo) { realVideo.currentTime = 0; realVideo.play(); }
       const canvasStream = canvas.captureStream(FPS);
       let combinedStream = canvasStream;
       try {
