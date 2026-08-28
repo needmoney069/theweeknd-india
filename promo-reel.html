@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Weeknd India — Instagram Reel Video Generator</title>
+  <title>The Weeknd India — 32s Cinematic Reel Video Generator</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
 
@@ -29,7 +29,7 @@
 
     header {
       text-align: center;
-      max-width: 600px;
+      max-width: 680px;
       margin-bottom: 24px;
     }
 
@@ -69,7 +69,7 @@
       gap: 30px;
       justify-content: center;
       align-items: flex-start;
-      max-width: 1100px;
+      max-width: 1150px;
       width: 100%;
     }
 
@@ -104,14 +104,14 @@
     .panel {
       flex: 1;
       min-width: 320px;
-      max-width: 480px;
+      max-width: 520px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 26px 24px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
 
     .panel h2 {
@@ -127,27 +127,52 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 9px;
       font-size: 12px;
       color: #b5adb3;
     }
 
     .features-list li {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
+      line-height: 1.5;
     }
 
     .features-list li span {
       color: var(--red);
       font-weight: 700;
+      line-height: 1;
+    }
+
+    .audio-picker {
+      background: #181820;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 16px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .audio-picker label {
+      font-size: 11px;
+      color: #ff9800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .audio-picker input[type="file"] {
+      font-size: 11px;
+      color: #bbb;
     }
 
     .btn-group {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-top: 10px;
+      margin-top: 6px;
     }
 
     .btn {
@@ -237,9 +262,9 @@
 <body>
 
   <header>
-    <div class="badge">🔥 100% Free Promo Video Tool</div>
-    <h1>The Weeknd India — Reel Video Generator</h1>
-    <p>1-Click me official 9:16 Instagram Reel & Story video render karo aur download karo (HD 1080x1920 with Synthwave Bass & Beat Drop).</p>
+    <div class="badge">🎬 Extended 32s HD Reel Generator</div>
+    <h1>The Weeknd India — Master Promo Reel</h1>
+    <p>Multiple real Abel concert photos, beat drop soundtrack, city voting roll, aur instant high-resolution vertical video export.</p>
   </header>
 
   <div class="container">
@@ -248,33 +273,40 @@
       <div class="canvas-wrap">
         <canvas id="reelCanvas" width="1080" height="1920"></canvas>
       </div>
-      <div style="font-size: 10px; color: #726b70; margin-top: 10px; letter-spacing: 1px;">9:16 INSTAGRAM REEL FORMAT (1080 × 1920)</div>
+      <div style="font-size: 10px; color: #726b70; margin-top: 10px; letter-spacing: 1px;">9:16 FULL HD REEL (1080 × 1920 • 32 SECONDS)</div>
     </div>
 
     <!-- Controls Panel -->
     <div class="panel">
-      <h2>🎬 Video Details</h2>
+      <h2>🎬 Video Specifications</h2>
       <ul class="features-list">
-        <li><span>✓</span> <strong>Length:</strong> 15 Seconds (Optimized for Instagram algorithm)</li>
-        <li><span>✓</span> <strong>Resolution:</strong> Full HD Vertical (1080x1920)</li>
-        <li><span>✓</span> <strong>Audio:</strong> Built-in 80s Synthwave Bass Pulse & Impact Beat Drop</li>
-        <li><span>✓</span> <strong>Scenes:</strong> Coldplay/Dua Lipa Tease ➔ Abel Silhouette Drop ➔ All Indian Cities Roll ➔ theweeknd.co.in Call to Action</li>
-        <li><span>✓</span> <strong>Branding:</strong> @theweeknd.co.in & Built by @aayyuusshhw</li>
+        <li><span>✓</span> <strong>Length:</strong> 32 Seconds (Optimal Instagram / Shorts storytelling completion rate)</li>
+        <li><span>✓</span> <strong>Photos Included:</strong> 4 Iconic Real Concert Photos of Abel Tesfaye (Stage close-up, Stadium Tour 65k crowd, Energetic mic performance, Laser beams)</li>
+        <li><span>✓</span> <strong>Audio Engine:</strong> Built-in 80s Synthwave Bassline & Beat Drop (Or upload custom MP3 below)</li>
+        <li><span>✓</span> <strong>City Roll:</strong> Mumbai, Delhi NCR, Bengaluru, Hyderabad, Kolkata, Ahmedabad, Pune, Chennai...</li>
+        <li><span>✓</span> <strong>Branding & Credits:</strong> @theweeknd.co.in & Built by @aayyuusshhw + Photo Credits in outro</li>
       </ul>
 
+      <!-- Optional Audio File Upload -->
+      <div class="audio-picker">
+        <label>🎵 Optional Custom Song (MP3 / Audio)</label>
+        <input type="file" id="audioFileInput" accept="audio/*">
+        <span style="font-size: 10px; color: #888;">Agar song file upload nahi karoge, toh built-in 80s Synthwave Bass & Beat Drop soundtrack automatically chalega aur record hoga!</span>
+      </div>
+
       <div class="info-box">
-        <strong>💡 Pro Tip:</strong> "Download Reel Video" dabaane par browser live video record karke directly <strong>theweeknd-india-promo.webm</strong> video file aapke device me save kar dega!
+        <strong>💡 Direct 1-Click Export:</strong> "Record & Download Video" dabaane par 32-second ka full 1080x1920 HD video render ho kar sidha aapke device mein <strong>theweeknd-india-promo-32s.webm</strong> save ho jayega!
       </div>
 
       <div class="btn-group">
         <button class="btn btn-primary" id="recordBtn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
-          Record & Download Reel Video
+          Record & Download 32s Video
         </button>
 
         <button class="btn btn-secondary" id="previewBtn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Play Live Preview
+          Play Live Preview (32s)
         </button>
       </div>
 
@@ -293,270 +325,378 @@
     const progressWrap = document.getElementById('progressWrap');
     const progressBar = document.getElementById('progressBar');
     const statusNote = document.getElementById('statusNote');
+    const audioFileInput = document.getElementById('audioFileInput');
 
-    const DURATION = 15; // 15 seconds
+    const DURATION = 32.0; // 32 seconds
     const FPS = 30;
-    const TOTAL_FRAMES = DURATION * FPS;
 
-    // Preload image assets
+    // Load 4 Real Photos of Abel Tesfaye / The Weeknd
     const images = {
-      abel: new Image(),
-      liveConcert: new Image(),
-      fanEnergy: new Image()
+      portrait: new Image(),  // FEQ Live close-up singing
+      stadium: new Image(),   // 65k stadium stage lasers
+      energetic: new Image(), // Full body stage mic
+      lasers: new Image()     // Red stadium concert lasers
     };
-    images.abel.src = 'weeknd-abel-portrait.jpg';
-    images.liveConcert.src = 'weeknd-live-ccby-v1.jpg';
-    images.fanEnergy.src = 'fan-energy-v1.png';
+    images.portrait.src = 'weeknd-abel-portrait.jpg';
+    images.stadium.src = 'weeknd-stadium-tour.jpg';
+    images.energetic.src = 'weeknd-live-mic.jpg';
+    images.lasers.src = 'weeknd-live-ccby-v1.jpg';
 
-    // Sound Synthesizer via Web Audio API
+    // Custom Audio Upload Support
+    let customAudioElement = null;
+    audioFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        customAudioElement = new Audio(url);
+        statusNote.textContent = `🎵 Custom song loaded: ${file.name}`;
+      }
+    });
+
+    // Built-in Synth Audio Engine (Rich 80s Synthwave / Blinding Lights vibes)
     let audioCtx = null;
     function getAudioStream() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const dest = audioCtx.createMediaStreamDestination();
+
+      if (customAudioElement) {
+        const source = audioCtx.createMediaElementSource(customAudioElement);
+        source.connect(dest);
+        source.connect(audioCtx.destination);
+        customAudioElement.currentTime = 0;
+        customAudioElement.play();
+        return dest.stream;
+      }
+
+      // 1. Synth Bass Drone
+      const bass = audioCtx.createOscillator();
+      const bassGain = audioCtx.createGain();
+      bass.type = 'sawtooth';
+      bass.frequency.setValueAtTime(55, audioCtx.currentTime); // A1 note
       
-      // Synth Bass Drone
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(55, audioCtx.currentTime); // A1 note
-      
-      // Pulse filter
       const filter = audioCtx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(300, audioCtx.currentTime);
-      filter.frequency.linearRampToValueAtTime(1400, audioCtx.currentTime + 3.0);
-      filter.frequency.linearRampToValueAtTime(400, audioCtx.currentTime + 6.0);
-      filter.frequency.linearRampToValueAtTime(2000, audioCtx.currentTime + 10.0);
+      filter.frequency.setValueAtTime(250, audioCtx.currentTime);
+      filter.frequency.linearRampToValueAtTime(1600, audioCtx.currentTime + 4.5); // Rise for drop
+      filter.frequency.linearRampToValueAtTime(800, audioCtx.currentTime + 18.0);
+      filter.frequency.linearRampToValueAtTime(2200, audioCtx.currentTime + 25.0);
 
-      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + DURATION);
+      bassGain.gain.setValueAtTime(0.28, audioCtx.currentTime);
+      bassGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + DURATION);
 
-      osc.connect(filter);
-      filter.connect(gain);
-      gain.connect(dest);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + DURATION);
+      bass.connect(filter);
+      filter.connect(bassGain);
+      bassGain.connect(dest);
+      bassGain.connect(audioCtx.destination);
+      bass.start();
+      bass.stop(audioCtx.currentTime + DURATION);
 
-      // Impact Beat Drop at 3.0 seconds
-      setTimeout(() => {
-        if (!audioCtx) return;
-        const kick = audioCtx.createOscillator();
-        const kickGain = audioCtx.createGain();
-        kick.frequency.setValueAtTime(140, audioCtx.currentTime);
-        kick.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.5);
-        kickGain.gain.setValueAtTime(1.0, audioCtx.currentTime);
-        kickGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
-        kick.connect(kickGain);
-        kickGain.connect(dest);
-        kickGain.connect(audioCtx.destination);
-        kick.start();
-        kick.stop(audioCtx.currentTime + 0.6);
-      }, 3000);
+      // 2. Multi-Beat Drops & Impact Kicks (at 4.5s and 18.0s)
+      [4.5, 11.0, 18.0, 25.0].forEach(timeOffset => {
+        setTimeout(() => {
+          if (!audioCtx) return;
+          const kick = audioCtx.createOscillator();
+          const kickGain = audioCtx.createGain();
+          kick.frequency.setValueAtTime(160, audioCtx.currentTime);
+          kick.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 0.6);
+          kickGain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+          kickGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.7);
+          kick.connect(kickGain);
+          kickGain.connect(dest);
+          kickGain.connect(audioCtx.destination);
+          kick.start();
+          kick.stop(audioCtx.currentTime + 0.7);
+        }, timeOffset * 1000);
+      });
 
       return dest.stream;
     }
 
-    // Render a single frame based on time (t: 0 to 15s)
+    // Helper: Draw image with cover aspect ratio & smooth scale
+    function drawCoverImage(img, alpha = 1.0, zoom = 1.0, offsetY = 0) {
+      if (!img.complete || img.width === 0) return;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.translate(540, 960 + offsetY);
+      ctx.scale(zoom, zoom);
+
+      const ratio = Math.max(1080 / img.width, 1920 / img.height);
+      const w = img.width * ratio;
+      const h = img.height * ratio;
+      ctx.drawImage(img, -w / 2, -h / 2, w, h);
+      ctx.restore();
+    }
+
+    // Render single frame at timestamp t (0.0 to 32.0s)
     function renderFrame(t) {
       ctx.fillStyle = '#050506';
       ctx.fillRect(0, 0, 1080, 1920);
 
-      // SCENE 1: 0.0s - 3.0s (The Stadium FOMO)
-      if (t < 3.0) {
-        // Red subtle strobe aura
-        const pulse = Math.sin(t * 8) * 0.3 + 0.7;
-        const grad = ctx.createRadialGradient(540, 960, 50, 540, 960, 800);
-        grad.addColorStop(0, `rgba(237, 41, 23, ${0.4 * pulse})`);
-        grad.addColorStop(1, 'rgba(5, 5, 6, 1)');
+      // ==========================================
+      // SCENE 1: 0.0s - 4.5s (The Stadium Context & Build-up)
+      // ==========================================
+      if (t < 4.5) {
+        const pulse = Math.sin(t * 8) * 0.35 + 0.65;
+        const grad = ctx.createRadialGradient(540, 960, 40, 540, 960, 900);
+        grad.addColorStop(0, `rgba(237, 41, 23, ${0.45 * pulse})`);
+        grad.addColorStop(1, '#050506');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 1080, 1920);
 
         ctx.textAlign = 'center';
         ctx.fillStyle = '#ed2917';
         ctx.font = '900 italic 44px Montserrat';
-        ctx.fillText('COLDPLAY CAME TO INDIA.', 540, 750);
+        ctx.fillText('COLDPLAY SOLD OUT MUMBAI.', 540, 720);
 
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '900 italic 52px Montserrat';
-        ctx.fillText('DUA LIPA CAME TO INDIA.', 540, 860);
-
-        if (t > 1.4) {
-          ctx.fillStyle = '#ffd4ca';
-          ctx.font = '600 36px DM Mono';
-          ctx.fillText('STADIUMS WERE SOLD OUT IN SECONDS.', 540, 1020);
+        if (t > 1.2) {
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '900 italic 48px Montserrat';
+          ctx.fillText('DUA LIPA TOOK OVER INDIA.', 540, 830);
         }
 
-        if (t > 2.2) {
+        if (t > 2.4) {
+          ctx.fillStyle = '#ffd4ca';
+          ctx.font = '600 34px DM Mono';
+          ctx.fillText('INDIA HAS SHOWN ITS UNMATCHED POWER.', 540, 980);
+        }
+
+        if (t > 3.4) {
           ctx.fillStyle = '#ed2917';
-          ctx.font = '900 italic 72px Montserrat';
-          ctx.fillText('BUT WHO IS NEXT? 👀', 540, 1200);
+          ctx.font = '900 italic 64px Montserrat';
+          ctx.fillText('BUT WHAT ABOUT ABEL? 👀', 540, 1160);
         }
       }
 
-      // SCENE 2: 3.0s - 7.0s (Abel Tesfaye Live Concert Reveal)
-      else if (t >= 3.0 && t < 7.0) {
-        const sTime = t - 3.0; // 0 to 4s
+      // ==========================================
+      // SCENE 2: 4.5s - 11.0s (Abel Tesfaye Arrival & Close-Up Mic)
+      // ==========================================
+      else if (t >= 4.5 && t < 11.0) {
+        const sTime = t - 4.5; // 0 to 6.5s
         
-        // Real photo of Abel Tesfaye performing live
-        if (images.abel.complete) {
-          ctx.save();
-          const zoom = 1.05 + (sTime * 0.08); // cinematic slow push-in
-          ctx.translate(540, 880);
-          ctx.scale(zoom, zoom);
-          ctx.globalAlpha = Math.min(sTime * 2.0, 1.0);
-          
-          // Draw centered photo
-          const imgW = 1080;
-          const imgH = 1080 * (images.abel.height / images.abel.width);
-          ctx.drawImage(images.abel, -540, -imgH / 2, imgW, imgH);
-          ctx.restore();
+        // Between 4.5s and 8.0s: Close-up Portrait Photo
+        if (sTime < 3.8) {
+          drawCoverImage(images.portrait, Math.min(sTime * 2.0, 0.95), 1.02 + sTime * 0.04, -80);
+        } else {
+          // Between 8.0s and 11.0s: Energetic Stage Mic Performance Photo
+          const eTime = sTime - 3.8;
+          drawCoverImage(images.energetic, Math.min(eTime * 2.5, 0.95), 1.03 + eTime * 0.05, -60);
         }
 
-        // Heavy dark vignette & red concert spotlight grading
+        // Heavy dark crimson concert spotlight vignette
         const grad = ctx.createLinearGradient(0, 0, 0, 1920);
         grad.addColorStop(0, 'rgba(5, 5, 6, 0.95)');
-        grad.addColorStop(0.25, 'rgba(237, 41, 23, 0.15)');
-        grad.addColorStop(0.55, 'rgba(5, 5, 6, 0.1)');
-        grad.addColorStop(0.75, 'rgba(180, 15, 10, 0.45)');
+        grad.addColorStop(0.22, 'rgba(237, 41, 23, 0.15)');
+        grad.addColorStop(0.5, 'rgba(5, 5, 6, 0.05)');
+        grad.addColorStop(0.78, 'rgba(180, 15, 10, 0.4)');
         grad.addColorStop(1, 'rgba(5, 5, 6, 0.98)');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 1080, 1920);
 
-        // Flashy title text
         ctx.textAlign = 'center';
         ctx.fillStyle = '#ed2917';
         ctx.font = '900 36px DM Mono';
         ctx.fillText('★ IT IS TIME FOR ABEL ★', 540, 360);
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = '900 italic 104px Montserrat';
+        ctx.font = '900 italic 98px Montserrat';
         ctx.fillText('THE WEEKND', 540, 480);
-        ctx.fillText('IN INDIA 🇮🇳', 540, 600);
+        ctx.fillText('IN INDIA 🇮🇳', 540, 590);
 
-        // Subtitle card
+        ctx.fillStyle = '#ffd4ca';
+        ctx.font = '700 34px DM Mono';
+        ctx.fillText('115+ MILLION MONTHLY LISTENERS', 540, 1420);
+
         ctx.fillStyle = '#ffdeda';
-        ctx.font = '600 italic 38px Montserrat';
-        ctx.fillText('"ONE ARTIST. ONE NATION. ONE NIGHT."', 540, 1480);
+        ctx.font = '600 italic 34px Montserrat';
+        ctx.fillText('"ONE ARTIST. ONE NATION. ONE NIGHT."', 540, 1500);
 
-        // XO Official Badge
         ctx.fillStyle = '#ed2917';
-        ctx.font = '900 italic 96px Montserrat';
-        ctx.fillText('XO', 540, 1620);
-        
-        ctx.fillStyle = '#948a8e';
-        ctx.font = '500 20px DM Mono';
-        ctx.fillText('Photo: Nicolas Padovani (CC BY 2.0)', 540, 1720);
+        ctx.font = '900 italic 86px Montserrat';
+        ctx.fillText('XO', 540, 1630);
       }
 
-      // SCENE 3: 7.0s - 11.0s (The Cities & Verified Fan Movement)
-      else if (t >= 7.0 && t < 11.0) {
-        const cTime = t - 7.0; // 0 to 4s
+      // ==========================================
+      // SCENE 3: 11.0s - 18.0s (Massive Stadium Tour 65k Crowd & Lasers)
+      // ==========================================
+      else if (t >= 11.0 && t < 18.0) {
+        const mTime = t - 11.0; // 0 to 7s
 
-        // Real live concert stage in background
-        if (images.liveConcert.complete) {
-          ctx.save();
-          ctx.globalAlpha = 0.55;
-          ctx.drawImage(images.liveConcert, 0, 0, 1080, 1920);
-          ctx.restore();
+        if (mTime < 4.0) {
+          // Massive 65,000 stadium tour stage
+          drawCoverImage(images.stadium, 0.85, 1.01 + mTime * 0.03, 0);
+        } else {
+          // Red laser beams concert stage
+          const lTime = mTime - 4.0;
+          drawCoverImage(images.lasers, 0.85, 1.02 + lTime * 0.04, 0);
         }
 
-        // Dark gradient
-        ctx.fillStyle = 'rgba(5, 5, 6, 0.82)';
+        // Cinematic grading overlay
+        const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+        grad.addColorStop(0, 'rgba(5, 5, 6, 0.92)');
+        grad.addColorStop(0.4, 'rgba(0, 0, 0, 0.2)');
+        grad.addColorStop(0.8, 'rgba(195, 21, 17, 0.35)');
+        grad.addColorStop(1, 'rgba(5, 5, 6, 0.96)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '800 34px DM Mono';
+        ctx.fillText('★ WORLD TOUR ERA ★', 540, 360);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 78px Montserrat';
+        ctx.fillText('AFTER HOURS', 540, 470);
+        ctx.fillText('DAWN FM • STARBOY', 540, 560);
+
+        // Huge quote
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+        ctx.strokeStyle = 'rgba(237, 41, 23, 0.5)';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.roundRect(140, 1320, 800, 240, 20);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 52px Montserrat';
+        ctx.fillText('INDIA IS READY FOR THE STADIUM', 540, 1420);
+        
+        ctx.fillStyle = '#ff9800';
+        ctx.font = '700 34px DM Mono';
+        ctx.fillText('XO TILL WE OVERDOSE 🖤', 540, 1500);
+      }
+
+      // ==========================================
+      // SCENE 4: 18.0s - 25.0s (The Indian Cities Vote Roll)
+      // ==========================================
+      else if (t >= 18.0 && t < 25.0) {
+        const cTime = t - 18.0; // 0 to 7s
+
+        // Background concert texture
+        drawCoverImage(images.stadium, 0.35, 1.1, 0);
+
+        ctx.fillStyle = 'rgba(5, 5, 6, 0.85)';
         ctx.fillRect(0, 0, 1080, 1920);
 
         ctx.textAlign = 'center';
         ctx.fillStyle = '#ed2917';
         ctx.font = '800 36px DM Mono';
-        ctx.fillText('OFFICIAL FAN CAMPAIGN', 540, 380);
+        ctx.fillText('OFFICIAL FAN CAMPAIGN 2026', 540, 360);
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = '900 italic 74px Montserrat';
-        ctx.fillText('WHICH CITY WILL', 540, 490);
-        ctx.fillText('WIN THE SHOW?', 540, 580);
+        ctx.font = '900 italic 76px Montserrat';
+        ctx.fillText('WHICH CITY WILL', 540, 470);
+        ctx.fillText('WIN THE SHOW?', 540, 560);
 
-        // Rapid flashing cities list
-        const cities = ['📍 MUMBAI', '📍 DELHI NCR', '📍 BENGALURU', '📍 HYDERABAD', '📍 KOLKATA', '📍 AHMEDABAD', '📍 CHENNAI', '📍 PUNE', '📍 YOUR CITY!'];
-        const activeIdx = Math.floor((cTime * 3.5)) % cities.length;
+        // Fast rotating city roster
+        const cities = [
+          { name: '📍 MUMBAI', sub: 'DY Patil / Wankhede Stadium' },
+          { name: '📍 DELHI NCR', sub: 'JLN Stadium / Aerocity' },
+          { name: '📍 BENGALURU', sub: 'Chinnaswamy / NICE Grounds' },
+          { name: '📍 HYDERABAD', sub: 'Gachibowli Stadium' },
+          { name: '📍 KOLKATA', sub: 'Salt Lake Stadium' },
+          { name: '📍 AHMEDABAD', sub: 'Narendra Modi Stadium' },
+          { name: '📍 PUNE / CHENNAI', sub: 'Arena / Stadium' },
+          { name: '📍 YOUR HOMETOWN!', sub: 'Any Indian City Can Win!' }
+        ];
 
-        // Big active city spotlight card
-        ctx.fillStyle = 'rgba(237, 41, 23, 0.18)';
+        const activeIdx = Math.floor(cTime * 2.8) % cities.length;
+        const currentCity = cities[activeIdx];
+
+        // Highlight card
+        ctx.fillStyle = 'rgba(237, 41, 23, 0.2)';
         ctx.strokeStyle = '#ed2917';
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 5;
         ctx.beginPath();
-        ctx.roundRect(140, 750, 800, 240, 24);
+        ctx.roundRect(120, 760, 840, 300, 24);
         ctx.fill();
         ctx.stroke();
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = '900 italic 76px Montserrat';
-        ctx.fillText(cities[activeIdx], 540, 895);
+        ctx.font = '900 italic 74px Montserrat';
+        ctx.fillText(currentCity.name, 540, 900);
+
+        ctx.fillStyle = '#ffd4ca';
+        ctx.font = '600 32px DM Mono';
+        ctx.fillText(currentCity.sub, 540, 980);
 
         ctx.fillStyle = '#ffb3a8';
-        ctx.font = '500 32px DM Mono';
-        ctx.fillText('100% FREE • NO TICKET SALES • PURE DEMAND', 540, 1200);
+        ctx.font = '600 32px DM Mono';
+        ctx.fillText('100% FREE • NO TICKET SALES • PURE DEMAND', 540, 1260);
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = '700 36px DM Mono';
-        ctx.fillText('Proving live audience numbers to promoters', 540, 1280);
+        ctx.font = '700 34px DM Mono';
+        ctx.fillText('Proving live audience numbers to promoters', 540, 1340);
       }
 
-      // SCENE 4: 11.0s - 15.0s (Call To Action & theweeknd.co.in)
+      // ==========================================
+      // SCENE 5: 25.0s - 32.0s (Grand Finale Call to Action)
+      // ==========================================
       else {
-        // High energy final call
-        const grad = ctx.createRadialGradient(540, 960, 80, 540, 960, 950);
-        grad.addColorStop(0, '#7a0004');
-        grad.addColorStop(0.5, '#200204');
+        // Red glowing halo background
+        const grad = ctx.createRadialGradient(540, 960, 60, 540, 960, 980);
+        grad.addColorStop(0, '#8c0005');
+        grad.addColorStop(0.4, '#240205');
         grad.addColorStop(1, '#050506');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 1080, 1920);
 
+        // Abel watermark in backdrop
+        drawCoverImage(images.portrait, 0.18, 1.15, 0);
+
         ctx.textAlign = 'center';
         ctx.fillStyle = '#ffd4ca';
         ctx.font = '800 38px DM Mono';
-        ctx.fillText('🇮🇳 DO NOT WAIT. VOTE NOW:', 540, 480);
+        ctx.fillText('🇮🇳 DO NOT WAIT. LOCK IN YOUR VOTE:', 540, 440);
 
         // Giant Domain Box
         ctx.fillStyle = '#ffffff';
-        ctx.font = '900 italic 86px Montserrat';
-        ctx.fillText('theweeknd.co.in', 540, 620);
+        ctx.font = '900 italic 90px Montserrat';
+        ctx.fillText('theweeknd.co.in', 540, 580);
 
         // Red CTA Button graphic
         ctx.fillStyle = '#ed2917';
         ctx.beginPath();
-        ctx.roundRect(190, 780, 700, 140, 70);
+        ctx.roundRect(170, 720, 740, 140, 70);
         ctx.fill();
 
         ctx.fillStyle = '#ffffff';
         ctx.font = '900 italic 46px Montserrat';
-        ctx.fillText('VOTE FOR YOUR CITY ↗', 540, 868);
+        ctx.fillText('VOTE FOR YOUR CITY ↗', 540, 808);
 
-        // What you get
+        // Fan Perks
         ctx.fillStyle = '#e2dad7';
-        ctx.font = '500 32px DM Mono';
-        ctx.fillText('Instant VIP Digital Fan Pass Confirmation', 540, 1040);
-        ctx.fillText('Direct to Your Email Inbox ✉️', 540, 1100);
+        ctx.font = '600 32px DM Mono';
+        ctx.fillText('🎟️ Instant VIP Digital Fan Pass Sent to Email', 540, 980);
+        ctx.fillText('📊 City-wise Aggregated Demand Dossier', 540, 1040);
 
-        // Instagram Handles
+        // Instagram Box
         ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.roundRect(120, 1300, 840, 220, 20);
+        ctx.roundRect(110, 1200, 860, 220, 20);
         ctx.fill();
         ctx.stroke();
 
         ctx.fillStyle = '#ed2917';
-        ctx.font = '800 34px DM Mono';
-        ctx.fillText('FOLLOW THE MOVEMENT ON INSTAGRAM:', 540, 1370);
+        ctx.font = '800 32px DM Mono';
+        ctx.fillText('FOLLOW THE MOVEMENT ON INSTAGRAM:', 540, 1270);
 
         ctx.fillStyle = '#ffffff';
         ctx.font = '900 italic 48px Montserrat';
-        ctx.fillText('@theweeknd.co.in', 540, 1445);
+        ctx.fillText('@theweeknd.co.in', 540, 1345);
 
-        ctx.fillStyle = '#8a8388';
+        ctx.fillStyle = '#a69fa4';
         ctx.font = '500 26px DM Mono';
-        ctx.fillText('Campaign Platform Built by Ayush (@aayyuusshhw)', 540, 1680);
+        ctx.fillText('Movement platform built by Ayush (@aayyuusshhw)', 540, 1560);
+
+        // Photo Credits banner
+        ctx.fillStyle = '#6b666a';
+        ctx.font = '500 18px DM Mono';
+        ctx.fillText('Photo Credits: Nicolas Padovani (CC BY 2.0) • Vincent srv (CC BY 4.0)', 540, 1720);
+        ctx.fillText('David Hwang (CC BY 2.0) • Independent Fan Initiative', 540, 1750);
       }
     }
 
@@ -565,7 +705,7 @@
     function playPreview() {
       if (isPlaying) return;
       isPlaying = true;
-      statusNote.textContent = 'Playing 15s preview with audio...';
+      statusNote.textContent = 'Playing 32s full cinematic preview with audio...';
       
       try { getAudioStream(); } catch (_) {}
 
@@ -575,7 +715,8 @@
         if (elapsed > DURATION) {
           renderFrame(DURATION);
           isPlaying = false;
-          statusNote.textContent = 'Preview finished! Click "Record & Download" to save video.';
+          statusNote.textContent = 'Preview finished! Click "Record & Download" to export video.';
+          if (customAudioElement) { customAudioElement.pause(); customAudioElement.currentTime = 0; }
           return;
         }
         renderFrame(elapsed);
@@ -586,21 +727,20 @@
 
     previewBtn.addEventListener('click', playPreview);
 
-    // Initial first frame render
+    // Initial render frame
     setTimeout(() => renderFrame(1.0), 300);
 
-    // High Quality Media Recording & Instant Download
+    // High Quality Media Recording & Instant Download (32s full HD)
     recordBtn.addEventListener('click', async () => {
       recordBtn.disabled = true;
       previewBtn.disabled = true;
       progressWrap.style.display = 'block';
       progressBar.style.width = '0%';
-      statusNote.textContent = 'Rendering 1080x1920 HD video frames & audio...';
+      statusNote.textContent = 'Rendering 32s 1080x1920 HD video with full audio...';
 
       // Capture stream from canvas at 30fps
       const canvasStream = canvas.captureStream(FPS);
       
-      // Combine with audio stream
       let combinedStream = canvasStream;
       try {
         const audioStream = getAudioStream();
@@ -612,7 +752,6 @@
         console.warn('Audio capture note:', e);
       }
 
-      // Check supported MIME types (webm / mp4)
       let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 6000000 };
       if (!MediaRecorder.isTypeSupported(options.mimeType)) {
         options = { mimeType: 'video/webm' };
@@ -626,19 +765,19 @@
       };
 
       recorder.onstop = () => {
-        statusNote.textContent = 'Finalizing video file...';
+        statusNote.textContent = 'Finalizing 32s video file...';
         const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
         const url = URL.createObjectURL(blob);
         
         // Auto trigger download
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'theweeknd-india-promo-reel.webm';
+        a.download = 'theweeknd-india-promo-32s.webm';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
 
-        statusNote.textContent = '🎉 Video Downloaded Successfully! Ready to post on Instagram Reel & Story.';
+        statusNote.textContent = '🎉 32s HD Video Downloaded! Ready to post on Instagram Reel, Shorts & Status.';
         recordBtn.disabled = false;
         previewBtn.disabled = false;
         progressBar.style.width = '100%';
@@ -646,13 +785,12 @@
 
       recorder.start();
 
-      // Step-by-step frame rendering loop
       let start = performance.now();
       function recordLoop(now) {
         let elapsed = (now - start) / 1000;
         let progress = Math.min((elapsed / DURATION) * 100, 100);
         progressBar.style.width = progress + '%';
-        statusNote.textContent = `Rendering video... ${Math.round(progress)}% (${elapsed.toFixed(1)}s / 15s)`;
+        statusNote.textContent = `Rendering video... ${Math.round(progress)}% (${elapsed.toFixed(1)}s / ${DURATION}s)`;
 
         if (elapsed >= DURATION) {
           renderFrame(DURATION);
