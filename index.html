@@ -321,9 +321,14 @@
         lastSubmitTime = Date.now();
         form.style.display = 'none';
         success.className = '';
-        success.textContent = 'Your vote has been recorded! A confirmation email has been sent to ' + cleanEmail + '.';
         success.style.display = 'block';
         fetchVoteCount(); // refresh counter
+
+        // Seamless 1-Click Instagram Follow: Open official IG page in new tab
+        const followCheckbox = document.querySelector('#follow-insta-cb');
+        if (followCheckbox && followCheckbox.checked) {
+          window.open('https://instagram.com/theweeknd.co.in', '_blank');
+        }
         
 
       } catch (networkError) {
