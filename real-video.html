@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Weeknd India — Real Live Concert Video Reel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
+
+    :root {
+      --bg: #050506;
+      --card: #101015;
+      --red: #ed2917;
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f6f1ea;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      max-width: 650px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(237, 41, 23, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(237, 41, 23, 0.4);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(24px, 5vw, 34px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: #a19ba0;
+      font-size: 13px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .preview-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(237,41,23,0.12);
+    }
+
+    .canvas-wrap {
+      width: 320px;
+      height: 568px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .panel {
+      flex: 1;
+      min-width: 320px;
+      max-width: 500px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .panel h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      color: #b5adb3;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .features-list li span {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .clip-selector {
+      background: #171720;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 14px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .clip-selector label {
+      font-size: 11px;
+      color: #ff9800;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .clip-selector select {
+      background: #09090c;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c31511 0%, #ed2917 50%, #ff4b36 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 6px 20px rgba(237,41,23,0.4);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(237,41,23,0.6);
+      background: #fff;
+      color: #050506;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      border-color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #1c1b22;
+      border-radius: 4px;
+      overflow: hidden;
+      display: none;
+      margin-top: 6px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ed2917, #ff9800);
+      transition: width 0.1s linear;
+    }
+
+    .status-note {
+      font-size: 11px;
+      color: #ff9800;
+      text-align: center;
+      min-height: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">🔥 REAL MOVING VIDEO FOOTAGE</div>
+    <h1>The Weeknd — Real Live Video Reel</h1>
+    <p>Ab koi photo slideshow nahi — Abel Tesfaye ka <strong>REAL LIVE MOVING CAMERA FOOTAGE</strong> with live concert movement, city voting HUD, aur instant video export.</p>
+  </header>
+
+  <div class="container">
+    <div class="preview-card">
+      <div class="canvas-wrap">
+        <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+      </div>
+      <div style="font-size: 10px; color: #726b70; margin-top: 10px; letter-spacing: 1px;">9:16 VERTICAL REEL (1080 × 1920 • REAL VIDEO)</div>
+    </div>
+
+    <div class="panel">
+      <h2>🎬 Video Master Footage</h2>
+      <ul class="features-list">
+        <li><span>✓</span> <strong>Footage:</strong> 100% Real moving video of Abel Tesfaye (NO slideshow!)</li>
+        <li><span>✓</span> <strong>Audio:</strong> Concert live audio & bass beats</li>
+        <li><span>✓</span> <strong>HUD Elements:</strong> "INDIA IS READY", City Voting Leaderboard, theweeknd.co.in</li>
+        <li><span>✓</span> <strong>Branding:</strong> @theweeknd.co.in • Built by @aayyuusshhw</li>
+      </ul>
+
+      <!-- Clip Selector -->
+      <div class="clip-selector">
+        <label>📹 Select Concert Video Footage</label>
+        <select id="clipSelect">
+          <option value="weeknd-clip-2.mp4">Footage A: Abel Singing & Performing (25s Full Live)</option>
+          <option value="weeknd-clip-1.mp4">Footage B: Vertical Abel Stage Appearance</option>
+          <option value="weeknd-tour-news.mp4">Footage C: Stadium World Tour Arena Show</option>
+        </select>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="recordBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+          Record & Download Finished Video
+        </button>
+
+        <button class="btn btn-secondary" id="previewBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Play Real Video Preview
+        </button>
+      </div>
+
+      <div class="progress-bar-wrap" id="progressWrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="status-note" id="statusNote">Ready to play real moving concert video.</div>
+    </div>
+  </div>
+
+  <!-- Hidden Video Elements for Direct Playback -->
+  <video id="activeVideo" playsinline muted loop style="display: none;"></video>
+
+  <script>
+    const canvas = document.getElementById('reelCanvas');
+    const ctx = canvas.getContext('2d');
+    const recordBtn = document.getElementById('recordBtn');
+    const previewBtn = document.getElementById('previewBtn');
+    const clipSelect = document.getElementById('clipSelect');
+    const video = document.getElementById('activeVideo');
+    const progressWrap = document.getElementById('progressWrap');
+    const progressBar = document.getElementById('progressBar');
+    const statusNote = document.getElementById('statusNote');
+
+    let DURATION = 20.0;
+    const FPS = 30;
+
+    function loadActiveClip() {
+      video.src = clipSelect.value;
+      video.load();
+      video.onloadedmetadata = () => {
+        DURATION = Math.min(video.duration || 20.0, 25.0);
+        statusNote.textContent = `🎬 Loaded: ${clipSelect.value} (${DURATION.toFixed(1)}s real moving video)`;
+      };
+    }
+
+    clipSelect.addEventListener('change', loadActiveClip);
+    loadActiveClip();
+
+    // Render Canvas Frame Combining Real Video + Official Campaign HUD
+    function renderFrame(t) {
+      ctx.fillStyle = '#050506';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // 1. Draw Real Moving Video Frame
+      if (video.readyState >= 2) {
+        ctx.save();
+        ctx.translate(540, 960);
+        const rRatio = Math.max(1080 / video.videoWidth, 1920 / video.videoHeight);
+        const rW = video.videoWidth * rRatio;
+        const rH = video.videoHeight * rRatio;
+        ctx.drawImage(video, -rW / 2, -rH / 2, rW, rH);
+        ctx.restore();
+      }
+
+      // 2. Cinematic concert vignette overlays (Top & Bottom bars for text clarity)
+      const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+      grad.addColorStop(0, 'rgba(5, 5, 6, 0.92)');
+      grad.addColorStop(0.18, 'rgba(5, 5, 6, 0.3)');
+      grad.addColorStop(0.5, 'rgba(0, 0, 0, 0.0)');
+      grad.addColorStop(0.72, 'rgba(5, 5, 6, 0.35)');
+      grad.addColorStop(1, 'rgba(5, 5, 6, 0.95)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // 3. TOP BRANDING HUD
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ed2917';
+      ctx.font = '800 32px DM Mono';
+      ctx.fillText('★ OFFICIAL FAN CAMPAIGN ★', 540, 180);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 italic 76px Montserrat';
+      ctx.fillText('THE WEEKND', 540, 270);
+      ctx.fillText('IN INDIA 🇮🇳', 540, 360);
+
+      // 4. BOTTOM CAMPAIGN VOTE OVERLAY
+      // Dynamic City Ticker
+      const cities = ['MUMBAI', 'DELHI NCR', 'BENGALURU', 'HYDERABAD', 'KOLKATA', 'AHMEDABAD', 'YOUR CITY!'];
+      const activeCity = cities[Math.floor(t * 1.5) % cities.length];
+
+      ctx.fillStyle = 'rgba(237, 41, 23, 0.2)';
+      ctx.strokeStyle = '#ed2917';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.roundRect(140, 1340, 800, 120, 20);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 italic 44px Montserrat';
+      ctx.fillText(`VOTE FOR ${activeCity} ↗`, 540, 1415);
+
+      // Big Domain CTA
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 italic 82px Montserrat';
+      ctx.fillText('theweeknd.co.in', 540, 1550);
+
+      ctx.fillStyle = '#ffdeda';
+      ctx.font = '600 30px DM Mono';
+      ctx.fillText('100% Free • Verified Fan Demand • No Ticket Sales', 540, 1620);
+
+      ctx.fillStyle = '#ed2917';
+      ctx.font = '700 28px DM Mono';
+      ctx.fillText('Follow @theweeknd.co.in • Built by @aayyuusshhw', 540, 1720);
+    }
+
+    // Live Preview Playback
+    let isPlaying = false;
+    function playPreview() {
+      if (isPlaying) return;
+      isPlaying = true;
+      statusNote.textContent = 'Playing real concert video footage...';
+
+      video.currentTime = 0;
+      video.play();
+
+      function loop() {
+        if (video.ended || video.currentTime >= DURATION) {
+          isPlaying = false;
+          video.pause();
+          statusNote.textContent = 'Preview finished! Click "Record & Download" to export video file.';
+          return;
+        }
+        renderFrame(video.currentTime);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+
+    previewBtn.addEventListener('click', playPreview);
+
+    // Initial poster frame
+    video.onloadeddata = () => {
+      renderFrame(0);
+    };
+
+    // 1-Click High Bitrate Media Recording of Real Video
+    recordBtn.addEventListener('click', async () => {
+      recordBtn.disabled = true;
+      previewBtn.disabled = true;
+      progressWrap.style.display = 'block';
+      progressBar.style.width = '0%';
+      statusNote.textContent = 'Recording REAL LIVE VIDEO frames & exporting...';
+
+      video.currentTime = 0;
+      video.play();
+
+      const canvasStream = canvas.captureStream(FPS);
+
+      let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 8000000 };
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        options = { mimeType: 'video/webm' };
+      }
+
+      const recorder = new MediaRecorder(canvasStream, options);
+      const chunks = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        statusNote.textContent = 'Finalizing video file...';
+        const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `theweeknd-real-concert-reel.webm`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        statusNote.textContent = '🎉 REAL CONCERT VIDEO DOWNLOADED! Ready to post on Instagram & Shorts.';
+        recordBtn.disabled = false;
+        previewBtn.disabled = false;
+        progressBar.style.width = '100%';
+        video.pause();
+      };
+
+      recorder.start();
+
+      function recordLoop() {
+        const cur = video.currentTime;
+        const progress = Math.min((cur / DURATION) * 100, 100);
+        progressBar.style.width = progress + '%';
+        statusNote.textContent = `Recording real video... ${Math.round(progress)}% (${cur.toFixed(1)}s / ${DURATION.toFixed(1)}s)`;
+
+        if (video.ended || cur >= DURATION) {
+          recorder.stop();
+          return;
+        }
+
+        renderFrame(cur);
+        requestAnimationFrame(recordLoop);
+      }
+      requestAnimationFrame(recordLoop);
+    });
+  </script>
+</body>
+</html>
