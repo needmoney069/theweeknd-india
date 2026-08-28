@@ -300,13 +300,13 @@
 
     // Preload image assets
     const images = {
-      silhouette: new Image(),
-      concert: new Image(),
-      fan: new Image()
+      abel: new Image(),
+      liveConcert: new Image(),
+      fanEnergy: new Image()
     };
-    images.silhouette.src = 'artist-silhouette-v1.png';
-    images.concert.src = 'hero-concert-v1.png';
-    images.fan.src = 'fan-energy-v1.png';
+    images.abel.src = 'weeknd-abel-portrait.jpg';
+    images.liveConcert.src = 'weeknd-live-ccby-v1.jpg';
+    images.fanEnergy.src = 'fan-energy-v1.png';
 
     // Sound Synthesizer via Web Audio API
     let audioCtx = null;
@@ -394,61 +394,70 @@
         }
       }
 
-      // SCENE 2: 3.0s - 7.0s (The Abel Explosion & Silhouette)
+      // SCENE 2: 3.0s - 7.0s (Abel Tesfaye Live Concert Reveal)
       else if (t >= 3.0 && t < 7.0) {
         const sTime = t - 3.0; // 0 to 4s
         
-        // Background silhouette image
-        if (images.silhouette.complete) {
+        // Real photo of Abel Tesfaye performing live
+        if (images.abel.complete) {
           ctx.save();
-          const zoom = 1.0 + (sTime * 0.05);
-          ctx.translate(540, 960);
+          const zoom = 1.05 + (sTime * 0.08); // cinematic slow push-in
+          ctx.translate(540, 880);
           ctx.scale(zoom, zoom);
-          ctx.globalAlpha = Math.min(sTime * 1.5, 0.85);
-          ctx.drawImage(images.silhouette, -540, -960, 1080, 1920);
+          ctx.globalAlpha = Math.min(sTime * 2.0, 1.0);
+          
+          // Draw centered photo
+          const imgW = 1080;
+          const imgH = 1080 * (images.abel.height / images.abel.width);
+          ctx.drawImage(images.abel, -540, -imgH / 2, imgW, imgH);
           ctx.restore();
         }
 
-        // Fiery red/crimson overlay
+        // Heavy dark vignette & red concert spotlight grading
         const grad = ctx.createLinearGradient(0, 0, 0, 1920);
-        grad.addColorStop(0, 'rgba(5, 5, 6, 0.85)');
-        grad.addColorStop(0.5, 'rgba(237, 41, 23, 0.25)');
-        grad.addColorStop(1, 'rgba(5, 5, 6, 0.95)');
+        grad.addColorStop(0, 'rgba(5, 5, 6, 0.95)');
+        grad.addColorStop(0.25, 'rgba(237, 41, 23, 0.15)');
+        grad.addColorStop(0.55, 'rgba(5, 5, 6, 0.1)');
+        grad.addColorStop(0.75, 'rgba(180, 15, 10, 0.45)');
+        grad.addColorStop(1, 'rgba(5, 5, 6, 0.98)');
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 1080, 1920);
 
         // Flashy title text
         ctx.textAlign = 'center';
         ctx.fillStyle = '#ed2917';
-        ctx.font = '900 38px DM Mono';
-        ctx.letterSpacing = '6px';
-        ctx.fillText('★ IT IS TIME FOR ABEL ★', 540, 420);
+        ctx.font = '900 36px DM Mono';
+        ctx.fillText('★ IT IS TIME FOR ABEL ★', 540, 360);
 
         ctx.fillStyle = '#ffffff';
-        ctx.font = '900 italic 108px Montserrat';
-        ctx.fillText('THE WEEKND', 540, 560);
-        ctx.fillText('IN INDIA 🇮🇳', 540, 680);
+        ctx.font = '900 italic 104px Montserrat';
+        ctx.fillText('THE WEEKND', 540, 480);
+        ctx.fillText('IN INDIA 🇮🇳', 540, 600);
 
-        // Pulsing tag
+        // Subtitle card
         ctx.fillStyle = '#ffdeda';
         ctx.font = '600 italic 38px Montserrat';
-        ctx.fillText('"ONE ARTIST. ONE NATION. ONE NIGHT."', 540, 1400);
+        ctx.fillText('"ONE ARTIST. ONE NATION. ONE NIGHT."', 540, 1480);
 
-        // XO Badge
+        // XO Official Badge
         ctx.fillStyle = '#ed2917';
-        ctx.font = '900 italic 82px Montserrat';
-        ctx.fillText('XO', 540, 1550);
+        ctx.font = '900 italic 96px Montserrat';
+        ctx.fillText('XO', 540, 1620);
+        
+        ctx.fillStyle = '#948a8e';
+        ctx.font = '500 20px DM Mono';
+        ctx.fillText('Photo: Nicolas Padovani (CC BY 2.0)', 540, 1720);
       }
 
       // SCENE 3: 7.0s - 11.0s (The Cities & Verified Fan Movement)
       else if (t >= 7.0 && t < 11.0) {
         const cTime = t - 7.0; // 0 to 4s
 
-        // Concert crowd in background
-        if (images.concert.complete) {
+        // Real live concert stage in background
+        if (images.liveConcert.complete) {
           ctx.save();
-          ctx.globalAlpha = 0.45;
-          ctx.drawImage(images.concert, 0, 0, 1080, 1920);
+          ctx.globalAlpha = 0.55;
+          ctx.drawImage(images.liveConcert, 0, 0, 1080, 1920);
           ctx.restore();
         }
 
