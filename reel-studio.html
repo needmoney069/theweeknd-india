@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Weeknd India — 15 Master Reels Studio (SoFi 2025 & São Paulo)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
+
+    :root {
+      --bg: #040407;
+      --card: #0c0d14;
+      --primary: #ed2917;
+      --cyan: #00f0ff;
+      --gold: #ffb703;
+      --purple: #a855f7;
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f4f4f6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+    }
+
+    header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(237, 41, 23, 0.15);
+      color: #ff3b26;
+      border: 1px solid rgba(237, 41, 23, 0.4);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(24px, 5vw, 38px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #a1a1aa;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .main-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Left Sticky Player */
+    .player-col {
+      position: sticky;
+      top: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(237,41,23,0.15);
+    }
+
+    .canvas-wrap {
+      width: 300px;
+      height: 533px; /* 9:16 */
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .player-controls {
+      width: 100%;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .now-playing-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      color: #ffb703;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 18px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c31511 0%, #ed2917 50%, #ff4b36 100%);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(237,41,23,0.4);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(237,41,23,0.6);
+      background: #fff;
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: #171822;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      border-color: #fff;
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 6px;
+      background: #1a1b24;
+      border-radius: 3px;
+      overflow: hidden;
+      display: none;
+      margin-top: 4px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ed2917, #ffb703);
+    }
+
+    .status-note {
+      font-size: 10px;
+      color: #ff9800;
+      text-align: center;
+      min-height: 16px;
+    }
+
+    /* Right Studio Grid */
+    .studio-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .studio-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 16px 20px;
+      border-radius: 16px;
+    }
+
+    .theme-selector {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .theme-btn {
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent;
+      color: #aaa;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .theme-btn.active {
+      border-color: #fff;
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .reel-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .reel-card:hover, .reel-card.active {
+      border-color: #ed2917;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(237,41,23,0.25);
+    }
+
+    .reel-card.active {
+      background: #141118;
+      border-color: #ff3b26;
+    }
+
+    .reel-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .reel-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      color: #ffb703;
+      letter-spacing: 1px;
+    }
+
+    .reel-time {
+      font-size: 10px;
+      color: #888;
+    }
+
+    .reel-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .reel-desc {
+      font-size: 11px;
+      color: #999;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .reel-clips {
+      font-size: 9px;
+      color: #00f0ff;
+      letter-spacing: 0.5px;
+    }
+
+    .reel-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .reel-actions button {
+      padding: 8px;
+      font-size: 10px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: #171822;
+      color: #fff;
+      transition: all 0.2s;
+    }
+
+    .reel-actions button.select-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .reel-actions button.download-btn {
+      background: rgba(237,41,23,0.2);
+      border-color: rgba(237,41,23,0.5);
+      color: #ff4b36;
+    }
+
+    .reel-actions button.download-btn:hover {
+      background: #ed2917;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">🎬 15 REELS CONCERT MASTER STUDIO</div>
+    <h1>The Weeknd India — Video Factory</h1>
+    <p>Direct clips from <strong>SoFi Stadium 2025 (4K)</strong> & <strong>São Paulo 2024 Tour</strong>. 15 ready-to-render Reels with different hooks, themes, city spotlights, aur 1-click video download.</p>
+  </header>
+
+  <div class="main-layout">
+    <!-- Left Column: Live Player & Exporter -->
+    <div class="player-col">
+      <div class="canvas-wrap">
+        <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+      </div>
+
+      <div class="player-controls">
+        <div class="now-playing-title" id="nowPlayingTitle">Reel 01: SoFi Stadium Grand Entry</div>
+
+        <button class="btn btn-primary" id="recordBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+          Export & Download Video
+        </button>
+
+        <button class="btn btn-secondary" id="previewBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Play Live Preview
+        </button>
+
+        <div class="progress-bar-wrap" id="progressWrap">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="status-note" id="statusNote">Ready to play or export.</div>
+      </div>
+    </div>
+
+    <!-- Right Column: 15-Reel Catalog -->
+    <div class="studio-col">
+      <div class="studio-header">
+        <div>
+          <strong style="color: #fff; font-size: 14px;">15 UNIQUE REELS CATALOG</strong>
+          <div style="font-size: 11px; color: #888;">Select any Reel to load footage, hud & audio automatically</div>
+        </div>
+
+        <div class="theme-selector">
+          <button class="theme-btn active" data-theme="red">🔴 After Hours</button>
+          <button class="theme-btn" data-theme="cyan">⚡ Dawn FM</button>
+          <button class="theme-btn" data-theme="purple">🟣 Starboy</button>
+          <button class="theme-btn" data-theme="gold">👑 Tomorrow</button>
+        </div>
+      </div>
+
+      <div class="reels-grid" id="reelsGrid">
+        <!-- 15 Reels populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Video Elements for Stitched Playback -->
+  <video id="vidA" playsinline muted style="display: none;"></video>
+  <video id="vidB" playsinline muted style="display: none;"></video>
+
+  <script>
+    const canvas = document.getElementById('reelCanvas');
+    const ctx = canvas.getContext('2d');
+    const vidA = document.getElementById('vidA');
+    const vidB = document.getElementById('vidB');
+    const recordBtn = document.getElementById('recordBtn');
+    const previewBtn = document.getElementById('previewBtn');
+    const progressWrap = document.getElementById('progressWrap');
+    const progressBar = document.getElementById('progressBar');
+    const statusNote = document.getElementById('statusNote');
+    const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+    const reelsGrid = document.getElementById('reelsGrid');
+
+    // 15 Master Reels Definition
+    const REELS = [
+      {
+        id: 1,
+        title: "Reel 01: SoFi Stadium Grand Entry",
+        desc: "Red lights, screaming 70k crowd & Abel's grand stadium entrance.",
+        time: "24s",
+        duration: 24.0,
+        clipA: "sofi-intro-entry.mp4",
+        clipB: "sp-beat-drop.mp4",
+        splitTime: 12.0,
+        hook: "THE BIGGEST ARTIST ON EARTH IS HEADED TO ASIA",
+        sub: "PROVE THE DEMAND TO PROMOTERS",
+        tag: "🔥 VIRAL HOOK",
+        theme: "red"
+      },
+      {
+        id: 2,
+        title: "Reel 02: São Paulo Pyro & Flame Drop",
+        desc: "Massive stage pyro flames & Abel singing at full energy in Brazil.",
+        time: "22s",
+        duration: 22.0,
+        clipA: "sp-crowd-pyro.mp4",
+        clipB: "sofi-lasers-fire.mp4",
+        splitTime: 11.0,
+        hook: "ARE YOU READY FOR THE FIRE? 🇮🇳",
+        sub: "INDIA DESERVES THIS NIGHT",
+        tag: "⚡ HIGH ENERGY",
+        theme: "red"
+      },
+      {
+        id: 3,
+        title: "Reel 03: Mumbai Stadium Spotlight",
+        desc: "Catwalk performance tailored specifically for Mumbai fans.",
+        time: "25s",
+        duration: 25.0,
+        clipA: "sofi-catwalk-sing.mp4",
+        clipB: "sp-clip-1.mp4",
+        splitTime: 14.0,
+        hook: "MUMBAI, ARE YOU READY FOR ABEL? 📍",
+        sub: "WANKHEDE / DY PATIL STADIUM",
+        tag: "📍 MUMBAI",
+        theme: "gold"
+      },
+      {
+        id: 4,
+        title: "Reel 04: Delhi NCR Arena Challenge",
+        desc: "Laser storm & high bass drop focusing on Delhi NCR voter race.",
+        time: "24s",
+        duration: 24.0,
+        clipA: "sofi-lasers-fire.mp4",
+        clipB: "sofi-intro-entry.mp4",
+        splitTime: 12.0,
+        hook: "DELHI NCR WANTS THE STADIUM NIGHT 📍",
+        sub: "JLN STADIUM MASSIVE CROWD",
+        tag: "📍 DELHI",
+        theme: "red"
+      },
+      {
+        id: 5,
+        title: "Reel 05: Bengaluru Tech & Music Rush",
+        desc: "Electronic synth beats with Abel performing into the microphone.",
+        time: "24s",
+        duration: 24.0,
+        clipA: "sp-beat-drop.mp4",
+        clipB: "sofi-catwalk-sing.mp4",
+        splitTime: 12.0,
+        hook: "BENGALURU IS TAKING THE LEAD 📍",
+        sub: "LOCK IN YOUR CITY VOTE",
+        tag: "📍 BENGALURU",
+        theme: "cyan"
+      },
+      {
+        id: 6,
+        title: "Reel 06: Dawn FM 103.5 Frequency",
+        desc: "Cyber cyan retro aesthetic with glowing moon drone visuals.",
+        time: "30s",
+        duration: 30.0,
+        clipA: "sp-clip-1.mp4",
+        clipB: "sp-singing-1.mp4",
+        splitTime: 15.0,
+        hook: "103.5 DAWN FM // INDIA FREQUENCY 📻",
+        sub: "THE LIGHT AT THE END OF THE TUNNEL",
+        tag: "📻 RETRO CYBER",
+        theme: "cyan"
+      },
+      {
+        id: 7,
+        title: "Reel 07: After Hours Blood Red Anthem",
+        desc: "The classic Abel red jacket & stadium laser storm experience.",
+        time: "26s",
+        duration: 26.0,
+        clipA: "sofi-lasers-fire.mp4",
+        clipB: "sp-crowd-pyro.mp4",
+        splitTime: 13.0,
+        hook: "ONE NIGHT UNDER THE RED LIGHTS 🔴",
+        sub: "XO TILL WE OVERDOSE",
+        tag: "🔴 AFTER HOURS",
+        theme: "red"
+      },
+      {
+        id: 8,
+        title: "Reel 08: Timeless Mega Beat Drop",
+        desc: "São Paulo viral beat drop with roaring 80,000 fan singalong.",
+        time: "24s",
+        duration: 24.0,
+        clipA: "sp-beat-drop.mp4",
+        clipB: "sofi-catwalk-sing.mp4",
+        splitTime: 12.0,
+        hook: "THIS IS WHAT WE ARE FIGHTING FOR 🔥",
+        sub: "CAN INDIA SING EVERY WORD?",
+        tag: "🎵 TIMELESS",
+        theme: "purple"
+      },
+      {
+        id: 9,
+        title: "Reel 09: Kolkata & Ahmedabad Stadium Push",
+        desc: "Showcasing Narendra Modi & Salt Lake Stadium hosting capacity.",
+        time: "25s",
+        duration: 25.0,
+        clipA: "sofi-intro-entry.mp4",
+        clipB: "sofi-lasers-fire.mp4",
+        splitTime: 13.0,
+        hook: "AHMEDABAD & KOLKATA: PROVE IT 🇮🇳",
+        sub: "100,000 SEAT STADIUMS READY",
+        tag: "🏟️ STADIUM SPECIAL",
+        theme: "gold"
+      },
+      {
+        id: 10,
+        title: "Reel 10: The 30-Song Setlist Teaser",
+        desc: "Blinding Lights, Starboy, The Hills, Save Your Tears live.",
+        time: "28s",
+        duration: 28.0,
+        clipA: "sofi-catwalk-sing.mp4",
+        clipB: "sp-singing-1.mp4",
+        splitTime: 14.0,
+        hook: "30 SONGS OF PURE MASTERCLASS 🎤",
+        sub: "WHICH TRACK WILL YOU SCREAM LIVE?",
+        tag: "🎤 SETLIST",
+        theme: "purple"
+      },
+      {
+        id: 11,
+        title: "Reel 11: 1.4 Billion People Demand Proof",
+        desc: "Documentary style argument showing Indian fan numbers to promoters.",
+        time: "32s",
+        duration: 32.0,
+        clipA: "sp-clip-1.mp4",
+        clipB: "sofi-intro-entry.mp4",
+        splitTime: 16.0,
+        hook: "EVERY CONTINENT GOT THEIR SHOW 🌍",
+        sub: "NOW IT'S INDIA'S TURN",
+        tag: "📊 DATA DOSSIER",
+        theme: "gold"
+      },
+      {
+        id: 12,
+        title: "Reel 12: XO Anthem — Fan Loyalty",
+        desc: "Passionate vocal moments and high emotional energy.",
+        time: "24s",
+        duration: 24.0,
+        clipA: "sp-singing-1.mp4",
+        clipB: "sp-beat-drop.mp4",
+        splitTime: 12.0,
+        hook: "FOR EVERY TRUE XO FAN IN INDIA 🖤",
+        sub: "WE WILL MAKE THIS HAPPEN",
+        tag: "🖤 XO SPECIAL",
+        theme: "red"
+      },
+      {
+        id: 13,
+        title: "Reel 13: Hyderabad & Pune Arena Rush",
+        desc: "High energy catwalk and pyro targeting South and West cities.",
+        time: "24s",
+        duration: 24.0,
+        clipA: "sofi-catwalk-sing.mp4",
+        clipB: "sofi-lasers-fire.mp4",
+        splitTime: 12.0,
+        hook: "HYDERABAD & PUNE: DO NOT SLEEP ⚡",
+        sub: "EVERY VOTE MATTERS",
+        tag: "📍 HYD & PUNE",
+        theme: "cyan"
+      },
+      {
+        id: 14,
+        title: "Reel 14: São Paulo x SoFi Epic 45s Long Film",
+        desc: "Extended 45-second cinematic cut combining 4 continuous clips.",
+        time: "45s",
+        duration: 45.0,
+        clipA: "sofi-intro-entry.mp4",
+        clipB: "sp-crowd-pyro.mp4",
+        splitTime: 22.0,
+        hook: "THE FULL STADIUM TOUR EXPERIENCE 🎥",
+        sub: "REGISTER AT theweeknd.co.in",
+        tag: "🎬 45S EXTENDED",
+        theme: "gold"
+      },
+      {
+        id: 15,
+        title: "Reel 15: Grand Finale — The Final Call",
+        desc: "Ultimate call to action with lasers, crowd, and VIP Fan Pass.",
+        time: "30s",
+        duration: 30.0,
+        clipA: "sofi-lasers-fire.mp4",
+        clipB: "sofi-catwalk-sing.mp4",
+        splitTime: 15.0,
+        hook: "MAKE YOUR CITY IMPOSSIBLE TO IGNORE ↗",
+        sub: "OFFICIAL CAMPAIGN CLOSING PUSH",
+        tag: "👑 FINALE",
+        theme: "red"
+      }
+    ];
+
+    let currentReel = REELS[0];
+    let currentTheme = "red";
+
+    // Theme Color Palettes
+    const THEMES = {
+      red: {
+        primary: '#ed2917',
+        accent: '#ffb703',
+        sub: '#ffdeda',
+        bgGrad: 'rgba(237, 41, 23, 0.18)'
+      },
+      cyan: {
+        primary: '#00f0ff',
+        accent: '#ffb703',
+        sub: '#cffafe',
+        bgGrad: 'rgba(0, 240, 255, 0.18)'
+      },
+      purple: {
+        primary: '#c084fc',
+        accent: '#f43f5e',
+        sub: '#f5d0fe',
+        bgGrad: 'rgba(192, 132, 252, 0.18)'
+      },
+      gold: {
+        primary: '#ffb703',
+        accent: '#00f0ff',
+        sub: '#fef3c7',
+        bgGrad: 'rgba(255, 183, 3, 0.18)'
+      }
+    };
+
+    // Render Reel Catalog Cards
+    function renderCatalog() {
+      reelsGrid.innerHTML = '';
+      REELS.forEach(reel => {
+        const card = document.createElement('div');
+        card.className = `reel-card ${reel.id === currentReel.id ? 'active' : ''}`;
+        card.innerHTML = `
+          <div class="reel-meta">
+            <span class="reel-badge">${reel.tag}</span>
+            <span class="reel-time">⏱️ ${reel.time}</span>
+          </div>
+          <div class="reel-title">${reel.title}</div>
+          <div class="reel-desc">${reel.desc}</div>
+          <div class="reel-clips">📹 ${reel.clipA} ➔ ${reel.clipB}</div>
+          <div class="reel-actions">
+            <button class="select-btn" onclick="selectReel(${reel.id})">▶ Preview</button>
+            <button class="download-btn" onclick="quickDownload(${reel.id})">⬇ Export</button>
+          </div>
+        `;
+        reelsGrid.appendChild(card);
+      });
+    }
+
+    // Select and Load Reel
+    window.selectReel = function(id) {
+      currentReel = REELS.find(r => r.id === id);
+      nowPlayingTitle.textContent = currentReel.title;
+      currentTheme = currentReel.theme;
+      updateThemeButtons();
+
+      vidA.src = currentReel.clipA;
+      vidB.src = currentReel.clipB;
+      vidA.load();
+      vidB.load();
+
+      statusNote.textContent = `Loaded ${currentReel.title} (${currentReel.time})`;
+      renderCatalog();
+      setTimeout(() => renderFrame(1.0), 300);
+    };
+
+    window.quickDownload = function(id) {
+      selectReel(id);
+      setTimeout(() => {
+        recordBtn.click();
+      }, 500);
+    };
+
+    // Theme Switchers
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentTheme = btn.dataset.theme;
+        updateThemeButtons();
+        renderFrame(1.0);
+      });
+    });
+
+    function updateThemeButtons() {
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === currentTheme);
+      });
+    }
+
+    // Audio Synthesizer Engine
+    let audioCtx = null;
+    function getAudioStream() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const dest = audioCtx.createMediaStreamDestination();
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(65, audioCtx.currentTime);
+
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(350, audioCtx.currentTime);
+      filter.frequency.linearRampToValueAtTime(2000, audioCtx.currentTime + currentReel.splitTime);
+
+      gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + currentReel.duration);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(dest);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + currentReel.duration);
+
+      // Kicks
+      [4.0, currentReel.splitTime, currentReel.duration - 5.0].forEach(to => {
+        setTimeout(() => {
+          if (!audioCtx) return;
+          const kick = audioCtx.createOscillator();
+          const kickGain = audioCtx.createGain();
+          kick.frequency.setValueAtTime(160, audioCtx.currentTime);
+          kick.frequency.exponentialRampToValueAtTime(32, audioCtx.currentTime + 0.6);
+          kickGain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+          kickGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+          kick.connect(kickGain);
+          kickGain.connect(dest);
+          kickGain.connect(audioCtx.destination);
+          kick.start();
+          kick.stop(audioCtx.currentTime + 0.6);
+        }, to * 1000);
+      });
+
+      return dest.stream;
+    }
+
+    // Draw Video to Canvas
+    function drawVideoFit(vid) {
+      if (vid.readyState >= 2) {
+        ctx.save();
+        ctx.translate(540, 960);
+        const rRatio = Math.max(1080 / vid.videoWidth, 1920 / vid.videoHeight);
+        const rW = vid.videoWidth * rRatio;
+        const rH = vid.videoHeight * rRatio;
+        ctx.drawImage(vid, -rW / 2, -rH / 2, rW, rH);
+        ctx.restore();
+      }
+    }
+
+    // Render Canvas Frame
+    function renderFrame(t) {
+      ctx.fillStyle = '#040407';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      const pal = THEMES[currentTheme] || THEMES.red;
+
+      // Stitched Video Playback
+      if (t < currentReel.splitTime) {
+        drawVideoFit(vidA);
+      } else {
+        drawVideoFit(vidB);
+      }
+
+      // Vignette
+      const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+      grad.addColorStop(0, 'rgba(4, 4, 7, 0.94)');
+      grad.addColorStop(0.18, pal.bgGrad);
+      grad.addColorStop(0.5, 'rgba(0, 0, 0, 0.0)');
+      grad.addColorStop(0.72, 'rgba(4, 4, 7, 0.4)');
+      grad.addColorStop(1, 'rgba(4, 4, 7, 0.96)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Flash transition at split
+      if (Math.abs(t - currentReel.splitTime) < 0.4) {
+        ctx.fillStyle = pal.primary;
+        ctx.globalAlpha = 0.5;
+        ctx.fillRect(0, 0, 1080, 1920);
+        ctx.globalAlpha = 1.0;
+      }
+
+      // TOP HUD
+      ctx.textAlign = 'center';
+      ctx.fillStyle = pal.primary;
+      ctx.font = '800 30px DM Mono';
+      ctx.fillText('★ OFFICIAL LIVE TOUR ARCHIVE ★', 540, 180);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 italic 76px Montserrat';
+      ctx.fillText('THE WEEKND', 540, 270);
+
+      ctx.fillStyle = pal.accent;
+      ctx.font = '900 italic 68px Montserrat';
+      ctx.fillText('IN INDIA 🇮🇳', 540, 355);
+
+      // MIDDLE DYNAMIC HOOK
+      ctx.fillStyle = pal.bgGrad;
+      ctx.strokeStyle = pal.primary;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.roundRect(120, 1260, 840, 110, 18);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 italic 38px Montserrat';
+      ctx.fillText(currentReel.hook, 540, 1330);
+
+      // BOTTOM CALL TO ACTION
+      const cities = ['MUMBAI', 'DELHI NCR', 'BENGALURU', 'HYDERABAD', 'KOLKATA', 'AHMEDABAD', 'YOUR CITY!'];
+      const activeCity = cities[Math.floor(t * 1.6) % cities.length];
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.strokeStyle = pal.primary;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(140, 1390, 800, 95, 18);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = pal.primary;
+      ctx.font = '800 italic 40px Montserrat';
+      ctx.fillText(`VOTE FOR ${activeCity} ↗`, 540, 1452);
+
+      // Domain
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 italic 82px Montserrat';
+      ctx.fillText('theweeknd.co.in', 540, 1580);
+
+      ctx.fillStyle = pal.sub;
+      ctx.font = '600 28px DM Mono';
+      ctx.fillText('100% Free • Verified Demand • No Ticket Scalping', 540, 1645);
+
+      ctx.fillStyle = '#888';
+      ctx.font = '700 24px DM Mono';
+      ctx.fillText('@theweeknd.co.in • Built by @aayyuusshhw', 540, 1730);
+    }
+
+    // Playback
+    let isPlaying = false;
+    function playPreview() {
+      if (isPlaying) return;
+      isPlaying = true;
+      statusNote.textContent = `Playing ${currentReel.title}...`;
+
+      try { getAudioStream(); } catch (_) {}
+
+      vidA.currentTime = 0;
+      vidA.play();
+      vidB.currentTime = 0;
+      vidB.play();
+
+      let start = performance.now();
+      function loop(now) {
+        let elapsed = (now - start) / 1000;
+        if (elapsed >= currentReel.duration) {
+          renderFrame(currentReel.duration);
+          isPlaying = false;
+          vidA.pause();
+          vidB.pause();
+          statusNote.textContent = 'Preview finished! Click "Export Video" to save.';
+          return;
+        }
+        renderFrame(elapsed);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+
+    previewBtn.addEventListener('click', playPreview);
+
+    // High Bitrate Media Recording
+    recordBtn.addEventListener('click', async () => {
+      recordBtn.disabled = true;
+      previewBtn.disabled = true;
+      progressWrap.style.display = 'block';
+      progressBar.style.width = '0%';
+      statusNote.textContent = `Recording ${currentReel.title} in Full HD...`;
+
+      vidA.currentTime = 0;
+      vidA.play();
+      vidB.currentTime = 0;
+      vidB.play();
+
+      const canvasStream = canvas.captureStream(30);
+      let combinedStream = canvasStream;
+      try {
+        const audioStream = getAudioStream();
+        combinedStream = new MediaStream([
+          ...canvasStream.getVideoTracks(),
+          ...audioStream.getAudioTracks()
+        ]);
+      } catch (_) {}
+
+      let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 8000000 };
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        options = { mimeType: 'video/webm' };
+      }
+
+      const recorder = new MediaRecorder(combinedStream, options);
+      const chunks = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        statusNote.textContent = 'Finalizing video...';
+        const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        const cleanName = currentReel.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        a.download = `${cleanName}.webm`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        statusNote.textContent = `🎉 Downloaded ${currentReel.title}!`;
+        recordBtn.disabled = false;
+        previewBtn.disabled = false;
+        progressBar.style.width = '100%';
+        vidA.pause();
+        vidB.pause();
+      };
+
+      recorder.start();
+
+      let start = performance.now();
+      function recordLoop(now) {
+        let elapsed = (now - start) / 1000;
+        let progress = Math.min((elapsed / currentReel.duration) * 100, 100);
+        progressBar.style.width = progress + '%';
+        statusNote.textContent = `Rendering: ${Math.round(progress)}% (${elapsed.toFixed(1)}s / ${currentReel.duration}s)`;
+
+        if (elapsed >= currentReel.duration) {
+          recorder.stop();
+          return;
+        }
+
+        renderFrame(elapsed);
+        requestAnimationFrame(recordLoop);
+      }
+      requestAnimationFrame(recordLoop);
+    });
+
+    // Init
+    renderCatalog();
+    selectReel(1);
+  </script>
+</body>
+</html>
