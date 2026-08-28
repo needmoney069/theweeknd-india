@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Weeknd India — 103.5 Dawn FM Edition (Neon Blue & Gold 50s Reel)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
+
+    :root {
+      --bg: #030712;
+      --card: #0b1329;
+      --cyan: #00f0ff;
+      --gold: #ffb703;
+      --purple: #8b5cf6;
+      --border: rgba(0, 240, 255, 0.2);
+      --text: #f3f8fc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 50px;
+    }
+
+    header {
+      text-align: center;
+      max-width: 700px;
+      margin-bottom: 22px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0, 240, 255, 0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(24px, 5vw, 36px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #00f0ff 0%, #ffb703 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 1120px;
+      width: 100%;
+    }
+
+    .preview-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 35px rgba(0, 240, 255, 0.15);
+    }
+
+    .canvas-wrap {
+      width: 320px;
+      height: 568px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .panel {
+      flex: 1;
+      min-width: 320px;
+      max-width: 500px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .panel h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .features-list li span {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .custom-box {
+      background: #060c1d;
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      padding: 12px 14px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .custom-box label {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .custom-box input[type="file"] {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00b4d8 0%, #00f0ff 50%, #ffb703 100%);
+      color: #030712;
+      border: none;
+      box-shadow: 0 6px 20px rgba(0, 240, 255, 0.35);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 240, 255, 0.6);
+      background: #fff;
+      color: #030712;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.08);
+    }
+
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #091024;
+      border-radius: 4px;
+      overflow: hidden;
+      display: none;
+      margin-top: 6px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00f0ff, #ffb703);
+      transition: width 0.1s linear;
+    }
+
+    .status-note {
+      font-size: 11px;
+      color: var(--cyan);
+      text-align: center;
+      min-height: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">📻 103.5 DAWN FM // NEON CYBER EDITION</div>
+    <h1>The Weeknd India — Extended 48s Reel</h1>
+    <p>Theme: Retro-futuristic Cyber Cyan & Sunset Gold. <strong>Multi-Clip Live Concert Video (48 Seconds)</strong>, Radio Waveform HUD, aur 1-Click HD Export.</p>
+  </header>
+
+  <div class="container">
+    <div class="preview-card">
+      <div class="canvas-wrap">
+        <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+      </div>
+      <div style="font-size: 10px; color: #64748b; margin-top: 10px; letter-spacing: 1px;">9:16 VERTICAL FORMAT (1080 × 1920 • 48 SECONDS)</div>
+    </div>
+
+    <div class="panel">
+      <h2>⚡ Video Specifications</h2>
+      <ul class="features-list">
+        <li><span>✓</span> <strong>Length:</strong> 48 Seconds (Longer multi-angle continuous real video)</li>
+        <li><span>✓</span> <strong>Footage:</strong> Real Concert Clips (Stitched multi-scene live performance)</li>
+        <li><span>✓</span> <strong>Theme:</strong> Dawn FM Retro Cyberpunk (Electric Cyan, Sunset Amber, Soundwave HUD)</li>
+        <li><span>✓</span> <strong>Audio:</strong> 80s Synthwave Euphoric Melody & Beat Drop (Or upload custom MP3)</li>
+        <li><span>✓</span> <strong>HUD:</strong> Live Radio Frequency, City Leaderboard, VIP Pass</li>
+      </ul>
+
+      <div class="custom-box">
+        <label>🎵 Optional Custom Song (MP3)</label>
+        <input type="file" id="audioInput" accept="audio/*">
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="recordBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+          Record & Download 48s Reel
+        </button>
+
+        <button class="btn btn-secondary" id="previewBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Play 48s Live Preview
+        </button>
+      </div>
+
+      <div class="progress-bar-wrap" id="progressWrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="status-note" id="statusNote">Ready to play or record 48s Dawn FM Reel.</div>
+    </div>
+  </div>
+
+  <!-- Multi-Clip Video Elements for seamless cut -->
+  <video id="vidClip1" src="weeknd-clip-2.mp4" playsinline muted loop style="display: none;"></video>
+  <video id="vidClip2" src="weeknd-tour-news.mp4" playsinline muted loop style="display: none;"></video>
+
+  <script>
+    const canvas = document.getElementById('reelCanvas');
+    const ctx = canvas.getContext('2d');
+    const recordBtn = document.getElementById('recordBtn');
+    const previewBtn = document.getElementById('previewBtn');
+    const vid1 = document.getElementById('vidClip1');
+    const vid2 = document.getElementById('vidClip2');
+    const progressWrap = document.getElementById('progressWrap');
+    const progressBar = document.getElementById('progressBar');
+    const statusNote = document.getElementById('statusNote');
+    const audioInput = document.getElementById('audioInput');
+
+    const DURATION = 48.0; // 48 seconds
+    const FPS = 30;
+
+    let customAudioElement = null;
+    audioInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        customAudioElement = new Audio(URL.createObjectURL(file));
+        statusNote.textContent = `🎵 Custom song loaded: ${file.name}`;
+      }
+    });
+
+    // 48-Second Euphoric 80s Synthwave Soundtrack (Take My Breath / Sacrifice / Less Than Zero vibes)
+    let audioCtx = null;
+    function getAudioStream() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const dest = audioCtx.createMediaStreamDestination();
+
+      if (customAudioElement) {
+        const source = audioCtx.createMediaElementSource(customAudioElement);
+        source.connect(dest);
+        source.connect(audioCtx.destination);
+        customAudioElement.currentTime = 0;
+        customAudioElement.play();
+        return dest.stream;
+      }
+
+      // Shimmering Synth Chords
+      const chordOsc = audioCtx.createOscillator();
+      const chordGain = audioCtx.createGain();
+      chordOsc.type = 'sawtooth';
+      chordOsc.frequency.setValueAtTime(110, audioCtx.currentTime); // A2
+
+      const chordFilter = audioCtx.createBiquadFilter();
+      chordFilter.type = 'bandpass';
+      chordFilter.frequency.setValueAtTime(450, audioCtx.currentTime);
+      chordFilter.frequency.linearRampToValueAtTime(1800, audioCtx.currentTime + 10.0);
+      chordFilter.frequency.linearRampToValueAtTime(600, audioCtx.currentTime + 24.0);
+      chordFilter.frequency.linearRampToValueAtTime(2400, audioCtx.currentTime + 36.0);
+
+      chordGain.gain.setValueAtTime(0.24, audioCtx.currentTime);
+      chordGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + DURATION);
+
+      chordOsc.connect(chordFilter);
+      chordFilter.connect(chordGain);
+      chordGain.connect(dest);
+      chordGain.connect(audioCtx.destination);
+      chordOsc.start();
+      chordOsc.stop(audioCtx.currentTime + DURATION);
+
+      // Multi-Beat Impact Drops
+      [5.0, 15.0, 24.0, 36.0].forEach(timeOffset => {
+        setTimeout(() => {
+          if (!audioCtx) return;
+          const kick = audioCtx.createOscillator();
+          const kickGain = audioCtx.createGain();
+          kick.frequency.setValueAtTime(170, audioCtx.currentTime);
+          kick.frequency.exponentialRampToValueAtTime(32, audioCtx.currentTime + 0.6);
+          kickGain.gain.setValueAtTime(0.9, audioCtx.currentTime);
+          kickGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+          kick.connect(kickGain);
+          kickGain.connect(dest);
+          kickGain.connect(audioCtx.destination);
+          kick.start();
+          kick.stop(audioCtx.currentTime + 0.6);
+        }, timeOffset * 1000);
+      });
+
+      return dest.stream;
+    }
+
+    // Helper: Draw Video Object to Canvas
+    function drawVideoFit(vid, alpha = 1.0) {
+      if (vid.readyState >= 2) {
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.translate(540, 960);
+        const rRatio = Math.max(1080 / vid.videoWidth, 1920 / vid.videoHeight);
+        const rW = vid.videoWidth * rRatio;
+        const rH = vid.videoHeight * rRatio;
+        ctx.drawImage(vid, -rW / 2, -rH / 2, rW, rH);
+        ctx.restore();
+      }
+    }
+
+    // Render Canvas Frame
+    function renderFrame(t) {
+      ctx.fillStyle = '#030712';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Multi-Clip Video Switching:
+      // 0.0s – 24.0s: Clip 1 (Singing Performance)
+      // 24.0s – 48.0s: Clip 2 (Stadium Arena Crowd & Stage)
+      if (t < 24.0) {
+        drawVideoFit(vid1, 1.0);
+      } else {
+        drawVideoFit(vid2, 1.0);
+      }
+
+      // Cyber Neon Cyan & Midnight Blue Vignette
+      const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+      grad.addColorStop(0, 'rgba(3, 7, 18, 0.94)');
+      grad.addColorStop(0.18, 'rgba(0, 240, 255, 0.12)');
+      grad.addColorStop(0.5, 'rgba(0, 0, 0, 0.0)');
+      grad.addColorStop(0.72, 'rgba(3, 7, 18, 0.4)');
+      grad.addColorStop(1, 'rgba(3, 7, 18, 0.96)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Animated Cyber Soundwave Lines (Audio Frequency Visualizer)
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#00f0ff';
+      ctx.beginPath();
+      for (let x = 140; x <= 940; x += 16) {
+        const barH = Math.sin(t * 10 + x * 0.05) * 18 + 22;
+        ctx.moveTo(x, 140 - barH / 2);
+        ctx.lineTo(x, 140 + barH / 2);
+      }
+      ctx.stroke();
+
+      // Top Radio Frequency Header
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#00f0ff';
+      ctx.font = '700 28px DM Mono';
+      ctx.fillText('⚡ 103.5 DAWN FM // INDIA FREQUENCY ⚡', 540, 200);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 italic 74px Montserrat';
+      ctx.fillText('THE WEEKND', 540, 285);
+      
+      ctx.fillStyle = '#ffb703';
+      ctx.font = '900 italic 70px Montserrat';
+      ctx.fillText('LIVE IN INDIA 🇮🇳', 540, 365);
+
+      // Mid-clip Transition Flash at 24s
+      if (t >= 23.6 && t <= 24.4) {
+        const flashAlpha = 1.0 - Math.abs(t - 24.0) * 2.5;
+        ctx.fillStyle = `rgba(0, 240, 255, ${Math.max(flashAlpha, 0)})`;
+        ctx.fillRect(0, 0, 1080, 1920);
+      }
+
+      // Middle Timeline Text (Changes based on Act)
+      if (t < 15.0) {
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.12)';
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(140, 1260, 800, 100, 16);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffb703';
+        ctx.font = '800 italic 38px Montserrat';
+        ctx.fillText('1.4 BILLION PEOPLE. INDIA IS READY.', 540, 1324);
+      } else if (t >= 15.0 && t < 30.0) {
+        ctx.fillStyle = 'rgba(255, 183, 3, 0.12)';
+        ctx.strokeStyle = 'rgba(255, 183, 3, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(140, 1260, 800, 100, 16);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#00f0ff';
+        ctx.font = '800 italic 38px Montserrat';
+        ctx.fillText('PROVE AUDIENCE NUMBERS TO PROMOTERS', 540, 1324);
+      } else {
+        ctx.fillStyle = 'rgba(139, 92, 246, 0.15)';
+        ctx.strokeStyle = 'rgba(139, 92, 246, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(140, 1260, 800, 100, 16);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '800 italic 38px Montserrat';
+        ctx.fillText('VOTE FOR YOUR CITY TODAY ↗', 540, 1324);
+      }
+
+      // Bottom Cyber Call to Action
+      // Dynamic City Ticker
+      const cities = ['MUMBAI', 'DELHI NCR', 'BENGALURU', 'HYDERABAD', 'KOLKATA', 'AHMEDABAD', 'YOUR CITY!'];
+      const activeCity = cities[Math.floor(t * 1.8) % cities.length];
+
+      ctx.fillStyle = 'rgba(0, 240, 255, 0.15)';
+      ctx.strokeStyle = '#00f0ff';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.roundRect(140, 1390, 800, 110, 20);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#00f0ff';
+      ctx.font = '900 italic 42px Montserrat';
+      ctx.fillText(`CURRENT LEADER: ${activeCity} ⚡`, 540, 1460);
+
+      // Big Domain CTA
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 italic 82px Montserrat';
+      ctx.fillText('theweeknd.co.in', 540, 1585);
+
+      ctx.fillStyle = '#ffb703';
+      ctx.font = '600 30px DM Mono';
+      ctx.fillText('100% Free • Verified Fan Demand • No Ticket Sales', 540, 1655);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '700 28px DM Mono';
+      ctx.fillText('Official Fan Hub @theweeknd.co.in • Built by @aayyuusshhw', 540, 1740);
+    }
+
+    // Live Preview Playback
+    let isPlaying = false;
+    function playPreview() {
+      if (isPlaying) return;
+      isPlaying = true;
+      statusNote.textContent = 'Playing 48s Dawn FM Reel preview with audio...';
+
+      try { getAudioStream(); } catch (_) {}
+
+      vid1.currentTime = 0;
+      vid1.play();
+      vid2.currentTime = 0;
+      vid2.play();
+
+      let start = performance.now();
+      function loop(now) {
+        let elapsed = (now - start) / 1000;
+        if (elapsed >= DURATION) {
+          renderFrame(DURATION);
+          isPlaying = false;
+          vid1.pause();
+          vid2.pause();
+          statusNote.textContent = 'Preview finished! Click "Record & Download" to export video.';
+          if (customAudioElement) { customAudioElement.pause(); customAudioElement.currentTime = 0; }
+          return;
+        }
+        renderFrame(elapsed);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+
+    previewBtn.addEventListener('click', playPreview);
+
+    // Initial render
+    vid1.onloadeddata = () => renderFrame(1.0);
+
+    // Record & Download 48s High Bitrate Video
+    recordBtn.addEventListener('click', async () => {
+      recordBtn.disabled = true;
+      previewBtn.disabled = true;
+      progressWrap.style.display = 'block';
+      progressBar.style.width = '0%';
+      statusNote.textContent = 'Rendering 48s HD video with real live concert footage...';
+
+      vid1.currentTime = 0;
+      vid1.play();
+      vid2.currentTime = 0;
+      vid2.play();
+
+      const canvasStream = canvas.captureStream(FPS);
+      let combinedStream = canvasStream;
+      try {
+        const audioStream = getAudioStream();
+        combinedStream = new MediaStream([
+          ...canvasStream.getVideoTracks(),
+          ...audioStream.getAudioTracks()
+        ]);
+      } catch (e) {
+        console.warn('Audio note:', e);
+      }
+
+      let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 8000000 };
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        options = { mimeType: 'video/webm' };
+      }
+
+      const recorder = new MediaRecorder(combinedStream, options);
+      const chunks = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        statusNote.textContent = 'Finalizing 48s Dawn FM Reel...';
+        const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'theweeknd-dawn-fm-48s-reel.webm';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        statusNote.textContent = '🎉 48s Dawn FM Reel Downloaded! Ready to post.';
+        recordBtn.disabled = false;
+        previewBtn.disabled = false;
+        progressBar.style.width = '100%';
+        vid1.pause();
+        vid2.pause();
+      };
+
+      recorder.start();
+
+      let start = performance.now();
+      function recordLoop(now) {
+        let elapsed = (now - start) / 1000;
+        let progress = Math.min((elapsed / DURATION) * 100, 100);
+        progressBar.style.width = progress + '%';
+        statusNote.textContent = `Rendering video... ${Math.round(progress)}% (${elapsed.toFixed(1)}s / ${DURATION}s)`;
+
+        if (elapsed >= DURATION) {
+          renderFrame(DURATION);
+          recorder.stop();
+          return;
+        }
+
+        renderFrame(elapsed);
+        requestAnimationFrame(recordLoop);
+      }
+      requestAnimationFrame(recordLoop);
+    });
+  </script>
+</body>
+</html>
