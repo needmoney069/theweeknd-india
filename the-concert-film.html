@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Weeknd India — 60s Stadium Tour Experience Film Generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
+
+    :root {
+      --bg: #050506;
+      --card: #101015;
+      --red: #ed2917;
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f6f1ea;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 60px;
+    }
+
+    header {
+      text-align: center;
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(237, 41, 23, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(237, 41, 23, 0.4);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(24px, 5vw, 36px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #a19ba0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 1180px;
+      width: 100%;
+    }
+
+    .preview-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(237,41,23,0.12);
+    }
+
+    .canvas-wrap {
+      width: 320px;
+      height: 568px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .panel {
+      flex: 1;
+      min-width: 320px;
+      max-width: 540px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .panel h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    .custom-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #17171e;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 14px;
+      border-radius: 10px;
+    }
+
+    .custom-row label {
+      font-size: 11px;
+      color: #ff9800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .custom-row input[type="file"] {
+      font-size: 11px;
+      color: #bbb;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      color: #b5adb3;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .features-list li span {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c31511 0%, #ed2917 50%, #ff4b36 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 6px 20px rgba(237,41,23,0.4);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(237,41,23,0.6);
+      background: #fff;
+      color: #050506;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      border-color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #1c1b22;
+      border-radius: 4px;
+      overflow: hidden;
+      display: none;
+      margin-top: 6px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ed2917, #ff9800);
+      transition: width 0.1s linear;
+    }
+
+    .status-note {
+      font-size: 11px;
+      color: #ff9800;
+      text-align: center;
+      min-height: 18px;
+    }
+
+    .info-box {
+      background: rgba(237, 41, 23, 0.05);
+      border: 1px dashed rgba(237, 41, 23, 0.3);
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 11px;
+      color: #d1c7c9;
+      line-height: 1.6;
+    }
+    .info-box strong { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">🔥 60-SECOND FULL CINEMATIC FILM</div>
+    <h1>The Weeknd in India — 60s Stadium Tour Film</h1>
+    <p>Poora naya storyline: Recent Stadium Tour 2023-2024 ki real concert photos, 60s long format, epic synthwave soundtrack, aur instant HD video download.</p>
+  </header>
+
+  <div class="container">
+    <!-- 9:16 Frame Preview -->
+    <div class="preview-card">
+      <div class="canvas-wrap">
+        <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+      </div>
+      <div style="font-size: 10px; color: #726b70; margin-top: 10px; letter-spacing: 1px;">9:16 VERTICAL CINEMATIC FORMAT (1080 × 1920 • 60 SECONDS)</div>
+    </div>
+
+    <!-- Controls Panel -->
+    <div class="panel">
+      <h2>🎬 Film Breakdown (60 Seconds)</h2>
+      <ul class="features-list">
+        <li><span>✓</span> <strong>Act I (0-12s):</strong> The Scale of the Tour (4 Million Fans, Stadium Skyline, Paris & Mexico City Tour)</li>
+        <li><span>✓</span> <strong>Act II (12-25s):</strong> Abel Tesfaye Live on Stage (30 Songs Masterclass, Blinding Lights, Starboy, After Hours)</li>
+        <li><span>✓</span> <strong>Act III (25-40s):</strong> The Missing Stage: India (1.4 Billion population, Fastest growing XO fanbase)</li>
+        <li><span>✓</span> <strong>Act IV (40-52s):</strong> The Fan Movement (City Demand Voting, Zero ticket sales, verified dossier)</li>
+        <li><span>✓</span> <strong>Act V (52-60s):</strong> Grand Finale & Call to Action (theweeknd.co.in • VIP Fan Pass • Socials)</li>
+      </ul>
+
+      <div class="custom-row">
+        <label>🎵 Optional Custom Song Track (MP3)</label>
+        <input type="file" id="audioInput" accept="audio/*">
+        <span style="font-size: 10px; color: #888;">Agar song file upload nahi karoge, toh built-in 60s cinematic synthwave score automatically chalega aur record hoga!</span>
+      </div>
+
+      <div class="info-box">
+        <strong>💡 1-Click Export:</strong> "Record & Download 60s Video" dabaane par poora 1 minute ka HD vertical video render ho kar direct aapke device mein <strong>theweeknd-india-concert-film-60s.webm</strong> download ho jayega!
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="recordBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+          Record & Download 60s Film
+        </button>
+
+        <button class="btn btn-secondary" id="previewBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Play Live Preview (60s)
+        </button>
+      </div>
+
+      <div class="progress-bar-wrap" id="progressWrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="status-note" id="statusNote">Ready to play or record.</div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('reelCanvas');
+    const ctx = canvas.getContext('2d');
+    const recordBtn = document.getElementById('recordBtn');
+    const previewBtn = document.getElementById('previewBtn');
+    const progressWrap = document.getElementById('progressWrap');
+    const progressBar = document.getElementById('progressBar');
+    const statusNote = document.getElementById('statusNote');
+    const audioInput = document.getElementById('audioInput');
+
+    const DURATION = 60.0; // Full 60 seconds
+    const FPS = 30;
+
+    // Load New Recent Stadium Tour Photos (Stade de France Paris, Mexico City Foro Sol, etc.)
+    const images = {
+      parisStage: new Image(),  // 2023 Paris Abel singing on stadium stage
+      parisRobot: new Image(),  // 2023 Paris giant chrome robot & skyline
+      cdmxStadium: new Image(), // 2023 Mexico City stadium panoramic tour
+      parisCrowd: new Image(),  // 2023 Illuminated stadium wristbands
+      singingMic: new Image()   // Abel passionate singing close-up
+    };
+    images.parisStage.src = 'weeknd-paris-01.jpg';
+    images.parisRobot.src = 'weeknd-paris-08.jpg';
+    images.cdmxStadium.src = 'weeknd-tour-cdmx.jpg';
+    images.parisCrowd.src = 'weeknd-paris-19.jpg';
+    images.singingMic.src = 'weeknd-abel-portrait.jpg';
+
+    let customAudioElement = null;
+    audioInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        customAudioElement = new Audio(URL.createObjectURL(file));
+        statusNote.textContent = `🎵 Custom song loaded: ${file.name}`;
+      }
+    });
+
+    // 60-Second Extended Synthwave / Cinematic Score
+    let audioCtx = null;
+    function getAudioStream() {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const dest = audioCtx.createMediaStreamDestination();
+
+      if (customAudioElement) {
+        const source = audioCtx.createMediaElementSource(customAudioElement);
+        source.connect(dest);
+        source.connect(audioCtx.destination);
+        customAudioElement.currentTime = 0;
+        customAudioElement.play();
+        return dest.stream;
+      }
+
+      // Base Synth Pad & Drone
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(55, audioCtx.currentTime); // A1 note
+
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(220, audioCtx.currentTime);
+      filter.frequency.linearRampToValueAtTime(1400, audioCtx.currentTime + 12.0); // Drop 1
+      filter.frequency.linearRampToValueAtTime(800, audioCtx.currentTime + 25.0);
+      filter.frequency.linearRampToValueAtTime(2200, audioCtx.currentTime + 40.0); // Drop 2
+      filter.frequency.linearRampToValueAtTime(3000, audioCtx.currentTime + 52.0);
+
+      gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + DURATION);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(dest);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + DURATION);
+
+      // Impact Kicks & Riser drops (at 12s, 25s, 40s, 52s)
+      [12.0, 25.0, 40.0, 52.0].forEach(timeOffset => {
+        setTimeout(() => {
+          if (!audioCtx) return;
+          const kick = audioCtx.createOscillator();
+          const kickGain = audioCtx.createGain();
+          kick.frequency.setValueAtTime(160, audioCtx.currentTime);
+          kick.frequency.exponentialRampToValueAtTime(32, audioCtx.currentTime + 0.6);
+          kickGain.gain.setValueAtTime(1.0, audioCtx.currentTime);
+          kickGain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.7);
+          kick.connect(kickGain);
+          kickGain.connect(dest);
+          kickGain.connect(audioCtx.destination);
+          kick.start();
+          kick.stop(audioCtx.currentTime + 0.7);
+        }, timeOffset * 1000);
+      });
+
+      return dest.stream;
+    }
+
+    function drawCoverImage(img, alpha = 1.0, zoom = 1.0, offsetY = 0) {
+      if (!img.complete || img.width === 0) return;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.translate(540, 960 + offsetY);
+      ctx.scale(zoom, zoom);
+      const ratio = Math.max(1080 / img.width, 1920 / img.height);
+      const w = img.width * ratio;
+      const h = img.height * ratio;
+      ctx.drawImage(img, -w / 2, -h / 2, w, h);
+      ctx.restore();
+    }
+
+    // Render 60-Second Frame Sequence
+    function renderFrame(t) {
+      ctx.fillStyle = '#050506';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // ==========================================
+      // ACT I: 0.0s – 12.0s (The Scale of the Tour: 4M Fans, Stadium Skyline)
+      // ==========================================
+      if (t < 12.0) {
+        if (t < 6.0) {
+          // Recent Mexico City Stadium Panoramic
+          drawCoverImage(images.cdmxStadium, 0.85, 1.02 + t * 0.02, 0);
+        } else {
+          // Recent Paris Robot & Skyline Stage
+          const pTime = t - 6.0;
+          drawCoverImage(images.parisRobot, 0.85, 1.02 + pTime * 0.02, 0);
+        }
+
+        // Dark grading overlay
+        const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+        grad.addColorStop(0, 'rgba(5, 5, 6, 0.95)');
+        grad.addColorStop(0.35, 'rgba(0, 0, 0, 0.3)');
+        grad.addColorStop(0.7, 'rgba(180, 15, 10, 0.35)');
+        grad.addColorStop(1, 'rgba(5, 5, 6, 0.96)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '700 32px DM Mono';
+        ctx.fillText('// RECENT TOUR ARCHIVE //', 540, 360);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 74px Montserrat';
+        ctx.fillText('4,000,000 FANS.', 540, 480);
+        ctx.fillText('40+ STADIUMS.', 540, 565);
+
+        if (t > 4.0) {
+          ctx.fillStyle = '#ffb3a8';
+          ctx.font = '800 italic 44px Montserrat';
+          ctx.fillText('THE BIGGEST STADIUM TOUR', 540, 1380);
+          ctx.fillText('OF THE DECADE.', 540, 1440);
+        }
+
+        if (t > 8.0) {
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '600 30px DM Mono';
+          ctx.fillText('Wembley • SoFi Stadium • São Paulo • Paris', 540, 1540);
+        }
+      }
+
+      // ==========================================
+      // ACT II: 12.0s – 25.0s (Abel Tesfaye Live on Stage: Beat Drop!)
+      // ==========================================
+      else if (t >= 12.0 && t < 25.0) {
+        const sTime = t - 12.0; // 0 to 13s
+
+        if (sTime < 6.5) {
+          // Paris 2023 Stadium Stage Performance
+          drawCoverImage(images.parisStage, 0.95, 1.03 + sTime * 0.03, -60);
+        } else {
+          // Abel close-up singing with microphone
+          const cTime = sTime - 6.5;
+          drawCoverImage(images.singingMic, 0.95, 1.03 + cTime * 0.03, -80);
+        }
+
+        // Fiery stage vignette
+        const grad = ctx.createLinearGradient(0, 0, 0, 1920);
+        grad.addColorStop(0, 'rgba(5, 5, 6, 0.92)');
+        grad.addColorStop(0.3, 'rgba(237, 41, 23, 0.18)');
+        grad.addColorStop(0.6, 'rgba(5, 5, 6, 0.05)');
+        grad.addColorStop(0.8, 'rgba(195, 21, 17, 0.45)');
+        grad.addColorStop(1, 'rgba(5, 5, 6, 0.98)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '800 34px DM Mono';
+        ctx.fillText('★ 30-SONG LIVE MASTERCLASS ★', 540, 360);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 98px Montserrat';
+        ctx.fillText('ABEL TESFAYE', 540, 480);
+        ctx.fillText('LIVE ON STAGE', 540, 580);
+
+        // Rotating anthem titles
+        const tracks = [
+          'BLINDING LIGHTS (#1 Song In Billboard History)',
+          'STARBOY (Over 3 Billion Streams)',
+          'THE HILLS (Iconic Dark Anthem)',
+          'TIMELESS (Chart Topping Collab)'
+        ];
+        const trackIdx = Math.floor(sTime * 0.7) % tracks.length;
+
+        ctx.fillStyle = '#ffdeda';
+        ctx.font = '800 italic 38px Montserrat';
+        ctx.fillText(tracks[trackIdx], 540, 1400);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '600 italic 34px Montserrat';
+        ctx.fillText('"A Voice That Defined A Generation"', 540, 1480);
+
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '900 italic 84px Montserrat';
+        ctx.fillText('XO', 540, 1600);
+      }
+
+      // ==========================================
+      // ACT III: 25.0s – 40.0s (The Missing Stage: India)
+      // ==========================================
+      else if (t >= 25.0 && t < 40.0) {
+        const iTime = t - 25.0; // 0 to 15s
+
+        if (iTime < 7.5) {
+          // Illuminated Stadium crowd wristbands
+          drawCoverImage(images.parisCrowd, 0.85, 1.02 + iTime * 0.02, 0);
+        } else {
+          // Stadium stage panoramic
+          const s2 = iTime - 7.5;
+          drawCoverImage(images.cdmxStadium, 0.85, 1.02 + s2 * 0.02, 0);
+        }
+
+        ctx.fillStyle = 'rgba(5, 5, 6, 0.88)';
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ff9800';
+        ctx.font = '700 32px DM Mono';
+        ctx.fillText('EVERY CONTINENT GOT THEIR NIGHT.', 540, 360);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 82px Montserrat';
+        ctx.fillText('YET INDIA IS STILL', 540, 470);
+        ctx.fillText('WAITING.', 540, 560);
+
+        // Highlight box
+        ctx.fillStyle = 'rgba(237, 41, 23, 0.15)';
+        ctx.strokeStyle = '#ed2917';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.roundRect(120, 720, 840, 360, 20);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 54px Montserrat';
+        ctx.fillText('1.4 BILLION PEOPLE.', 540, 810);
+
+        ctx.fillStyle = '#ffdeda';
+        ctx.font = '700 34px DM Mono';
+        ctx.fillText('Fastest Growing XO Fanbase on Earth.', 540, 890);
+
+        ctx.fillStyle = '#ffd4ca';
+        ctx.font = '500 28px DM Mono';
+        ctx.fillText('Mumbai • Delhi NCR • Bengaluru', 540, 960);
+        ctx.fillText('Ahmedabad • Kolkata • Hyderabad • Pune', 540, 1010);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '800 italic 40px Montserrat';
+        ctx.fillText('PROMOTERS NEED VERIFIED PROOF.', 540, 1260);
+
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '700 32px DM Mono';
+        ctx.fillText('AND WE ARE BRINGING THE NUMBERS.', 540, 1330);
+      }
+
+      // ==========================================
+      // ACT IV: 40.0s – 52.0s (The Fan Movement: Verified Campaign)
+      // ==========================================
+      else if (t >= 40.0 && t < 52.0) {
+        const mTime = t - 40.0; // 0 to 12s
+
+        drawCoverImage(images.parisRobot, 0.35, 1.1, 0);
+
+        ctx.fillStyle = 'rgba(5, 5, 6, 0.88)';
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '800 34px DM Mono';
+        ctx.fillText('INDEPENDENT FAN INITIATIVE 🇮🇳', 540, 360);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 78px Montserrat';
+        ctx.fillText('WE ARE NOT WAITING', 540, 470);
+        ctx.fillText('ANYMORE.', 540, 560);
+
+        // 3 Pillar Cards
+        const pillars = [
+          { num: '01', title: '100% FREE FAN DEMAND', desc: 'No ticket sales. No money. Just registered intent.' },
+          { num: '02', title: 'CITY-WISE BREAKDOWN', desc: 'Proving which Indian stadium can host Abel.' },
+          { num: '03', title: 'DIRECT PROMOTER DOSSIER', desc: 'Numbers presented to official tour organizers.' }
+        ];
+
+        let pY = 700;
+        pillars.forEach(p => {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.06)';
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.roundRect(140, pY, 800, 140, 16);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.textAlign = 'left';
+          ctx.fillStyle = '#ed2917';
+          ctx.font = '900 italic 38px Montserrat';
+          ctx.fillText(p.num, 170, pY + 54);
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '800 italic 32px Montserrat';
+          ctx.fillText(p.title, 240, pY + 54);
+
+          ctx.fillStyle = '#bbb';
+          ctx.font = '500 24px DM Mono';
+          ctx.fillText(p.desc, 170, pY + 100);
+
+          pY += 165;
+        });
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffd4ca';
+        ctx.font = '600 30px DM Mono';
+        ctx.fillText('Every single registration matters.', 540, 1340);
+      }
+
+      // ==========================================
+      // ACT V: 52.0s – 60.0s (Grand Finale & Call To Action)
+      // ==========================================
+      else {
+        const grad = ctx.createRadialGradient(540, 960, 80, 540, 960, 1000);
+        grad.addColorStop(0, '#8c0005');
+        grad.addColorStop(0.4, '#240205');
+        grad.addColorStop(1, '#050506');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        drawCoverImage(images.singingMic, 0.2, 1.15, 0);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffd4ca';
+        ctx.font = '800 38px DM Mono';
+        ctx.fillText('MAKE YOUR CITY IMPOSSIBLE TO IGNORE:', 540, 420);
+
+        // Giant Domain
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 88px Montserrat';
+        ctx.fillText('theweeknd.co.in', 540, 560);
+
+        // CTA Button
+        ctx.fillStyle = '#ed2917';
+        ctx.beginPath();
+        ctx.roundRect(160, 700, 760, 140, 70);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 46px Montserrat';
+        ctx.fillText('VOTE FOR YOUR CITY ↗', 540, 788);
+
+        // Perks
+        ctx.fillStyle = '#e2dad7';
+        ctx.font = '600 30px DM Mono';
+        ctx.fillText('🎟️ Instant VIP Digital Fan Pass Delivered to Email', 540, 960);
+        ctx.fillText('📊 Track Real-time Campaign Numbers Live', 540, 1015);
+
+        // Instagram Box
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(110, 1160, 860, 220, 20);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ed2917';
+        ctx.font = '800 32px DM Mono';
+        ctx.fillText('JOIN THE MOVEMENT ON INSTAGRAM:', 540, 1230);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 italic 48px Montserrat';
+        ctx.fillText('@theweeknd.co.in', 540, 1305);
+
+        ctx.fillStyle = '#a69fa4';
+        ctx.font = '500 26px DM Mono';
+        ctx.fillText('Campaign Platform Built by Ayush (@aayyuusshhw)', 540, 1520);
+
+        // Outro Credits
+        ctx.fillStyle = '#6b666a';
+        ctx.font = '500 18px DM Mono';
+        ctx.fillText('Photos: Zakarie Faibis (CC BY-SA 4.0) • Nicolas Padovani (CC BY 2.0)', 540, 1720);
+        ctx.fillText('Independent Fan Initiative • Not affiliated with Republic / XO Records', 540, 1750);
+      }
+    }
+
+    let isPlaying = false;
+    function playPreview() {
+      if (isPlaying) return;
+      isPlaying = true;
+      statusNote.textContent = 'Playing 60s full stadium experience film with audio...';
+
+      try { getAudioStream(); } catch (_) {}
+
+      let start = performance.now();
+      function loop(now) {
+        let elapsed = (now - start) / 1000;
+        if (elapsed > DURATION) {
+          renderFrame(DURATION);
+          isPlaying = false;
+          statusNote.textContent = 'Preview finished! Click "Record & Download" to export video.';
+          if (customAudioElement) { customAudioElement.pause(); customAudioElement.currentTime = 0; }
+          return;
+        }
+        renderFrame(elapsed);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+
+    previewBtn.addEventListener('click', playPreview);
+    setTimeout(() => renderFrame(1.0), 300);
+
+    // High Quality Media Recording (60s Full HD)
+    recordBtn.addEventListener('click', async () => {
+      recordBtn.disabled = true;
+      previewBtn.disabled = true;
+      progressWrap.style.display = 'block';
+      progressBar.style.width = '0%';
+      statusNote.textContent = 'Rendering 60s 1080x1920 Full HD Concert Film...';
+
+      const canvasStream = canvas.captureStream(FPS);
+      let combinedStream = canvasStream;
+      try {
+        const audioStream = getAudioStream();
+        combinedStream = new MediaStream([
+          ...canvasStream.getVideoTracks(),
+          ...audioStream.getAudioTracks()
+        ]);
+      } catch (e) {
+        console.warn('Audio capture note:', e);
+      }
+
+      let options = { mimeType: 'video/webm;codecs=vp9', videoBitsPerSecond: 6000000 };
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        options = { mimeType: 'video/webm' };
+      }
+
+      const recorder = new MediaRecorder(combinedStream, options);
+      const chunks = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        statusNote.textContent = 'Finalizing 60s Concert Film...';
+        const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'theweeknd-india-concert-film-60s.webm';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        statusNote.textContent = '🎉 60-Second Concert Film Downloaded! Ready to post on Instagram, YouTube & WhatsApp.';
+        recordBtn.disabled = false;
+        previewBtn.disabled = false;
+        progressBar.style.width = '100%';
+      };
+
+      recorder.start();
+
+      let start = performance.now();
+      function recordLoop(now) {
+        let elapsed = (now - start) / 1000;
+        let progress = Math.min((elapsed / DURATION) * 100, 100);
+        progressBar.style.width = progress + '%';
+        statusNote.textContent = `Rendering film... ${Math.round(progress)}% (${elapsed.toFixed(1)}s / ${DURATION}s)`;
+
+        if (elapsed >= DURATION) {
+          renderFrame(DURATION);
+          recorder.stop();
+          return;
+        }
+
+        renderFrame(elapsed);
+        requestAnimationFrame(recordLoop);
+      }
+      requestAnimationFrame(recordLoop);
+    });
+  </script>
+</body>
+</html>
