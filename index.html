@@ -69,10 +69,75 @@
     .route-section { color:#070708; background:#f3eee7; border-color:#d2cac0; }.route-section .kicker { color:#bd130c; }.route-section .section-copy { color:#514c48; }.route-grid { display:grid; grid-template-columns:1.22fr .78fr; gap:18px; align-items:stretch; }.route-map { border-top:2px solid #0a0a0b; }.route-step { display:grid; grid-template-columns:74px 1fr; gap:22px; padding:28px 0; border-bottom:1px solid rgba(8,8,8,.2); }.route-step > span { font:900 italic 30px/.8 Montserrat,Arial,sans-serif; letter-spacing:-.09em; color:#be1b12; }.route-step h3 { margin:0 0 8px; font:800 italic clamp(22px,2.7vw,34px)/.9 Montserrat,Arial,sans-serif; letter-spacing:-.08em; text-transform:uppercase; }.route-step p { max-width:620px; margin:0; color:#504b47; font-size:12px; line-height:1.65; }.route-aside { min-height:100%; padding:30px; color:#fff; background:#0a0a0c; display:flex; flex-direction:column; justify-content:space-between; }.route-aside small { color:#ff8677; font-size:10px; letter-spacing:.13em; text-transform:uppercase; }.route-aside h3 { max-width:360px; margin:18px 0; font:900 italic clamp(31px,3.6vw,49px)/.85 Montserrat,Arial,sans-serif; letter-spacing:-.09em; text-transform:uppercase; }.route-aside p { margin:0; color:#c8c2c0; font-size:12px; line-height:1.65; }.route-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }.route-link { display:inline-flex; min-height:38px; align-items:center; border:1px solid rgba(255,255,255,.42); padding:0 12px; color:#fff; font-size:9px; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; transition:background .2s,color .2s; }.route-link:hover { background:#fff; color:#070708; }.route-rule { margin-top:30px !important; padding-top:18px; border-top:1px solid rgba(255,255,255,.2); color:#ffb3a8 !important; }
     .feedback-section { background:#101015; }.feedback-grid { display:grid; grid-template-columns:.78fr 1.22fr; gap:10vw; align-items:start; }.feedback-copy { position:sticky; top:25px; }.feedback-copy h2 { font-size:clamp(50px,6vw,86px); }.feedback-copy p { max-width:330px; color:#b7b1b5; font-size:12px; line-height:1.7; }.feedback-card { padding:28px; border:1px solid rgba(255,255,255,.2); background:#18181d; }.feedback-form { display:grid; grid-template-columns:1fr; gap:22px; }.feedback-form label { color:#f4eee8; font-size:10px; }.feedback-form textarea,.feedback-form select { width:100%; border:1px solid rgba(255,255,255,.27); border-radius:0; outline:0; background:#0c0c0f; padding:13px; color:#fff; font:14px/1.55 'DM Mono',monospace; resize:vertical; }.feedback-form textarea { min-height:150px; }.feedback-form textarea:focus,.feedback-form select:focus { border-color:#ff5a46; }.feedback-form select option { color:#090909; }.feedback-meta { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; color:#979196; font-size:10px; line-height:1.55; }.feedback-meta strong { color:#ff806f; font-weight:500; }.feedback-card .button { justify-self:start; }.feedback-card .button:hover { border-color:#f3eee7; }.feedback-success { display:none; margin-top:18px; padding:14px 16px; border-left:3px solid #4caf50; background:#1b2e1b; color:#c8e6c9; font-size:12px; line-height:1.55; }.feedback-success.error { border-left-color:#c62828; background:#2e1515; color:#ffcdd2; }
     footer { padding:38px 0; font-size:10px; color:#938f91; line-height:1.7; }footer .footer-line { display:flex; justify-content:space-between; gap:30px; border-top:1px solid var(--line); padding-top:20px; }footer strong { color:var(--white); }
+    /* --- Community Transparency & Intention Modal --- */
+    .xo-modal-overlay { position:fixed; inset:0; z-index:999999; background:rgba(4,4,7,0.86); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity .35s ease,visibility .35s ease; visibility:hidden; }
+    .xo-modal-overlay.active { opacity:1; pointer-events:auto; visibility:visible; }
+    .xo-modal-card { background:#0e0e14; border:1px solid rgba(237,41,23,0.45); border-radius:24px; max-width:540px; width:100%; padding:32px 28px; box-shadow:0 25px 70px rgba(0,0,0,0.95), 0 0 45px rgba(237,41,23,0.2); transform:scale(0.92) translateY(25px); transition:transform .35s cubic-bezier(0.16,1,0.3,1); position:relative; overflow:hidden; }
+    .xo-modal-overlay.active .xo-modal-card { transform:scale(1) translateY(0); }
+    .xo-modal-card::before { content:''; position:absolute; top:-60px; right:-60px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,rgba(237,41,23,0.35) 0%,transparent 70%); pointer-events:none; }
+    .xo-modal-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(237,41,23,0.15); color:#ff4b36; border:1px solid rgba(237,41,23,0.4); padding:5px 14px; border-radius:20px; font-size:10px; font-family:'DM Mono',monospace; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px; }
+    .xo-modal-badge .xo-dot { width:7px; height:7px; border-radius:50%; background:#ed2917; box-shadow:0 0 10px #ed2917; animation:xoPulse 2s infinite; }
+    @keyframes xoPulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.4;transform:scale(.8);} }
+    .xo-modal-title { font-family:'Montserrat',Arial,sans-serif; font-weight:900; font-style:italic; font-size:clamp(22px,5vw,30px); color:#ffffff; letter-spacing:-0.5px; line-height:1.2; margin-bottom:16px; }
+    .xo-modal-body { font-family:'DM Mono',monospace; color:#b3aeb2; font-size:12px; line-height:1.65; display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
+    .xo-modal-body .xo-lead { color:#fff; font-size:13px; line-height:1.6; border-left:3px solid #ed2917; padding-left:12px; }
+    .xo-modal-body strong { color:#fff; }
+    .xo-points { display:flex; flex-direction:column; gap:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:14px 16px; margin:4px 0; }
+    .xo-point { display:flex; align-items:flex-start; gap:10px; font-size:11px; line-height:1.5; }
+    .xo-point .xo-icon { font-size:14px; flex-shrink:0; margin-top:1px; }
+    .xo-modal-actions { display:flex; flex-direction:column; gap:10px; }
+    .xo-confirm-btn { background:linear-gradient(135deg,#c31511 0%,#ed2917 50%,#ff4b36 100%); color:#ffffff; font-family:'DM Mono',monospace; font-weight:700; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; padding:15px 22px; border:none; border-radius:12px; cursor:pointer; width:100%; transition:all .25s ease; box-shadow:0 4px 20px rgba(237,41,23,0.4); display:flex; align-items:center; justify-content:center; gap:8px; }
+    .xo-confirm-btn:hover { background:#ffffff; color:#000000; transform:translateY(-2px); box-shadow:0 6px 25px rgba(237,41,23,0.6); }
+    .xo-reopen-link { display:inline-flex; align-items:center; gap:6px; color:#938f91; font-size:10px; font-family:'DM Mono',monospace; text-decoration:none; cursor:pointer; border-bottom:1px dashed rgba(255,255,255,0.3); padding-bottom:2px; transition:color .2s; }
+    .xo-reopen-link:hover { color:#ff4b36; border-color:#ff4b36; }
+    @media (max-width:580px) { .xo-modal-card { padding:24px 20px; border-radius:18px; } .xo-modal-title { font-size:22px; } }
     @media (max-width:760px) { .wrap,.city-stage .inner { width:min(100% - 30px,1240px); }.nav { height:68px; }.nav-links { display:none; }.hero { min-height:680px; padding:60px 0; }.hero::before { background:linear-gradient(90deg,rgba(5,5,6,.97),rgba(5,5,6,.38)),linear-gradient(0deg,var(--black),transparent 42%),linear-gradient(105deg,rgba(77,0,5,.18),rgba(213,26,15,.54)),url('weeknd-live-ccby-v1.jpg') 82% 58% / auto 104% no-repeat,radial-gradient(circle at 85% 55%,#9e0b10,#160104 72%); background-blend-mode:normal,normal,color,normal,normal; }.hero h1 { font-size:clamp(58px,16vw,100px); }.hero-grid { display:block; }.hero-index { display:none; }section { padding:80px 0; }.campaign-status { padding:0; }.status-grid { grid-template-columns:1fr; }.status-card { min-height:180px; }.section-head,.statement,.vote-layout,.route-grid,.feedback-grid { display:block; }.section-copy { margin-top:24px; }.data-card { margin-top:32px; }.mission-gallery { grid-template-columns:1fr; margin-top:42px; }.image-panel { min-height:300px; }.album-grid { grid-template-columns:1fr 1fr; }.album { min-height:220px; }.album h3 { font-size:25px; }.city-stage { min-height:600px; }.city-stage h2 { font-size:clamp(52px,14vw,90px); }.vote-copy,.feedback-copy { position:static; margin-bottom:50px; }form { grid-template-columns:1fr; }.route-aside { margin-top:18px; }.feedback-card { padding:20px; }.feedback-meta { display:block; }.feedback-meta strong { display:block; margin-top:10px; }.full { grid-column:auto; }footer .footer-line { display:block; } }
   </style>
 </head>
 <body>
+  <!-- TRANSPARENCY & COMMUNITY INTENTION MODAL -->
+  <div id="transparency-modal" class="xo-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="transparency-title">
+    <div class="xo-modal-card">
+      <div class="xo-modal-badge">
+        <span class="xo-dot"></span>
+        COMMUNITY TRANSPARENCY • PLEASE READ
+      </div>
+      <h2 id="transparency-title" class="xo-modal-title">
+        A Note to Every XO Fan 🖤
+      </h2>
+      <div class="xo-modal-body">
+        <p class="xo-lead">
+          <strong>"Our intention is simply to bring the fans together and show that there’s a genuine demand for him to come to India. We’re not claiming this movement will guarantee anything."</strong>
+        </p>
+        <p>
+          We are an independent, <strong>100% free fan-led initiative</strong>. We do NOT sell tickets, we do NOT take donations, and we do NOT make false concert promises.
+        </p>
+        <div class="xo-points">
+          <div class="xo-point">
+            <span class="xo-icon">🎯</span>
+            <div><strong>Zero False Promises:</strong> Concerts depend entirely on official promoters, tour routing, and stadium logistics.</div>
+          </div>
+          <div class="xo-point">
+            <span class="xo-icon">📊</span>
+            <div><strong>Verified Fan Demand:</strong> We are uniting fans to build a legitimate, audited dossier so India cannot be skipped.</div>
+          </div>
+          <div class="xo-point">
+            <span class="xo-icon">🎟️</span>
+            <div><strong>Free Digital VIP Fan Pass:</strong> Commemorative collectible instantly generated for every registered fan.</div>
+          </div>
+        </div>
+        <p style="margin:0;font-size:11px;color:#888;">
+          Together, 1.4 billion voices are impossible to ignore.
+        </p>
+      </div>
+      <div class="xo-modal-actions">
+        <button id="close-transparency-btn" class="xo-confirm-btn">
+          I Understand • Enter & Vote ↗
+        </button>
+      </div>
+    </div>
+  </div>
+
   <header class="wrap nav"><a class="wordmark" href="#top">Weeknd<span> //</span> India</a><nav class="nav-links" aria-label="Main navigation"><a href="#mission">Mission</a><a href="#albums">Discography</a><a href="#route">The route</a><a href="#feedback">Feedback</a><a href="#join">Join</a></nav><a class="nav-cta" href="#join">Vote now ↗</a></header>
   <main id="top">
     <section class="hero"><div class="wrap hero-grid"><div><div class="kicker">India needs a night to remember · Campaign 001</div><h1 class="display">Bring<br>The Weeknd<br>To India.</h1><p class="sub">Not a rumour. Not a repost. A fan-led, data-first campaign proving that India is ready for a world-class The Weeknd performance.</p><div class="hero-actions"><a class="button" href="#join">Add your city →</a><a class="button ghost" href="#albums">Explore the eras</a></div></div><div class="hero-index">Scroll to enter / 19.0760° N · 72.8777° E</div></div></section>
@@ -107,6 +172,13 @@
         </span>
         <span style="font-size:11px;color:#d8d2cf;letter-spacing:.05em;">Official Campaign:</span>
         <a href="https://instagram.com/theweeknd.co.in" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);color:#fff;text-decoration:none;font-weight:700;font-size:11px;padding:6px 14px;border-radius:20px;letter-spacing:.08em;transition:all .2s;" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">@theweeknd.co.in ↗</a>
+      </div>
+
+      <!-- Community Transparency Note Button -->
+      <div class="creator-badge" style="display:inline-flex;align-items:center;gap:8px;background:#15151a;border:1px solid rgba(255,255,255,.2);padding:10px 18px;border-radius:40px;">
+        <button onclick="openTransparencyModal()" style="background:none;border:none;color:#ff806f;font-family:'DM Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.05em;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:0;">
+          📢 Transparency Note ↗
+        </button>
       </div>
 
     </div>
@@ -628,6 +700,46 @@
       } catch (_) {}
     }
     trackVisitor();
-</script>
+
+    // --- Community Transparency Modal Logic ---
+    const transparencyModal = document.getElementById('transparency-modal');
+    const closeTransparencyBtn = document.getElementById('close-transparency-btn');
+
+    function openTransparencyModal() {
+      if (transparencyModal) {
+        transparencyModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeTransparencyModal() {
+      if (transparencyModal) {
+        transparencyModal.classList.remove('active');
+        document.body.style.overflow = '';
+        sessionStorage.setItem('tw_transparency_ack', '1');
+      }
+    }
+
+    if (closeTransparencyBtn) {
+      closeTransparencyBtn.addEventListener('click', closeTransparencyModal);
+    }
+
+    // Close on backdrop click
+    if (transparencyModal) {
+      transparencyModal.addEventListener('click', (e) => {
+        if (e.target === transparencyModal) {
+          closeTransparencyModal();
+        }
+      });
+    }
+
+    // Show immediately on website open
+    window.addEventListener('DOMContentLoaded', () => {
+      const ack = sessionStorage.getItem('tw_transparency_ack');
+      if (!ack) {
+        setTimeout(openTransparencyModal, 350);
+      }
+    });
+  </script>
 </body>
 </html>
