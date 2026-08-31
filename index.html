@@ -752,24 +752,113 @@
       })
       .catch(() => {});
   
-    // --- Live Supabase Visitor Counter ---
+    // --- Live Privacy-Safe Visitor & Analytics Tracker ---
     const visitorTotal = document.querySelector('#visitor-total');
+
+    function getDeviceAnalytics() {
+      const ua = navigator.userAgent || '';
+      let deviceType = 'Desktop';
+      let os = 'Other';
+      let browser = 'Other';
+
+      if (/iPad|Tablet/i.test(ua)) {
+        deviceType = 'Tablet';
+      } else if (/Mobi|Android|iPhone|iPod/i.test(ua)) {
+        deviceType = 'Mobile';
+      }
+
+      if (/iPhone|iPad|iPod/i.test(ua)) os = 'iOS';
+      else if (/Android/i.test(ua)) os = 'Android';
+      else if (/Macintosh|Mac OS X/i.test(ua)) os = 'macOS';
+      else if (/Windows/i.test(ua)) os = 'Windows';
+      else if (/Linux/i.test(ua)) os = 'Linux';
+
+      if (/Instagram/i.test(ua)) browser = 'Instagram In-App';
+      else if (/WhatsApp/i.test(ua)) browser = 'WhatsApp In-App';
+      else if (/FBAN|FBAV/i.test(ua)) browser = 'Facebook In-App';
+      else if (/Twitter|TwitterAndroid/i.test(ua)) browser = 'Twitter / X In-App';
+      else if (/Chrome|CriOS/i.test(ua) && !/Edg/i.test(ua)) browser = 'Chrome';
+      else if (/Safari/i.test(ua) && !/Chrome|CriOS/i.test(ua)) browser = 'Safari';
+      else if (/Firefox|FxiOS/i.test(ua)) browser = 'Firefox';
+      else if (/Edg/i.test(ua)) browser = 'Edge';
+
+      let referrer = 'Direct';
+      if (document.referrer) {
+        try {
+          const ref = new URL(document.referrer);
+          if (ref.hostname.includes('instagram.com')) referrer = 'Instagram';
+          else if (ref.hostname.includes('t.co') || ref.hostname.includes('twitter.com') || ref.hostname.includes('x.com')) referrer = 'Twitter / X';
+          else if (ref.hostname.includes('whatsapp.com')) referrer = 'WhatsApp';
+          else if (ref.hostname.includes('google.')) referrer = 'Google Search';
+          else if (ref.hostname.includes('youtube.com')) referrer = 'YouTube';
+          else if (ref.hostname.includes('reddit.com')) referrer = 'Reddit';
+          else referrer = ref.hostname;
+        } catch (_) {
+          referrer = document.referrer;
+        }
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const utmSource = params.get('src') || params.get('utm_source') || null;
+
+      return {
+        device_type: deviceType,
+        os: os,
+        browser: browser,
+        referrer: referrer,
+        utm_source: utmSource,
+        screen_size: `${window.screen.width}x${window.screen.height}`,
+        language: navigator.language || 'en-IN'
+      };
+    }
+
+    async function getApproximateGeo() {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 1800);
+        const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
+        clearTimeout(timeout);
+        if (res.ok) {
+          const d = await res.json();
+          return {
+            city: d.city || '',
+            region: d.region || '',
+            country: d.country_name || d.country_code || 'India'
+          };
+        }
+      } catch (_) {}
+      return { city: '', region: '', country: 'India' };
+    }
+
     async function trackVisitor() {
       try {
-        // Record visit (once per session to avoid self-spam)
         const hasVisited = sessionStorage.getItem('tw_visited');
         if (!hasVisited) {
-          await supabaseClient.from('page_visits').insert({});
+          const dev = getDeviceAnalytics();
+          const geo = await getApproximateGeo();
+
+          const richPayload = {
+            ...dev,
+            city: geo.city || null,
+            region: geo.region || null,
+            country: geo.country || 'India'
+          };
+
+          // Try inserting rich payload
+          let { error } = await supabaseClient.from('page_visits').insert(richPayload);
+          if (error) {
+            // Fallback to basic row if schema columns are not added yet
+            await supabaseClient.from('page_visits').insert({});
+          }
           sessionStorage.setItem('tw_visited', 'true');
         }
-        
-        // Fetch accurate count from Supabase
+
+        // Fetch total count from Supabase
         const { count, error } = await supabaseClient
           .from('page_visits')
           .select('*', { count: 'exact', head: true });
-        
+
         if (!error && typeof count === 'number') {
-          // Display total count
           visitorTotal.textContent = count.toLocaleString('en-IN');
         }
       } catch (_) {}
