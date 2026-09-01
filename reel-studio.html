@@ -18,6 +18,7 @@
       --red-glow: rgba(237, 41, 23, 0.4);
       --gold: #ffb703;
       --cyan: #00f0ff;
+      --green: #00ff88;
       --border: rgba(255, 255, 255, 0.1);
       --border-active: rgba(237, 41, 23, 0.6);
       --text: #f4f4f7;
@@ -284,10 +285,34 @@
       min-height: 36px;
     }
 
+    .monitor-meta-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-row span { color: #8a8589; }
+    .meta-row strong { color: #fff; }
+    .meta-row strong.green { color: #00ff88; font-weight: 700; }
+    .meta-row strong.gold { color: #ffb703; }
+
     .monitor-actions {
       display: flex;
       flex-direction: column;
       gap: 8px;
+      margin-top: 4px;
     }
 
     .btn {
@@ -367,7 +392,7 @@
       padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       transition: all 0.25s ease;
       cursor: pointer;
       position: relative;
@@ -444,12 +469,28 @@
       flex: 1;
     }
 
-    .card-timing {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px dashed rgba(255, 255, 255, 0.15);
+    /* Live Upload & Algorithm Timestamps */
+    .card-meta-timestamps {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 8px;
-      padding: 7px 10px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
       font-size: 10.5px;
+    }
+
+    .card-upload-date {
+      color: #00ff88;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-upload-date strong { color: #fff; }
+
+    .card-timing {
       color: #c2bdc6;
     }
 
@@ -565,7 +606,7 @@
   <header>
     <div class="badge">🔥 OFFICIAL MASTER REELS & VIDEO STUDIO</div>
     <h1>The Weeknd India — Reel Studio</h1>
-    <p>Fresh 4K concert masters with 35mm vintage film grade & Brazilian Funk soundtrack, plus 1-click captions and instant HD downloads.</p>
+    <p>Fresh 4K concert masters with 35mm vintage film grade & Brazilian Funk soundtrack, plus verified upload timestamps, 1-click captions and instant HD downloads.</p>
   </header>
 
   <!-- Algorithm Upload Schedule Bar -->
@@ -607,6 +648,22 @@
       <div class="monitor-details">
         <div class="now-playing" id="nowPlayingTitle">1-Min Rio Megamix (All Concerts Mixed)</div>
 
+        <!-- Live Metadata Box -->
+        <div class="monitor-meta-box">
+          <div class="meta-row">
+            <span>📅 Added to Studio:</span>
+            <strong class="green" id="metaUploaded">01 Sep 2026, 11:48 PM IST</strong>
+          </div>
+          <div class="meta-row">
+            <span>⚡ Algorithm Slot:</span>
+            <strong class="gold" id="metaTiming">Tonight @ 8:15 PM – 9:45 PM IST</strong>
+          </div>
+          <div class="meta-row">
+            <span>📦 File Size & Spec:</span>
+            <strong id="metaSpecs">50.8 MB • 1080x1920 Full HD</strong>
+          </div>
+        </div>
+
         <div class="monitor-actions">
           <a class="btn btn-main" id="mainDownloadBtn" href="The-Weeknd-Rio-Megamix-1Min.mp4" download="The-Weeknd-Rio-Megamix-1Min.mp4">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
@@ -628,7 +685,7 @@
           <strong style="color: #fff; font-size: 14px;" id="catTitle">ALL VIDEO & CONCERT MASTERS</strong>
           <div style="font-size: 11px; color: var(--text-muted);" id="catSubtitle">Click any video to preview live in studio & download instantly</div>
         </div>
-        <div style="font-size: 11px; color: #ff5a46; font-weight: 700;">★ 100% READY FOR INSTA ★</div>
+        <div style="font-size: 11px; color: #00ff88; font-weight: 700;">🟢 LIVE & VERIFIED</div>
       </div>
 
       <div class="cards-grid" id="cardsGrid"></div>
@@ -657,6 +714,8 @@
         badge: '👑 60S MEGA MASTER',
         badgeClass: 'gold',
         time: '60s (1 MIN)',
+        fileSize: '50.8 MB',
+        uploadedAt: '01 Sep 2026, 11:36 PM IST',
         desc: '9 epic concert cuts (Giant Moon, Crowd Barricade, Billboard Drive, Cathedral, Dancing in Flames, Timeless Drop, Robot Mask & Lasers) mixed to The Weeknd - São Paulo / Rio track.',
         file: 'The-Weeknd-Rio-Megamix-1Min.mp4',
         type: 'video',
@@ -670,6 +729,8 @@
         badge: '⚡ CLEAN 9:16',
         badgeClass: 'cyan',
         time: '60s (1 MIN)',
+        fileSize: '55.0 MB',
+        uploadedAt: '01 Sep 2026, 11:36 PM IST',
         desc: 'Same 60-second 9-clip high-energy concert mix with The Weeknd - São Paulo / Rio Brazilian Funk track, textless for native Instagram stickers/polls.',
         file: 'The-Weeknd-Rio-Megamix-Clean-916.mp4',
         type: 'video',
@@ -683,6 +744,8 @@
         badge: '⚡ FRESH DROP',
         badgeClass: 'red',
         time: '30s',
+        fileSize: '38.4 MB',
+        uploadedAt: '01 Sep 2026, 11:48 PM IST',
         desc: 'Giant stadium lasers, exploding stage fire pyrotechnics, crowd energy and bass drop with The Weeknd - São Paulo / Rio soundtrack.',
         file: 'The-Weeknd-Lasers-Fire-Master-30s.mp4',
         type: 'video',
@@ -696,6 +759,8 @@
         badge: '⚡ CLEAN 9:16',
         badgeClass: 'cyan',
         time: '30s',
+        fileSize: '41.2 MB',
+        uploadedAt: '01 Sep 2026, 11:48 PM IST',
         desc: 'Same 30s lasers & stadium fire pyro master in clean vertical 9:16 format with zero text overlay for native Instagram stickers.',
         file: 'The-Weeknd-Lasers-Fire-Clean-30s.mp4',
         type: 'video',
@@ -709,6 +774,8 @@
         badge: '⚡ FRESH DROP',
         badgeClass: 'gold',
         time: '30s',
+        fileSize: '37.9 MB',
+        uploadedAt: '01 Sep 2026, 11:48 PM IST',
         desc: 'Viral São Paulo stage jump, Dancing in the Flames vocals, and Brazilian funk beat drop with signature HUD overlay.',
         file: 'The-Weeknd-Timeless-Drop-Master-30s.mp4',
         type: 'video',
@@ -722,6 +789,8 @@
         badge: '⚡ CLEAN 9:16',
         badgeClass: 'cyan',
         time: '30s',
+        fileSize: '40.6 MB',
+        uploadedAt: '01 Sep 2026, 11:48 PM IST',
         desc: 'Same 30s viral beat drop and stage jump clip in clean 9:16 vertical without UI text.',
         file: 'The-Weeknd-Timeless-Drop-Clean-30s.mp4',
         type: 'video',
@@ -735,6 +804,8 @@
         badge: '⚡ FRESH DROP',
         badgeClass: 'gold',
         time: '30s',
+        fileSize: '35.9 MB',
+        uploadedAt: '01 Sep 2026, 11:48 PM IST',
         desc: 'Cathedral entrance, illuminated stadium drones, confetti explosion, and soaring finale with signature luxury campaign HUD.',
         file: 'The-Weeknd-Blinding-Finale-Master-30s.mp4',
         type: 'video',
@@ -748,6 +819,8 @@
         badge: '⚡ CLEAN 9:16',
         badgeClass: 'cyan',
         time: '30s',
+        fileSize: '38.5 MB',
+        uploadedAt: '01 Sep 2026, 11:48 PM IST',
         desc: 'Same 30s cathedral & drone finale clip in clean textless 9:16 format.',
         file: 'The-Weeknd-Blinding-Finale-Clean-30s.mp4',
         type: 'video',
@@ -761,6 +834,8 @@
         badge: '👑 VINTAGE MASTER',
         badgeClass: 'gold',
         time: '44s',
+        fileSize: '32.4 MB',
+        uploadedAt: '31 Aug 2026, 11:53 PM IST',
         desc: 'Abel under the giant glowing stadium moon + blue light beams + red skyline. 35mm vintage film grading, luxury campaign HUD, domain & CTA.',
         file: 'The-Weeknd-Moon-Vintage-Reel.mp4',
         type: 'video',
@@ -774,6 +849,8 @@
         badge: '🔥 VIRAL CLASSIC',
         badgeClass: 'red',
         time: '32s',
+        fileSize: 'Web Canvas HTML5',
+        uploadedAt: '28 Aug 2026, 04:30 PM IST',
         desc: 'Coldplay comparison hook, rotating kinetic text, and city demand leaderboard.',
         pageUrl: 'promo-reel.html',
         type: 'slideshow',
@@ -791,6 +868,9 @@
     const nowPlayingTitle = document.getElementById('nowPlayingTitle');
     const mainDownloadBtn = document.getElementById('mainDownloadBtn');
     const monitorBadge = document.getElementById('monitorBadge');
+    const metaUploaded = document.getElementById('metaUploaded');
+    const metaTiming = document.getElementById('metaTiming');
+    const metaSpecs = document.getElementById('metaSpecs');
 
     function setFilter(filt, btnEl) {
       currentFilter = filt;
@@ -817,14 +897,22 @@
           </div>
           <div class="card-title">${item.title}</div>
           <div class="card-desc">${item.desc}</div>
-          <div class="card-timing">
-            ⏰ <strong>Best Upload Window:</strong> ${item.timing}
+          
+          <div class="card-meta-timestamps">
+            <div class="card-upload-date">
+              <span>🟢</span>
+              <span><strong>Added to Studio:</strong> ${item.uploadedAt}</span>
+            </div>
+            <div class="card-timing">
+              ⏰ <strong>Best Upload Window:</strong> ${item.timing}
+            </div>
           </div>
+
           <div class="card-actions">
             <button class="select-btn" onclick="event.stopPropagation(); selectItemById('${item.id}')">▶ Preview</button>
             ${item.type === 'slideshow'
               ? `<a class="download-btn" href="${item.pageUrl}" target="_blank" onclick="event.stopPropagation()">Open ↗</a>`
-              : `<a class="download-btn" href="${item.file}" download="${item.file}" onclick="event.stopPropagation()">⬇ Download</a>`
+              : `<a class="download-btn" href="${item.file}" download="${item.file}" onclick="event.stopPropagation()">⬇ Download (${item.fileSize})</a>`
             }
           </div>
         `;
@@ -841,6 +929,9 @@
       currentItem = item;
       nowPlayingTitle.textContent = item.title;
       monitorBadge.textContent = item.time + ' • ' + item.badge;
+      metaUploaded.textContent = item.uploadedAt;
+      metaTiming.textContent = item.timing;
+      metaSpecs.textContent = (item.fileSize || 'HD') + ' • 1080x1920 Full HD (30fps)';
 
       if (item.type === 'slideshow') {
         mainVideo.style.display = 'none';
@@ -862,7 +953,7 @@
         mainDownloadBtn.setAttribute('download', item.file);
         mainDownloadBtn.innerHTML = `
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Direct Download Video (HD)
+          Direct Download Video (${item.fileSize})
         `;
       }
 
@@ -895,6 +986,9 @@
       mainVideo.play().catch(() => {});
       nowPlayingTitle.textContent = `Custom Local Video: ${file.name}`;
       monitorBadge.textContent = 'LOCAL PREVIEW';
+      metaUploaded.textContent = 'Just Now (Local File)';
+      metaTiming.textContent = 'Tonight @ 8:15 PM – 9:45 PM IST';
+      metaSpecs.textContent = `${(file.size / (1024*1024)).toFixed(1)} MB • ${file.type || 'video'}`;
       showToast('🎬 Local video loaded in 9:16 monitor!');
     }
 
