@@ -350,6 +350,86 @@
       background: #ed2917;
       color: #fff;
     }
+    .schedule-banner {
+      background: linear-gradient(135deg, rgba(237,41,23,0.15) 0%, rgba(20,20,30,0.8) 100%);
+      border: 1px solid rgba(237,41,23,0.4);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .schedule-icon {
+      font-size: 28px;
+      background: rgba(237,41,23,0.2);
+      border: 1px solid rgba(237,41,23,0.4);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .schedule-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .schedule-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #ff5a46;
+      text-transform: uppercase;
+    }
+
+    .schedule-slots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .slot-badge {
+      background: #12131a;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #d0cacf;
+    }
+
+    .slot-badge.prime {
+      background: rgba(255,183,3,0.12);
+      border-color: rgba(255,183,3,0.4);
+      color: #ffb703;
+    }
+
+    .slot-badge strong {
+      color: #fff;
+    }
+
+    .reel-schedule {
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 11px;
+      color: #b0aab0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .reel-schedule strong {
+      color: #ffb703;
+    }
   </style>
 </head>
 <body>
@@ -402,6 +482,19 @@
           <div style="font-size: 11px; color: #888;" id="catSubtitle">All original kinetic text, beat drops, city leaderboards & 3D VIP passes</div>
         </div>
         <div style="font-size: 11px; color: #00f0ff; font-weight: 700;">★ 100% READY & ACTIVE ★</div>
+      </div>
+
+      <!-- Optimal Algorithm Upload Schedule Banner -->
+      <div class="schedule-banner">
+        <div class="schedule-icon">⏰</div>
+        <div class="schedule-info">
+          <div class="schedule-title">🔥 Optimal Instagram Algorithm Upload Schedule (India / IST)</div>
+          <div class="schedule-slots">
+            <span class="slot-badge prime">🌟 Prime Slot: <strong>7:45 PM – 9:45 PM IST</strong></span>
+            <span class="slot-badge">☀️ Afternoon Slot: <strong>1:15 PM – 2:30 PM IST</strong></span>
+            <span class="slot-badge">🗓️ Best Days: <strong>Wednesday, Friday, Saturday, Sunday</strong></span>
+          </div>
+        </div>
       </div>
 
       <div class="reels-grid" id="reelsGrid"></div>
@@ -762,6 +855,9 @@
           </div>
           <div class="reel-title">${item.title}</div>
           <div class="reel-desc">${item.desc}</div>
+          <div class="reel-schedule">
+            📅 <strong>Best Upload Window:</strong> 7:45 PM – 9:45 PM IST
+          </div>
           <div class="reel-actions">
             <button class="select-btn" onclick="selectItemById('${item.id}')">▶ Select</button>
             ${item.type === 'slideshow' 
