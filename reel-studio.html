@@ -6,162 +6,288 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>The Weeknd India — Master Reels & Slideshows Studio Hub</title>
+  <title>The Weeknd India — Master Reel & Concert Video Studio</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Space+Grotesk:wght@600;700;800&display=swap');
 
     :root {
-      --bg: #040407;
-      --card: #0d0e17;
+      --bg: #050508;
+      --card: rgba(14, 15, 23, 0.75);
+      --card-hover: rgba(22, 24, 38, 0.9);
       --red: #ed2917;
+      --red-glow: rgba(237, 41, 23, 0.4);
       --gold: #ffb703;
       --cyan: #00f0ff;
-      --border: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.1);
+      --border-active: rgba(237, 41, 23, 0.6);
       --text: #f4f4f7;
+      --text-muted: #9e9ba8;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       background: var(--bg);
+      background-image: 
+        radial-gradient(circle at 20% 10%, rgba(237, 41, 23, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.05) 0%, transparent 40%);
       color: var(--text);
       font-family: 'DM Mono', monospace;
       min-height: 100vh;
-      padding: 24px 16px 60px;
+      padding: 24px 16px 80px;
     }
 
+    /* Header */
     header {
       text-align: center;
-      max-width: 900px;
-      margin: 0 auto 20px;
+      max-width: 960px;
+      margin: 0 auto 24px;
     }
 
     .badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: rgba(237, 41, 23, 0.15);
-      color: #ff3b26;
+      color: #ff4b36;
       border: 1px solid rgba(237, 41, 23, 0.4);
-      padding: 4px 14px;
-      border-radius: 20px;
+      padding: 5px 16px;
+      border-radius: 30px;
       font-size: 11px;
       letter-spacing: 2px;
+      font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 0 20px rgba(237, 41, 23, 0.2);
     }
 
     h1 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 900;
       font-style: italic;
-      font-size: clamp(24px, 5vw, 36px);
+      font-size: clamp(26px, 5vw, 42px);
       text-transform: uppercase;
-      letter-spacing: -1px;
+      letter-spacing: -1.5px;
       line-height: 1.1;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #ffffff 0%, #ffc0b8 60%, #ed2917 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     header p {
-      color: #a1a1aa;
+      color: var(--text-muted);
       font-size: 13px;
       line-height: 1.6;
+      max-width: 750px;
+      margin: 0 auto;
     }
 
-    /* Category Navigation Tabs */
-    .studio-tabs {
+    /* Top Stats & Algorithm Bar */
+    .schedule-bar {
+      max-width: 1400px;
+      margin: 0 auto 24px;
+      background: rgba(14, 15, 24, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .sched-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sched-icon {
+      font-size: 22px;
+      background: rgba(237, 41, 23, 0.2);
+      border: 1px solid rgba(237, 41, 23, 0.4);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sched-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #ff5a46;
+      text-transform: uppercase;
+    }
+
+    .sched-sub {
+      font-size: 12px;
+      color: #fff;
+    }
+
+    .sched-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-pill {
+      background: #11121c;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #d1cbd4;
+    }
+
+    .tag-pill.gold {
+      background: rgba(255, 183, 3, 0.12);
+      border-color: rgba(255, 183, 3, 0.4);
+      color: #ffb703;
+      font-weight: 700;
+    }
+
+    /* Category Filter Pills */
+    .filter-tabs {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 24px;
       flex-wrap: wrap;
     }
 
-    .tab-btn {
-      padding: 12px 20px;
+    .filter-btn {
+      padding: 10px 18px;
       font-family: 'DM Mono', monospace;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 1px;
       border-radius: 30px;
       border: 1px solid var(--border);
       background: var(--card);
-      color: #888;
+      backdrop-filter: blur(10px);
+      color: #8f8b96;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .tab-btn:hover {
+    .filter-btn:hover {
       color: #fff;
       border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
     }
 
-    .tab-btn.active {
+    .filter-btn.active {
       background: linear-gradient(135deg, #c31511 0%, #ed2917 100%);
       color: #fff;
       border-color: #ff4b36;
       box-shadow: 0 4px 20px rgba(237, 41, 23, 0.4);
     }
 
-    .main-layout {
+    /* Main Studio Grid */
+    .studio-container {
       display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 30px;
+      grid-template-columns: 370px 1fr;
+      gap: 28px;
       max-width: 1400px;
       margin: 0 auto;
       align-items: start;
     }
 
-    @media (max-width: 980px) {
-      .main-layout { grid-template-columns: 1fr; }
+    @media (max-width: 1020px) {
+      .studio-container { grid-template-columns: 1fr; }
     }
 
-    /* Left Player */
-    .player-col {
-      position: sticky;
-      top: 20px;
+    /* Left Column: Studio Monitor */
+    .monitor-col {
       background: var(--card);
+      backdrop-filter: blur(24px);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 30px rgba(237,41,23,0.15);
+      padding: 18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      position: sticky;
+      top: 20px;
     }
 
-    .media-wrap {
-      width: 300px;
-      height: 533px; /* 9:16 vertical */
+    .monitor-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #000;
       border-radius: 14px;
       overflow: hidden;
-      background: #000;
-      position: relative;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(237, 41, 23, 0.35);
+      box-shadow: 0 0 35px rgba(237, 41, 23, 0.2);
     }
 
-    video, canvas {
+    .monitor-frame video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .player-controls {
+    .monitor-frame canvas {
       width: 100%;
-      margin-top: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      height: 100%;
+      display: block;
     }
 
-    .now-playing-title {
+    .monitor-hud-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ff5a46;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      z-index: 5;
+    }
+
+    .visualizer-canvas {
+      width: 100%;
+      height: 28px;
+      margin: 12px 0 6px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 6px;
+      display: block;
+    }
+
+    .monitor-details {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .now-playing {
       font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
       font-weight: 800;
-      font-size: 13px;
-      color: var(--gold);
-      text-align: center;
-      line-height: 1.4;
+      color: #fff;
+      line-height: 1.3;
+      min-height: 36px;
+    }
+
+    .monitor-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .btn {
@@ -169,58 +295,56 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 14px 18px;
+      padding: 13px 18px;
+      border-radius: 10px;
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
       text-decoration: none;
-      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #c31511 0%, #ed2917 50%, #ff4b36 100%);
+    .btn-main {
+      background: linear-gradient(135deg, #c31511 0%, #ed2917 100%);
       color: #fff;
-      box-shadow: 0 4px 15px rgba(237,41,23,0.4);
+      border: none;
+      box-shadow: 0 4px 20px rgba(237, 41, 23, 0.4);
     }
 
-    .btn-primary:hover {
+    .btn-main:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(237,41,23,0.6);
+      box-shadow: 0 6px 25px rgba(237, 41, 23, 0.6);
       background: #fff;
       color: #000;
     }
 
-    .btn-secondary {
-      background: #171824;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.15);
+    .btn-copy {
+      background: #151622;
+      color: #00f0ff;
+      border: 1px solid rgba(0, 240, 255, 0.3);
     }
 
-    .btn-secondary:hover { border-color: #fff; }
-
-    .status-note {
-      font-size: 10px;
-      color: #ff9800;
-      text-align: center;
-      min-height: 16px;
+    .btn-copy:hover {
+      background: #00f0ff;
+      color: #000;
+      border-color: #00f0ff;
     }
 
-    /* Right Studio Grid */
-    .studio-col {
+    /* Right Column: Catalog */
+    .catalog-col {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
     }
 
-    .studio-header {
+    .catalog-header {
       background: var(--card);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border);
-      padding: 16px 20px;
+      padding: 18px 22px;
       border-radius: 16px;
       display: flex;
       justify-content: space-between;
@@ -229,697 +353,579 @@
       gap: 10px;
     }
 
-    .reels-grid {
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 16px;
     }
 
     .reel-card {
       background: var(--card);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      transition: all 0.2s ease;
+      gap: 12px;
+      transition: all 0.25s ease;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
-    .reel-card.highlight {
-      border-color: #ffb703;
-      background: #15131a;
-      box-shadow: 0 0 25px rgba(255, 183, 3, 0.15);
-    }
-
-    .reel-card:hover, .reel-card.active {
-      border-color: #ed2917;
+    .reel-card:hover {
+      border-color: rgba(237, 41, 23, 0.5);
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(237,41,23,0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(237, 41, 23, 0.15);
+      background: var(--card-hover);
     }
 
     .reel-card.active {
-      background: #18111c;
-      border-color: #ff3b26;
+      border-color: #ed2917;
+      background: rgba(237, 41, 23, 0.08);
+      box-shadow: 0 0 25px rgba(237, 41, 23, 0.3);
     }
 
-    .reel-meta {
+    .card-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .reel-badge {
+    .card-badge {
       font-size: 9px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: rgba(237, 41, 23, 0.15);
-      color: #ff3b26;
-      letter-spacing: 1px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #1c1d2b;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      text-transform: uppercase;
     }
 
-    .reel-badge.gold {
-      background: rgba(255, 183, 3, 0.2);
+    .card-badge.gold {
+      background: rgba(255, 183, 3, 0.15);
+      border-color: rgba(255, 183, 3, 0.4);
       color: #ffb703;
     }
 
-    .reel-badge.cyan {
-      background: rgba(0, 240, 255, 0.15);
+    .card-badge.cyan {
+      background: rgba(0, 240, 255, 0.12);
+      border-color: rgba(0, 240, 255, 0.4);
       color: #00f0ff;
     }
 
-    .reel-time {
-      font-size: 10px;
-      color: #888;
+    .card-badge.red {
+      background: rgba(237, 41, 23, 0.2);
+      border-color: rgba(237, 41, 23, 0.5);
+      color: #ff5a46;
+    }
+
+    .card-time {
+      font-size: 11px;
+      color: #9e9ba8;
       font-weight: 700;
     }
 
-    .reel-title {
+    .card-title {
       font-family: 'Montserrat', sans-serif;
       font-weight: 800;
       font-size: 14px;
-      color: #fff;
-      line-height: 1.3;
+      color: #ffffff;
+      line-height: 1.35;
     }
 
-    .reel-desc {
+    .card-desc {
       font-size: 11px;
-      color: #bbb;
-      line-height: 1.4;
+      color: #a49ea8;
+      line-height: 1.55;
       flex: 1;
     }
 
-    .reel-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .card-timing {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 10.5px;
+      color: #c2bdc6;
+    }
+
+    .card-timing strong { color: #ffb703; }
+
+    .card-actions {
+      display: flex;
       gap: 8px;
       margin-top: 4px;
     }
 
-    .reel-actions button, .reel-actions a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .card-actions button, .card-actions a {
+      flex: 1;
       padding: 9px;
-      font-size: 10px;
       font-family: 'DM Mono', monospace;
+      font-size: 10.5px;
       font-weight: 700;
-      border-radius: 6px;
+      letter-spacing: 0.5px;
+      border-radius: 8px;
+      text-align: center;
       cursor: pointer;
       border: 1px solid rgba(255,255,255,0.15);
-      background: #171824;
+      background: #151622;
       color: #fff;
       transition: all 0.2s;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
 
-    .reel-actions button.select-btn:hover, .reel-actions a.select-btn:hover {
+    .card-actions button.select-btn:hover {
       background: #fff;
       color: #000;
     }
 
-    .reel-actions a.download-btn {
-      background: rgba(237,41,23,0.2);
-      border-color: rgba(237,41,23,0.5);
-      color: #ff4b36;
+    .card-actions a.download-btn {
+      background: rgba(237, 41, 23, 0.18);
+      border-color: rgba(237, 41, 23, 0.4);
+      color: #ff5a46;
     }
 
-    .reel-actions a.download-btn:hover {
+    .card-actions a.download-btn:hover {
       background: #ed2917;
       color: #fff;
     }
-    .schedule-banner {
-      background: linear-gradient(135deg, rgba(237,41,23,0.15) 0%, rgba(20,20,30,0.8) 100%);
-      border: 1px solid rgba(237,41,23,0.4);
-      border-radius: 14px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+
+    /* Custom Video Dropzone */
+    .custom-dropzone {
+      background: rgba(237, 41, 23, 0.05);
+      border: 2px dashed rgba(237, 41, 23, 0.4);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 10px;
     }
 
-    .schedule-icon {
-      font-size: 28px;
-      background: rgba(237,41,23,0.2);
-      border: 1px solid rgba(237,41,23,0.4);
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+    .custom-dropzone:hover {
+      background: rgba(237, 41, 23, 0.1);
+      border-color: #ed2917;
     }
 
-    .schedule-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .dropzone-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
     }
 
-    .schedule-title {
-      font-size: 11px;
+    .dropzone-title {
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: 1.5px;
-      color: #ff5a46;
-      text-transform: uppercase;
-    }
-
-    .schedule-slots {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .slot-badge {
-      background: #12131a;
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      color: #d0cacf;
-    }
-
-    .slot-badge.prime {
-      background: rgba(255,183,3,0.12);
-      border-color: rgba(255,183,3,0.4);
-      color: #ffb703;
-    }
-
-    .slot-badge strong {
       color: #fff;
+      margin-bottom: 4px;
     }
 
-    .reel-schedule {
-      background: rgba(255,255,255,0.03);
-      border: 1px dashed rgba(255,255,255,0.15);
-      border-radius: 6px;
-      padding: 6px 10px;
+    .dropzone-sub {
       font-size: 11px;
-      color: #b0aab0;
+      color: #888;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #11121c;
+      border: 1px solid #00f0ff;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(0, 240, 255, 0.3);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 999;
     }
 
-    .reel-schedule strong {
-      color: #ffb703;
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="badge">🔥 ALL-IN-ONE MASTER STUDIO & ARCHIVE</div>
-    <h1>The Weeknd India — Video & Slideshow Studio</h1>
-    <p>Har tarah ke themes yahan ready hain: <strong>Purane Motion Slideshows</strong> (Coldplay hook, City leaderboard, 3D VIP pass) aur <strong>4K Real Concert Videos</strong> (Save Your Tears & São Paulo). Kisi bhi tab par click karo!</p>
+    <div class="badge">🔥 OFFICIAL MASTER REELS & VIDEO STUDIO</div>
+    <h1>The Weeknd India — Reel Studio</h1>
+    <p>Fresh 4K concert masters with 35mm vintage film grade & Brazilian Funk soundtrack, plus 1-click captions and instant HD downloads.</p>
   </header>
 
-  <!-- Section Switcher Tabs -->
-  <div class="studio-tabs">
-    <button class="tab-btn active" id="tabSlideshows" onclick="switchCategory('slideshows')">
-      🎞️ Purane Slideshow Themes (32s / 24s / 48s / 60s)
-    </button>
-    <button class="tab-btn" id="tabVideos" onclick="switchCategory('videos')">
-      🎥 4K Video Masters (Save Your Tears & São Paulo)
-    </button>
+  <!-- Algorithm Upload Schedule Bar -->
+  <div class="schedule-bar">
+    <div class="sched-left">
+      <div class="sched-icon">⏰</div>
+      <div>
+        <div class="sched-title">🔥 Prime Instagram Algorithm Posting Window (India / IST)</div>
+        <div class="sched-sub">Tonight's Optimal Slot: <strong>7:45 PM – 9:45 PM IST</strong> (Peak Student & Fan Reach)</div>
+      </div>
+    </div>
+    <div class="sched-tags">
+      <span class="tag-pill gold">🌟 8:00 PM – 9:30 PM (Max Reach)</span>
+      <span class="tag-pill">☀️ 1:15 PM – 2:30 PM (Lunch Slot)</span>
+      <span class="tag-pill">🗓️ Wed, Fri, Sat, Sun</span>
+    </div>
   </div>
 
-  <div class="main-layout">
-    <!-- Left Column: Live Player -->
-    <div class="player-col">
-      <div class="media-wrap">
-        <video id="mainVideo" playsinline controls loop autoplay style="display: none;"></video>
-        <canvas id="slideshowCanvas" width="1080" height="1920"></canvas>
+  <!-- Filter Tabs -->
+  <div class="filter-tabs">
+    <button class="filter-btn active" onclick="setFilter('all', this)">🔥 All Video Masters</button>
+    <button class="filter-btn" onclick="setFilter('fresh', this)">⚡ Fresh Concert Drops</button>
+    <button class="filter-btn" onclick="setFilter('mega', this)">👑 60s Mega Master</button>
+    <button class="filter-btn" onclick="setFilter('clean', this)">✨ Clean 9:16 (No Text)</button>
+    <button class="filter-btn" onclick="setFilter('slideshow', this)">🎞️ Motion Slideshows</button>
+  </div>
+
+  <div class="studio-container">
+    <!-- Left Column: Monitor -->
+    <div class="monitor-col">
+      <div class="monitor-frame">
+        <div class="monitor-hud-badge" id="monitorBadge">HD PREVIEW</div>
+        <video id="mainVideo" playsinline controls loop autoplay></video>
+        <canvas id="slideshowCanvas" width="1080" height="1920" style="display: none;"></canvas>
       </div>
 
-      <div class="player-controls">
-        <div class="now-playing-title" id="nowPlayingTitle">32s Classic Viral Slideshow</div>
+      <canvas class="visualizer-canvas" id="visCanvas" width="340" height="28"></canvas>
 
-        <a class="btn btn-primary" id="mainActionBtn" href="promo-reel.html">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Open Generator & Export Video
-        </a>
+      <div class="monitor-details">
+        <div class="now-playing" id="nowPlayingTitle">1-Min Rio Megamix (All Concerts Mixed)</div>
 
-        <button class="btn btn-secondary" id="previewBtn" onclick="triggerPlay()">
-          ▶ Play Live In Studio
-        </button>
+        <div class="monitor-actions">
+          <a class="btn btn-main" id="mainDownloadBtn" href="The-Weeknd-Rio-Megamix-1Min.mp4" download="The-Weeknd-Rio-Megamix-1Min.mp4">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Direct Download Video (HD)
+          </a>
 
-        <div class="status-note" id="statusNote">Ready to play or export.</div>
+          <button class="btn btn-copy" onclick="copyCurrentCaption()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            Copy Instagram Caption
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Right Column: Catalog Grid -->
-    <div class="studio-col">
-      <div class="studio-header">
+    <!-- Right Column: Catalog -->
+    <div class="catalog-col">
+      <div class="catalog-header">
         <div>
-          <strong style="color: #fff; font-size: 14px;" id="catTitle">PURANE CLASSIC SLIDESHOW THEMES</strong>
-          <div style="font-size: 11px; color: #888;" id="catSubtitle">All original kinetic text, beat drops, city leaderboards & 3D VIP passes</div>
+          <strong style="color: #fff; font-size: 14px;" id="catTitle">ALL VIDEO & CONCERT MASTERS</strong>
+          <div style="font-size: 11px; color: var(--text-muted);" id="catSubtitle">Click any video to preview live in studio & download instantly</div>
         </div>
-        <div style="font-size: 11px; color: #00f0ff; font-weight: 700;">★ 100% READY & ACTIVE ★</div>
+        <div style="font-size: 11px; color: #ff5a46; font-weight: 700;">★ 100% READY FOR INSTA ★</div>
       </div>
 
-      <!-- Optimal Algorithm Upload Schedule Banner -->
-      <div class="schedule-banner">
-        <div class="schedule-icon">⏰</div>
-        <div class="schedule-info">
-          <div class="schedule-title">🔥 Optimal Instagram Algorithm Upload Schedule (India / IST)</div>
-          <div class="schedule-slots">
-            <span class="slot-badge prime">🌟 Prime Slot: <strong>7:45 PM – 9:45 PM IST</strong></span>
-            <span class="slot-badge">☀️ Afternoon Slot: <strong>1:15 PM – 2:30 PM IST</strong></span>
-            <span class="slot-badge">🗓️ Best Days: <strong>Wednesday, Friday, Saturday, Sunday</strong></span>
-          </div>
-        </div>
-      </div>
+      <div class="cards-grid" id="cardsGrid"></div>
 
-      <div class="reels-grid" id="reelsGrid"></div>
+      <!-- Custom Video Dropzone -->
+      <div class="custom-dropzone" onclick="document.getElementById('customVideoInput').click()">
+        <input type="file" id="customVideoInput" accept="video/*" style="display: none;" onchange="handleCustomVideoUpload(event)">
+        <div class="dropzone-icon">📥</div>
+        <div class="dropzone-title">Upload & Preview Any Local Video (.mp4 / .mov)</div>
+        <div class="dropzone-sub">Drop any new Weeknd concert clip from your phone or laptop to preview in 9:16 frame</div>
+      </div>
     </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <span>📋</span>
+    <span id="toastMsg">Caption copied to clipboard!</span>
   </div>
 
   <script>
-    const mainVideo = document.getElementById('mainVideo');
-    const slideshowCanvas = document.getElementById('slideshowCanvas');
-    const sCtx = slideshowCanvas.getContext('2d');
-    const nowPlayingTitle = document.getElementById('nowPlayingTitle');
-    const mainActionBtn = document.getElementById('mainActionBtn');
-    const statusNote = document.getElementById('statusNote');
-    const reelsGrid = document.getElementById('reelsGrid');
-    const catTitle = document.getElementById('catTitle');
-    const catSubtitle = document.getElementById('catSubtitle');
-
-    let currentCategory = 'slideshows';
-    let currentItem = null;
-
-    // 1. Classic Slideshows Catalog
-    const SLIDESHOWS = [
-      {
-        id: 'slide-1',
-        title: '32s Classic Viral Reel Generator',
-        badge: '🔥 MOST POPULAR',
-        time: '32s',
-        desc: 'Coldplay sold out Mumbai hook ➔ Abel portrait arrival ➔ 65k fans screaming ➔ Rotating City Vote race ➔ 3D VIP Fan Pass & Domain.',
-        pageUrl: 'promo-reel.html',
-        type: 'slideshow',
-        badgeClass: 'gold'
-      },
-      {
-        id: 'slide-2',
-        title: '24s City Battle Speed Race',
-        badge: '🏎️ CITY BATTLE',
-        time: '24s',
-        desc: 'Fast racing leaderboard animation! Mumbai vs Delhi vs Bengaluru vote percentage sprint with beat-synced synthesizer drops.',
-        pageUrl: 'city-battle-reel.html',
-        type: 'slideshow',
-        badgeClass: ''
-      },
-      {
-        id: 'slide-3',
-        title: '48s Dawn FM 103.5 Cyber Cyan Edition',
-        badge: '⚡ DAWN FM CYBER',
-        time: '48s',
-        desc: 'Electric cyber cyan & gold neon palette, 103.5 FM radio frequency audio waveforms, and Paris stadium crowd visuals.',
-        pageUrl: 'dawn-fm-reel.html',
-        type: 'slideshow',
-        badgeClass: 'cyan'
-      },
-      {
-        id: 'slide-4',
-        title: '60s The Stadium Experience Concert Film',
-        badge: '🏟️ 60S FILM',
-        time: '60s',
-        desc: 'Full 1-minute cinematic film combining 8 high-res Paris & CDMX tour photos, deep bass synthesizer, and custom audio upload support.',
-        pageUrl: 'the-concert-film.html',
-        type: 'slideshow',
-        badgeClass: 'gold'
-      }
-    ];
-
-    // 2. 4K Real Concert Videos Catalog
-    const VIDEOS = [
+    const CATALOG = [
       {
         id: 'vid-rio-megamix-ui',
+        category: ['fresh', 'mega'],
         title: '🔥 1-Min Rio Megamix (All Concerts Mixed + Full UI)',
-        badge: '👑 1-MIN MEGA MASTER',
+        badge: '👑 60S MEGA MASTER',
+        badgeClass: 'gold',
         time: '60s (1 MIN)',
-        desc: '9 epic concert cuts (Giant Moon, Crowd Barricade, Billboard Drive, São Paulo Cathedral, Dancing in Flames, Timeless Drop, Robot Mask & Starboy Lasers) mixed to The Weeknd - São Paulo / Rio track with luxury HUD.',
-        file: 'The-Weeknd-Rio-Megamix-1Min.mp4?v=rio1',
+        desc: '9 epic concert cuts (Giant Moon, Crowd Barricade, Billboard Drive, Cathedral, Dancing in Flames, Timeless Drop, Robot Mask & Lasers) mixed to The Weeknd - São Paulo / Rio track.',
+        file: 'The-Weeknd-Rio-Megamix-1Min.mp4',
         type: 'video',
-        badgeClass: 'gold'
+        timing: 'Tonight @ 8:15 PM – 9:45 PM IST (Prime Slot)',
+        caption: `60 SECONDS OF PURE CHILLS. 🌕🇮🇳\n\nAfter seeing the insane stadium energy in São Paulo and Rio, there is only one destination left on this planet waiting for this moment: INDIA.\n\nWe are building India’s official, verified XO Fan Movement to prove our nation’s demand to Abel’s team and global promoters for 2026.\n\nThousands of fans from Mumbai, Delhi, Bengaluru & across India have already voted on our portal.\n\n🔗 VOTE NOW TO BRING ABEL TO INDIA:\n👉 theweeknd.co.in (Link in Bio)\n\nNo money. No fake petitions. Just pure, verified fan power. 🖤\n\nDrop an 'XO' in the comments if you’re showing up to the stadium! 👇\n\n.\n.\n#TheWeekndInIndia #TheWeeknd #AbelTesfaye #AfterHoursTilDawnTour #HurryUpTomorrow #SaoPaulo #RioDeJaneiro #XO #XOTWOD #Starboy #BlindingLights #MumbaiConcerts #DelhiConcerts #BookMyShowLive #LiveNationIndia`
       },
       {
         id: 'vid-rio-megamix-clean',
+        category: ['clean', 'mega'],
         title: '✨ 1-Min Rio Megamix Clean 9:16 (No Text)',
         badge: '⚡ CLEAN 9:16',
+        badgeClass: 'cyan',
         time: '60s (1 MIN)',
         desc: 'Same 60-second 9-clip high-energy concert mix with The Weeknd - São Paulo / Rio Brazilian Funk track, textless for native Instagram stickers/polls.',
-        file: 'The-Weeknd-Rio-Megamix-Clean-916.mp4?v=rio1',
+        file: 'The-Weeknd-Rio-Megamix-Clean-916.mp4',
         type: 'video',
-        badgeClass: 'cyan'
+        timing: 'Tonight @ 8:15 PM – 9:45 PM IST',
+        caption: `60 SECONDS OF PURE CHILLS. 🌕🇮🇳\n\nIs India ready for The Weeknd stadium tour? Vote now at theweeknd.co.in (Link in bio)! 🖤`
+      },
+      {
+        id: 'vid-lasers-fire-ui',
+        category: ['fresh'],
+        title: '🔥 The Hills & Lasers Fire Climax (Full UI)',
+        badge: '⚡ FRESH DROP',
+        badgeClass: 'red',
+        time: '30s',
+        desc: 'Giant stadium lasers, exploding stage fire pyrotechnics, crowd energy and bass drop with The Weeknd - São Paulo / Rio soundtrack.',
+        file: 'The-Weeknd-Lasers-Fire-Master-30s.mp4',
+        type: 'video',
+        timing: 'Today @ 1:30 PM or 8:30 PM IST',
+        caption: `WHEN THE BASS DROPS AND THE STADIUM CATCHES FIRE. 🔥🏟️\n\nIndia has proven its hunger for global stadium concerts. Now it's time for Abel Tesfaye.\n\nJoin thousands of verified fans registering their demand across Mumbai, Delhi NCR, and Bengaluru.\n\n🔗 VOTE NOW (FREE & VERIFIED):\n👉 theweeknd.co.in (Link in Bio)\n\n#TheWeekndInIndia #TheWeeknd #AfterHoursTilDawn #HurryUpTomorrow #XO #LiveNationIndia #BookMyShowLive`
+      },
+      {
+        id: 'vid-lasers-fire-clean',
+        category: ['clean'],
+        title: '✨ The Hills & Lasers Fire Clean 9:16 (No Text)',
+        badge: '⚡ CLEAN 9:16',
+        badgeClass: 'cyan',
+        time: '30s',
+        desc: 'Same 30s lasers & stadium fire pyro master in clean vertical 9:16 format with zero text overlay for native Instagram stickers.',
+        file: 'The-Weeknd-Lasers-Fire-Clean-30s.mp4',
+        type: 'video',
+        timing: 'Today @ 1:30 PM or 8:30 PM IST',
+        caption: `Imagine this energy in Mumbai and Delhi in 2026. 🌕🇮🇳 Vote to bring Abel to India at theweeknd.co.in!`
+      },
+      {
+        id: 'vid-timeless-ui',
+        category: ['fresh'],
+        title: '⚡ Timeless & São Paulo Beat Drop (Full UI)',
+        badge: '⚡ FRESH DROP',
+        badgeClass: 'gold',
+        time: '30s',
+        desc: 'Viral São Paulo stage jump, Dancing in the Flames vocals, and Brazilian funk beat drop with signature HUD overlay.',
+        file: 'The-Weeknd-Timeless-Drop-Master-30s.mp4',
+        type: 'video',
+        timing: 'Tonight @ 8:15 PM – 9:30 PM IST',
+        caption: `THIS BEAT DROP WILL BREAK THE INTERNET. 🇧🇷➡️🇮🇳\n\nFrom São Paulo to India: We are making our demand impossible to ignore.\n\nVote for your city now at theweeknd.co.in! 🖤\n\n#TheWeekndInIndia #Timeless #SaoPaulo #HurryUpTomorrow #TheWeeknd #XO`
+      },
+      {
+        id: 'vid-timeless-clean',
+        category: ['clean'],
+        title: '✨ Timeless & São Paulo Drop Clean 9:16',
+        badge: '⚡ CLEAN 9:16',
+        badgeClass: 'cyan',
+        time: '30s',
+        desc: 'Same 30s viral beat drop and stage jump clip in clean 9:16 vertical without UI text.',
+        file: 'The-Weeknd-Timeless-Drop-Clean-30s.mp4',
+        type: 'video',
+        timing: 'Tonight @ 8:15 PM – 9:30 PM IST',
+        caption: `São Paulo was insane. India is next. 🌕🇮🇳 theweeknd.co.in`
+      },
+      {
+        id: 'vid-blinding-finale-ui',
+        category: ['fresh'],
+        title: '🏆 Blinding Lights Finale & Stadium Drones (Full UI)',
+        badge: '⚡ FRESH DROP',
+        badgeClass: 'gold',
+        time: '30s',
+        desc: 'Cathedral entrance, illuminated stadium drones, confetti explosion, and soaring finale with signature luxury campaign HUD.',
+        file: 'The-Weeknd-Blinding-Finale-Master-30s.mp4',
+        type: 'video',
+        timing: 'Tonight @ 8:30 PM – 9:45 PM IST',
+        caption: `THE GREATEST POP ANTHEM OF OUR GENERATION. 🏆✨\n\nImagine 80,000 Indian fans singing Blinding Lights in unison under stadium lasers.\n\nWe are building the proof to make it happen. Register your city vote at theweeknd.co.in (Link in Bio)! 🖤\n\n#TheWeekndInIndia #BlindingLights #Starboy #AfterHours #XOIndia #BookMyShowLive`
+      },
+      {
+        id: 'vid-blinding-finale-clean',
+        category: ['clean'],
+        title: '✨ Blinding Lights Finale Clean 9:16',
+        badge: '⚡ CLEAN 9:16',
+        badgeClass: 'cyan',
+        time: '30s',
+        desc: 'Same 30s cathedral & drone finale clip in clean textless 9:16 format.',
+        file: 'The-Weeknd-Blinding-Finale-Clean-30s.mp4',
+        type: 'video',
+        timing: 'Tonight @ 8:30 PM – 9:45 PM IST',
+        caption: `80,000 voices in Mumbai / Delhi. Make it happen: theweeknd.co.in 🇮🇳🌕`
       },
       {
         id: 'vid-moon-vintage-ui',
+        category: [],
         title: '🌕 Video 2 — Giant Moon Vintage Reel (Full UI)',
         badge: '👑 VINTAGE MASTER',
+        badgeClass: 'gold',
         time: '44s',
         desc: 'Abel under the giant glowing stadium moon + blue light beams + red skyline. 35mm vintage film grading, luxury campaign HUD, domain & CTA.',
-        file: 'The-Weeknd-Moon-Vintage-Reel.mp4?v=moon1',
+        file: 'The-Weeknd-Moon-Vintage-Reel.mp4',
         type: 'video',
-        badgeClass: 'gold'
+        timing: 'Tonight @ 8:15 PM – 9:30 PM IST',
+        caption: `MAKE IT IMPOSSIBLE TO IGNORE. 🌕🇮🇳\n\nAbel Tesfaye live in India for 2026. Vote for your city now at theweeknd.co.in! 🖤`
       },
       {
-        id: 'vid-moon-vintage-clean',
-        title: '✨ Video 2 — Moon Vintage Clean 9:16 (No Text)',
-        badge: '⚡ CLEAN 9:16',
-        time: '44s',
-        desc: 'Same 44s giant moon & stadium light beams clip in 9:16 vertical with 35mm film grading, textless for native Instagram stickers/polls.',
-        file: 'The-Weeknd-Moon-Vintage-Clean-916.mp4?v=moon1',
-        type: 'video',
-        badgeClass: 'cyan'
-      },
-      {
-        id: 'vid-intro-ui',
-        title: '🔥 Intro 1 — Instagram Reel Master (Full UI)',
-        badge: '👑 INSTA MASTER',
-        time: '27s',
-        desc: 'Abel singing into barricade crowd + red robot mask. Ambient blur, floating frame, campaign CTA, domain & clean typography.',
-        file: 'The-Weeknd-Intro-Reel-Instagram.mp4?v=faststart2',
-        type: 'video',
-        badgeClass: 'gold'
-      },
-      {
-        id: 'vid-intro-clean',
-        title: '✨ Intro 1 — Clean 9:16 (No Text / Native Stickers)',
-        badge: '⚡ CLEAN 9:16',
-        time: '27s',
-        desc: 'Same 27s crowd & robot mask clip in 9:16 vertical with ambient blur + floating frame, textless for adding Instagram native stickers or captions.',
-        file: 'The-Weeknd-Intro-Clean-916.mp4?v=faststart2',
-        type: 'video',
-        badgeClass: 'cyan'
-      },
-      {
-        id: 'vid-1',
-        title: '4K Save Your Tears (Part 1 - The Drive)',
-        badge: '👑 4K 60S MASTER',
-        time: '60s (1 MIN)',
-        desc: 'Abel driving red convertibles singing Verse 1 & Chorus live on 2021 Billboard Music Awards. Signature red HUD theme burned in.',
-        file: 'Save-Your-Tears-Part-1-Web.mp4?v=theme3',
-        type: 'video',
-        badgeClass: 'gold'
-      },
-      {
-        id: 'vid-2',
-        title: '4K Save Your Tears (Part 2 - Climax)',
-        badge: '👑 4K 60S MASTER',
-        time: '60s (1 MIN)',
-        desc: 'Drifting convertibles around Abel with soaring falsetto bridge & final chorus live on 2021 Billboard Music Awards. Signature red HUD theme burned in.',
-        file: 'Save-Your-Tears-Part-2-Web.mp4?v=theme3',
-        type: 'video',
-        badgeClass: 'gold'
-      },
-      {
-        id: 'vid-3',
-        title: 'São Paulo: Timeless Mega Viral Collab',
-        badge: '🔥 VIRAL DROP',
-        time: '25s',
-        desc: 'Playboi Carti x The Weeknd live stage beat drop in Brazil with Abel vocals and screaming 80k crowd.',
-        file: 'sp-09-timeless-viral.mp4',
-        type: 'video',
-        badgeClass: ''
-      },
-      {
-        id: 'vid-4',
-        title: 'São Paulo: Dancing In The Flames Live Debut',
-        badge: '✨ LIVE DEBUT',
-        time: '25s',
-        desc: 'The worldwide live debut of Dancing In The Flames on cathedral stage with live singing into mic.',
-        file: 'sp-08-dancing-flames.mp4',
-        type: 'video',
-        badgeClass: 'cyan'
-      },
-      {
-        id: 'vid-5',
-        title: 'São Paulo: Starboy Stadium Explosion',
-        badge: '⚡ HIGH ENERGY',
-        time: '25s',
-        desc: 'Stadium jumping crowd with massive stage pyro flames and Starboy anthem vocals.',
-        file: 'sp-07-starboy-drop.mp4',
-        type: 'video',
-        badgeClass: ''
-      },
-      {
-        id: 'vid-6',
-        title: 'São Paulo: After Hours Close-Up Mic',
-        badge: '🎤 PURE VOCALS',
-        time: '25s',
-        desc: 'Emotional, raw, high-register live vocal delivery of After Hours on stage.',
-        file: 'sp-02-after-hours-mic.mp4',
-        type: 'video',
-        badgeClass: ''
-      },
-      {
-        id: 'vid-7',
-        title: 'São Paulo: Take My Breath Lights Spectacle',
-        badge: '✨ LIGHT SHOW',
-        time: '25s',
-        desc: 'Shimmering 80s synthesizer lights spectacle with Abel live vocals.',
-        file: 'sp-03-take-my-breath.mp4',
-        type: 'video',
-        badgeClass: 'cyan'
-      },
-      {
-        id: 'vid-8',
-        title: 'São Paulo: Sacrifice High Voltage Run',
-        badge: '⚡ PURE HYPE',
-        time: '25s',
-        desc: 'High energy stage run and vocal riff during Sacrifice.',
-        file: 'sp-04-sacrifice-energy.mp4',
-        type: 'video',
-        badgeClass: ''
-      },
-      {
-        id: 'vid-9',
-        title: 'São Paulo: House of Balloons Classics',
-        badge: '🖤 OG XO CLASSIC',
-        time: '25s',
-        desc: 'Nostalgic day-one XO fan favorite live on the cathedral steps.',
-        file: 'sp-06-house-of-balloons.mp4',
-        type: 'video',
-        badgeClass: ''
-      },
-      {
-        id: 'vid-10',
-        title: 'São Paulo: Blinding Lights Finale',
-        badge: '🏆 RECORD BREAKER',
-        time: '25s',
-        desc: 'The #1 Billboard record of all time with illuminated stadium drones and fireworks.',
-        file: 'sp-10-blinding-finale.mp4',
-        type: 'video',
-        badgeClass: 'gold'
+        id: 'vid-slide-1',
+        category: ['slideshow'],
+        title: '🎞️ 32s Viral Kinetic Slideshow (Coldplay Hook)',
+        badge: '🔥 VIRAL CLASSIC',
+        badgeClass: 'red',
+        time: '32s',
+        desc: 'Coldplay comparison hook, rotating kinetic text, and city demand leaderboard.',
+        pageUrl: 'promo-reel.html',
+        type: 'slideshow',
+        timing: 'Anytime',
+        caption: `Coldplay sold out Mumbai in minutes. Now it's time for Abel. Vote at theweeknd.co.in! 🇮🇳`
       }
     ];
 
-    // Image Preloader for Canvas Slideshow Preview
-    const images = {
-      portrait: new Image(),
-      stadium: new Image()
-    };
-    images.portrait.src = 'weeknd-abel-portrait.jpg';
-    images.stadium.src = 'weeknd-stadium-tour.jpg';
+    let currentFilter = 'all';
+    let currentItem = CATALOG[0];
 
-    function drawSlideshowFrame(t) {
-      sCtx.fillStyle = '#050506';
-      sCtx.fillRect(0, 0, 1080, 1920);
+    const mainVideo = document.getElementById('mainVideo');
+    const slideshowCanvas = document.getElementById('slideshowCanvas');
+    const cardsGrid = document.getElementById('cardsGrid');
+    const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+    const mainDownloadBtn = document.getElementById('mainDownloadBtn');
+    const monitorBadge = document.getElementById('monitorBadge');
 
-      // Draw portrait with smooth zoom
-      if (images.portrait.complete && images.portrait.width > 0) {
-        sCtx.save();
-        sCtx.translate(540, 960);
-        const z = 1.0 + Math.sin(t * 0.5) * 0.05;
-        sCtx.scale(z, z);
-        const rRatio = Math.max(1080 / images.portrait.width, 1920 / images.portrait.height);
-        const rw = images.portrait.width * rRatio;
-        const rh = images.portrait.height * rRatio;
-        sCtx.drawImage(images.portrait, -rw / 2, -rh / 2, rw, rh);
-        sCtx.restore();
-      }
-
-      // Vignette
-      const grad = sCtx.createLinearGradient(0, 0, 0, 1920);
-      grad.addColorStop(0, 'rgba(5, 5, 6, 0.95)');
-      grad.addColorStop(0.25, 'rgba(237, 41, 23, 0.2)');
-      grad.addColorStop(0.5, 'rgba(0, 0, 0, 0.1)');
-      grad.addColorStop(0.75, 'rgba(180, 15, 10, 0.4)');
-      grad.addColorStop(1, 'rgba(5, 5, 6, 0.98)');
-      sCtx.fillStyle = grad;
-      sCtx.fillRect(0, 0, 1080, 1920);
-
-      // Kinetic Typography
-      sCtx.textAlign = 'center';
-      sCtx.fillStyle = '#ed2917';
-      sCtx.font = '900 36px DM Mono';
-      sCtx.fillText('★ IT IS TIME FOR ABEL ★', 540, 380);
-
-      sCtx.fillStyle = '#ffffff';
-      sCtx.font = '900 italic 88px Montserrat';
-      sCtx.fillText('THE WEEKND', 540, 490);
-      sCtx.fillText('IN INDIA 🇮🇳', 540, 590);
-
-      // Rotating Hook
-      const phrases = [
-        "COLDPLAY SOLD OUT MUMBAI.",
-        "DUA LIPA TOOK OVER INDIA.",
-        "NOW IT'S TIME FOR ABEL.",
-        "1.4 BILLION PEOPLE DEMAND IT."
-      ];
-      const ph = phrases[Math.floor(t * 0.8) % phrases.length];
-
-      sCtx.fillStyle = 'rgba(237, 41, 23, 0.25)';
-      sCtx.strokeStyle = '#ed2917';
-      sCtx.lineWidth = 4;
-      sCtx.beginPath();
-      sCtx.roundRect(120, 1260, 840, 140, 24);
-      sCtx.fill();
-      sCtx.stroke();
-
-      sCtx.fillStyle = '#ffffff';
-      sCtx.font = '900 italic 44px Montserrat';
-      sCtx.fillText(ph, 540, 1345);
-
-      // CTA & Domain
-      sCtx.fillStyle = '#ffffff';
-      sCtx.font = '900 italic 82px Montserrat';
-      sCtx.fillText('theweeknd.co.in', 540, 1560);
-
-      sCtx.fillStyle = '#ffb703';
-      sCtx.font = '600 28px DM Mono';
-      sCtx.fillText('100% Free • Verified Demand • No Ticket Scalping', 540, 1630);
-
-      sCtx.fillStyle = '#888';
-      sCtx.font = '700 24px DM Mono';
-      sCtx.fillText('@theweeknd.co.in • Built by @aayyuusshhw', 540, 1720);
+    function setFilter(filt, btnEl) {
+      currentFilter = filt;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderCards();
     }
 
-    let isSlideshowPlaying = false;
-    let animId = null;
-    function playSlideshowLoop() {
-      if (isSlideshowPlaying) return;
-      isSlideshowPlaying = true;
-      let start = performance.now();
-      function loop(now) {
-        if (!isSlideshowPlaying) return;
-        let t = (now - start) / 1000;
-        drawSlideshowFrame(t);
-        animId = requestAnimationFrame(loop);
-      }
-      animId = requestAnimationFrame(loop);
-    }
+    function renderCards() {
+      cardsGrid.innerHTML = '';
+      const filtered = CATALOG.filter(item => {
+        if (currentFilter === 'all') return true;
+        return item.category.includes(currentFilter);
+      });
 
-    function stopSlideshowLoop() {
-      isSlideshowPlaying = false;
-      if (animId) cancelAnimationFrame(animId);
-    }
-
-    // Switch Category Tab
-    window.switchCategory = function(cat) {
-      currentCategory = cat;
-      document.getElementById('tabSlideshows').classList.toggle('active', cat === 'slideshows');
-      document.getElementById('tabVideos').classList.toggle('active', cat === 'videos');
-
-      if (cat === 'slideshows') {
-        catTitle.textContent = 'PURANE CLASSIC SLIDESHOW THEMES';
-        catSubtitle.textContent = 'All original kinetic text, beat drops, city leaderboards & 3D VIP passes';
-        renderGrid(SLIDESHOWS);
-        selectItem(SLIDESHOWS[0]);
-      } else {
-        catTitle.textContent = '4K VIDEO MASTERS & SÃO PAULO CLIPS';
-        catSubtitle.textContent = 'Real 4K concert performances with embedded signature campaign theme';
-        renderGrid(VIDEOS);
-        selectItem(VIDEOS[0]);
-      }
-    };
-
-    function renderGrid(list) {
-      reelsGrid.innerHTML = '';
-      list.forEach(item => {
+      filtered.forEach(item => {
         const card = document.createElement('div');
-        card.className = `reel-card ${item.id === currentItem?.id ? 'active' : ''}`;
+        card.className = `reel-card ${item.id === currentItem.id ? 'active' : ''}`;
+        card.onclick = () => selectItem(item);
         card.innerHTML = `
-          <div class="reel-meta">
-            <span class="reel-badge ${item.badgeClass || ''}">${item.badge}</span>
-            <span class="reel-time">⏱️ ${item.time}</span>
+          <div class="card-top">
+            <span class="card-badge ${item.badgeClass || ''}">${item.badge}</span>
+            <span class="card-time">⏱️ ${item.time}</span>
           </div>
-          <div class="reel-title">${item.title}</div>
-          <div class="reel-desc">${item.desc}</div>
-          <div class="reel-schedule">
-            📅 <strong>Best Upload Window:</strong> 7:45 PM – 9:45 PM IST
+          <div class="card-title">${item.title}</div>
+          <div class="card-desc">${item.desc}</div>
+          <div class="card-timing">
+            ⏰ <strong>Best Upload Window:</strong> ${item.timing}
           </div>
-          <div class="reel-actions">
-            <button class="select-btn" onclick="selectItemById('${item.id}')">▶ Select</button>
-            ${item.type === 'slideshow' 
-              ? `<a class="download-btn" href="${item.pageUrl}" target="_blank">Open ↗</a>`
-              : `<a class="download-btn" href="${item.file}" download="${item.file}">⬇ Download</a>`
+          <div class="card-actions">
+            <button class="select-btn" onclick="event.stopPropagation(); selectItemById('${item.id}')">▶ Preview</button>
+            ${item.type === 'slideshow'
+              ? `<a class="download-btn" href="${item.pageUrl}" target="_blank" onclick="event.stopPropagation()">Open ↗</a>`
+              : `<a class="download-btn" href="${item.file}" download="${item.file}" onclick="event.stopPropagation()">⬇ Download</a>`
             }
           </div>
         `;
-        reelsGrid.appendChild(card);
+        cardsGrid.appendChild(card);
       });
     }
 
-    window.selectItemById = function(id) {
-      const list = currentCategory === 'slideshows' ? SLIDESHOWS : VIDEOS;
-      const found = list.find(x => x.id === id);
+    function selectItemById(id) {
+      const found = CATALOG.find(x => x.id === id);
       if (found) selectItem(found);
-    };
+    }
 
-    window.selectItem = function(item) {
+    function selectItem(item) {
       currentItem = item;
       nowPlayingTitle.textContent = item.title;
-      statusNote.textContent = `Selected: ${item.title}`;
+      monitorBadge.textContent = item.time + ' • ' + item.badge;
 
       if (item.type === 'slideshow') {
         mainVideo.style.display = 'none';
         slideshowCanvas.style.display = 'block';
         mainVideo.pause();
-        mainActionBtn.href = item.pageUrl;
-        mainActionBtn.innerHTML = `
+        mainDownloadBtn.href = item.pageUrl;
+        mainDownloadBtn.removeAttribute('download');
+        mainDownloadBtn.innerHTML = `
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Open Generator & Export Video
         `;
-        playSlideshowLoop();
       } else {
-        stopSlideshowLoop();
         slideshowCanvas.style.display = 'none';
         mainVideo.style.display = 'block';
         mainVideo.src = item.file;
         mainVideo.load();
         mainVideo.play().catch(() => {});
-        mainActionBtn.href = item.file;
-        mainActionBtn.setAttribute('download', item.file);
-        mainActionBtn.innerHTML = `
+        mainDownloadBtn.href = item.file;
+        mainDownloadBtn.setAttribute('download', item.file);
+        mainDownloadBtn.innerHTML = `
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
           Direct Download Video (HD)
         `;
       }
 
-      renderGrid(currentCategory === 'slideshows' ? SLIDESHOWS : VIDEOS);
-    };
+      renderCards();
+    }
 
-    window.triggerPlay = function() {
-      if (currentItem.type === 'slideshow') {
-        window.open(currentItem.pageUrl, '_blank');
-      } else {
-        if (mainVideo.paused) mainVideo.play();
-        else mainVideo.pause();
+    function copyCurrentCaption() {
+      if (!currentItem.caption) return;
+      navigator.clipboard.writeText(currentItem.caption).then(() => {
+        showToast('📋 Instagram Caption copied to clipboard!');
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      const tm = document.getElementById('toastMsg');
+      tm.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    function handleCustomVideoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      slideshowCanvas.style.display = 'none';
+      mainVideo.style.display = 'block';
+      mainVideo.src = url;
+      mainVideo.load();
+      mainVideo.play().catch(() => {});
+      nowPlayingTitle.textContent = `Custom Local Video: ${file.name}`;
+      monitorBadge.textContent = 'LOCAL PREVIEW';
+      showToast('🎬 Local video loaded in 9:16 monitor!');
+    }
+
+    // Audio Visualizer Simulation
+    const visCanvas = document.getElementById('visCanvas');
+    const vCtx = visCanvas.getContext('2d');
+    function drawVisualizer() {
+      vCtx.clearRect(0, 0, 340, 28);
+      const isPlaying = !mainVideo.paused && !mainVideo.ended;
+      const bars = 32;
+      const barW = 8;
+      const gap = 2.5;
+
+      for (let i = 0; i < bars; i++) {
+        let h = 3;
+        if (isPlaying) {
+          h = 4 + Math.sin(Date.now() * 0.008 + i * 0.4) * 10 + Math.random() * 8;
+          h = Math.max(3, Math.min(24, h));
+        }
+        const grad = vCtx.createLinearGradient(0, 28, 0, 0);
+        grad.addColorStop(0, '#ed2917');
+        grad.addColorStop(1, '#ff8a7a');
+        vCtx.fillStyle = isPlaying ? grad : 'rgba(255,255,255,0.15)';
+        vCtx.fillRect(i * (barW + gap), 28 - h, barW, h);
       }
-    };
+      requestAnimationFrame(drawVisualizer);
+    }
+    drawVisualizer();
 
-    // Init with Slideshows!
-    switchCategory('slideshows');
+    // Init with first item
+    selectItem(CATALOG[0]);
   </script>
 </body>
 </html>
