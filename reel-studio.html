@@ -652,7 +652,7 @@
         <div class="monitor-meta-box">
           <div class="meta-row">
             <span>📅 Added to Studio:</span>
-            <strong class="green" id="metaUploaded">02 Sep 2026, 10:28 AM IST</strong>
+            <strong class="green" id="metaUploaded">02 Sep 2026, 10:45 AM IST</strong>
           </div>
           <div class="meta-row">
             <span>⚡ Algorithm Slot:</span>
@@ -665,7 +665,7 @@
         </div>
 
         <div class="monitor-actions">
-          <a class="btn btn-main" id="mainDownloadBtn" href="The-Weeknd-Concert-3-Crimson-Master.mp4" download="The-Weeknd-Concert-3-Crimson-Master.mp4">
+          <a class="btn btn-main" id="mainDownloadBtn" href="The-Weeknd-Concert-3-Crimson-Master.mp4?v=20260902_3" download="The-Weeknd-Concert-3-Crimson-Master.mp4">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
             Direct Download Video (HD)
           </a>
@@ -706,6 +706,7 @@
   </div>
 
   <script>
+    const BUILD_TIMESTAMP = Date.now();
     const CATALOG = [
       {
         id: 'vid-concert-3-ui',
@@ -715,7 +716,7 @@
         badgeClass: 'red',
         time: '22s',
         fileSize: '21.4 MB',
-        uploadedAt: '02 Sep 2026, 10:28 AM IST',
+        uploadedAt: '02 Sep 2026, 10:45 AM IST',
         desc: 'Abel performing live with rising crimson atmospheric gradients, centered concert window, luxury HUD typography & live tour CTA.',
         file: 'The-Weeknd-Concert-3-Crimson-Master.mp4',
         type: 'video',
@@ -730,7 +731,7 @@
         badgeClass: 'cyan',
         time: '22s',
         fileSize: '24.0 MB',
-        uploadedAt: '02 Sep 2026, 10:28 AM IST',
+        uploadedAt: '02 Sep 2026, 10:45 AM IST',
         desc: 'Same 22s live concert performance from 3.mp4 in clean vertical 9:16 format with 35mm film grade and zero text overlay.',
         file: 'The-Weeknd-Concert-3-Crimson-Clean-916.mp4',
         type: 'video',
@@ -745,7 +746,7 @@
         badgeClass: 'gold',
         time: '44s',
         fileSize: '27.6 MB',
-        uploadedAt: '02 Sep 2026, 10:28 AM IST',
+        uploadedAt: '02 Sep 2026, 10:45 AM IST',
         desc: 'Abel under the giant glowing stadium moon with rising top & bottom crimson atmospheric gradients, centered concert window, luxury HUD & live CTA.',
         file: 'The-Weeknd-Moon-Crimson-Master.mp4',
         type: 'video',
@@ -760,7 +761,7 @@
         badgeClass: 'cyan',
         time: '44s',
         fileSize: '32.9 MB',
-        uploadedAt: '02 Sep 2026, 10:28 AM IST',
+        uploadedAt: '02 Sep 2026, 10:45 AM IST',
         desc: 'Same 44s giant moon & beam lights clip in clean 9:16 vertical with 35mm film grading, textless for native Instagram stickers/polls.',
         file: 'The-Weeknd-Moon-Crimson-Clean-916.mp4',
         type: 'video',
@@ -897,7 +898,7 @@
             <button class="select-btn" onclick="event.stopPropagation(); selectItemById('${item.id}')">▶ Preview</button>
             ${item.type === 'slideshow'
               ? `<a class="download-btn" href="${item.pageUrl}" target="_blank" onclick="event.stopPropagation()">Open ↗</a>`
-              : `<a class="download-btn" href="${item.file}" download="${item.file}" onclick="event.stopPropagation()">⬇ Download (${item.fileSize})</a>`
+              : `<a class="download-btn" href="${item.file}?v=${BUILD_TIMESTAMP}" download="${item.file}" onclick="event.stopPropagation()">⬇ Download (${item.fileSize})</a>`
             }
           </div>
         `;
@@ -931,10 +932,10 @@
       } else {
         slideshowCanvas.style.display = 'none';
         mainVideo.style.display = 'block';
-        mainVideo.src = item.file;
+        mainVideo.src = item.file + '?v=' + BUILD_TIMESTAMP;
         mainVideo.load();
         mainVideo.play().catch(() => {});
-        mainDownloadBtn.href = item.file;
+        mainDownloadBtn.href = item.file + '?v=' + BUILD_TIMESTAMP;
         mainDownloadBtn.setAttribute('download', item.file);
         mainDownloadBtn.innerHTML = `
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
