@@ -1,4 +1,27 @@
-Save-Your-Tears-Part-*-Drive.mp4
-Save-Your-Tears-Part-*-Climax.mp4
-Save-Your-Tears-Part-*-Clean.mp4
-1. The Weeknd - The Weeknd – Save Your Tears (Live on The 2021 Billboard Music Awards)_2160p.mp4
+# System Files
+.DS_Store
+*.log
+
+# Scratch & Temporary Frame Inspects
+check-frame-*.jpg
+frame*.jpg
+test_*.jpg
+*.tmp
+
+# Raw Unused Master Cuts (Keep repo lightweight)
+1. The Weeknd*.mp4
+Save-Your-Tears-Part-1-Drive.mp4
+Save-Your-Tears-Part-1-Clean.mp4
+Save-Your-Tears-Part-2-Drive.mp4
+Save-Your-Tears-Part-2-Clean.mp4
+Save-Your-Tears-Part-2-Climax.mp4
+intro1.mp4
+weeknd-sao-paulo-audio.m4a
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.production
+
+# Node / Dependencies
+node_modules/
