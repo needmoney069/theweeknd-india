@@ -632,6 +632,7 @@
     <button class="filter-btn" onclick="setFilter('mega', this)">👑 60s Mega Master</button>
     <button class="filter-btn" onclick="setFilter('clean', this)">✨ Clean 9:16 (No Text)</button>
     <button class="filter-btn" onclick="setFilter('slideshow', this)">🎞️ Motion Slideshows</button>
+    <button class="filter-btn" onclick="setFilter('vip', this)">🎫 VIP Pass Kits (Story & Feed)</button>
   </div>
 
   <div class="studio-container">
@@ -708,6 +709,36 @@
   <script>
     const BUILD_TIMESTAMP = Date.now();
     const CATALOG = [
+      {
+        id: 'vip-feed-post',
+        category: ['vip', 'fresh'],
+        title: '🎫 Official VIP Fan Pass — Feed Post (1:1 Square)',
+        badge: '👑 INSTAGRAM FEED',
+        badgeClass: 'gold',
+        time: '1080x1080',
+        fileSize: '95 KB (PNG)',
+        uploadedAt: '04 Sep 2026, 12:35 AM IST',
+        desc: 'Official high-contrast holographic VIP Fan Pass card graphic ready for Instagram Feed posting & profile pinning.',
+        file: 'vip_pass_feed_post.png',
+        type: 'image',
+        timing: 'Prime Time @ 8:15 PM – 9:45 PM IST',
+        caption: `CLAIM YOUR FREE DIGITAL XO VIP PRIORITY PASS 🎫🔥🇮🇳\n\nIf Coldplay and Diljit can sell out massive stadiums across India in minutes, we are proving that Indian XO fans are ready for the biggest show on the planet.\n\nWe are officially issuing FREE Digital VIP Fan Passes to every verified voter across 15+ Indian cities.\n\nHOW TO GET YOURS & JOIN THE ARMY:\n1️⃣ Tap the link in bio (or go to theweeknd.co.in)\n2️⃣ Select your city & register your vote (100% Free)\n3️⃣ Screenshot your unique VIP Fan Pass & post on your Story tagging @theweeknd.co.in\n\nEvery story tag gets REPOSTED to 50,000+ XO fans! 🖤\n\nLink in Bio 👉 theweeknd.co.in`
+      },
+      {
+        id: 'vip-story-template',
+        category: ['vip', 'fresh'],
+        title: '📱 Official VIP Fan Pass — Story Template (9:16 Vertical)',
+        badge: '⚡ STORY + LINK',
+        badgeClass: 'red',
+        time: '1080x1920',
+        fileSize: '153 KB (PNG)',
+        uploadedAt: '04 Sep 2026, 12:35 AM IST',
+        desc: 'Full-screen 9:16 Instagram Story template with holographic ticket, 3-step action guide, and link sticker target area.',
+        file: 'vip_pass_story_template.png',
+        type: 'image',
+        timing: 'Post on Story with Link Sticker anytime',
+        caption: `CLAIM YOUR PASS AT theweeknd.co.in 🖤🎫`
+      },
       {
         id: 'vid-concert-5-ui',
         category: ['fresh'],
@@ -914,7 +945,31 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Open Generator & Export Video
         `;
+      } else if (item.type === 'image') {
+        slideshowCanvas.style.display = 'none';
+        mainVideo.style.display = 'none';
+        mainVideo.pause();
+        let previewImg = document.getElementById('previewImgEl');
+        if (!previewImg) {
+          previewImg = document.createElement('img');
+          previewImg.id = 'previewImgEl';
+          previewImg.style.width = '100%';
+          previewImg.style.height = '100%';
+          previewImg.style.objectFit = 'contain';
+          previewImg.style.background = '#0a0b10';
+          document.querySelector('.monitor-frame').appendChild(previewImg);
+        }
+        previewImg.style.display = 'block';
+        previewImg.src = item.file + '?v=' + BUILD_TIMESTAMP;
+        mainDownloadBtn.href = item.file + '?v=' + BUILD_TIMESTAMP;
+        mainDownloadBtn.setAttribute('download', item.file);
+        mainDownloadBtn.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Direct Download Image (${item.fileSize})
+        `;
       } else {
+        const previewImg = document.getElementById('previewImgEl');
+        if (previewImg) previewImg.style.display = 'none';
         slideshowCanvas.style.display = 'none';
         mainVideo.style.display = 'block';
         mainVideo.src = item.file + '?v=' + BUILD_TIMESTAMP;
