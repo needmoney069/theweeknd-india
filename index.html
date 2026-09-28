@@ -562,7 +562,7 @@
       try {
         const { count, error } = await supabaseClient
           .from('votes')
-          .select('*', { count: 'exact', head: true });
+          .select('city', { count: 'exact', head: true });
         if (!error && typeof count === 'number') {
           voteTotal.textContent = count.toLocaleString('en-IN');
         }
@@ -826,7 +826,7 @@
       try {
         const { count, error } = await supabaseClient
           .from('feedback')
-          .select('*', { count: 'exact', head: true });
+          .select('id', { count: 'exact', head: true });
         if (!error && typeof count === 'number') {
           feedbackTotal.textContent = count.toLocaleString('en-IN');
         }
