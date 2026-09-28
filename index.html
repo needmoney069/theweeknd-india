@@ -431,6 +431,133 @@
       color: #000;
     }
 
+    /* LEADERBOARD STYLES */
+    .leaderboard-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .stat-card {
+      background: #0e0f17;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      border: 1px solid rgba(255,183,3,0.1);
+    }
+    .stat-value {
+      font-size: 40px;
+      font-weight: 800;
+      color: #ffb703;
+      margin-bottom: 10px;
+      font-family: 'DM Mono', monospace;
+    }
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #8a8594;
+    }
+    .goal-progress-bg {
+      background: rgba(255,255,255,0.05);
+      height: 8px;
+      border-radius: 4px;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+    .goal-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ed2917, #ffb703);
+      width: 0%;
+      transition: width 1s ease-in-out;
+    }
+    .leaderboard-table {
+      background: #0e0f17;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 30px;
+    }
+    .lb-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      gap: 15px;
+    }
+    .lb-row:last-child {
+      border-bottom: none;
+    }
+    .lb-rank {
+      font-family: 'DM Mono', monospace;
+      font-weight: 700;
+      color: #8a8594;
+      width: 30px;
+      font-size: 14px;
+    }
+    .lb-rank.gold { color: #ffd700; font-size: 18px; }
+    .lb-rank.silver { color: #c0c0c0; font-size: 18px; }
+    .lb-rank.bronze { color: #cd7f32; font-size: 18px; }
+    .lb-city {
+      flex: 1;
+      font-weight: 600;
+      color: #fff;
+      font-size: 16px;
+    }
+    .lb-bar-container {
+      flex: 2;
+      background: rgba(255,255,255,0.03);
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .lb-bar-container { display: block; }
+    }
+    .lb-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #ed2917, #ffb703);
+      border-radius: 6px;
+      width: 0%;
+      transition: width 1s ease-in-out;
+    }
+    .lb-votes {
+      font-family: 'DM Mono', monospace;
+      font-weight: 700;
+      color: #ffb703;
+      min-width: 60px;
+      text-align: right;
+    }
+    .leaderboard-banner {
+      background: linear-gradient(135deg, rgba(237,41,23,0.1) 0%, rgba(14,15,23,1) 100%);
+      border: 1px solid rgba(237,41,23,0.3);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .leaderboard-banner p {
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+    .banner-btn {
+      display: inline-block;
+      background: #ed2917;
+      color: #fff !important;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .banner-btn:hover {
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body>
@@ -537,6 +664,44 @@
             </a>
           </div>
         </div></div></div></section>
+    <section id="leaderboard" style="background-color:#050506; padding: 60px 0;">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Live Fan Demand</div>
+            <h2 class="display">City<br>Leader-<br>board.</h2>
+          </div>
+          <p class="section-copy">Real-time verified votes from Indian XO fans. Every vote goes directly into our promoter brief for Abel's management.</p>
+        </div>
+        
+        <div class="leaderboard-stats">
+          <div class="stat-card">
+            <div class="stat-value" id="lb-total-fans">-</div>
+            <div class="stat-label">Total Fans Registered</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="lb-cities">-</div>
+            <div class="stat-label">Cities Represented</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value"><span id="lb-goal-current">-</span> <span style="font-size: 16px; opacity: 0.5;">/ 10,000</span></div>
+            <div class="stat-label">Target Goal</div>
+            <div class="goal-progress-bg">
+              <div class="goal-progress-fill" id="lb-goal-bar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="leaderboard-table" id="leaderboard-table">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="leaderboard-banner">
+          <p>Jitne zyada log judenge, utni mazboot awaaz hogi. Every vote counts.</p>
+          <a href="https://instagram.com/theweeknd.co.in" target="_blank" class="banner-btn">FOLLOW @theweeknd.co.in for tour updates ↗</a>
+        </div>
+      </div>
+    </section>
     <section class="route-section" id="route"><div class="wrap"><div class="section-head"><div><div class="kicker">How India’s ask can travel</div><h2 class="display">Make the<br>case<br>travel.</h2></div><p class="section-copy">No website can promise access to Abel Tesfaye. This is the credible, respectful route to give an India show proposal a chance to be seen.</p></div><div class="route-grid"><div class="route-map"><article class="route-step"><span>01</span><div><h3>Collect real, consented demand.</h3><p>Replace this prototype with a secure, India-only form. Count only verified registrations, publish the methodology, and never show individual names or emails.</p></div></article><article class="route-step"><span>02</span><div><h3>Turn it into a promoter brief.</h3><p>Share city demand, likely ticket ranges, campaign reach and audience quality only as aggregates. A recognised India concert promoter can then evaluate venue, production and routing feasibility.</p></div></article><article class="route-step"><span>03</span><div><h3>Let the promoter approach the booking side.</h3><p>A professional promoter—not random DMs—should make the formal approach to the artist’s authorised live and booking representatives with a clear proposal.</p></div></article><article class="route-step"><span>04</span><div><h3>Use public channels with respect.</h3><p>Publish one clear monthly campaign update, invite fans to share it, and tag only verified official accounts. Never pretend to be official, mass-message the artist, or promise a concert.</p></div></article></div><aside class="route-aside"><div><small>The right lane</small><h3>Reach the team, not the noise.</h3><p>Official social accounts and the mailing list are useful places to follow releases and share a public campaign update. They are not a promise of direct contact or a booking channel.</p><div class="route-links"><a class="route-link" href="https://linktr.ee/theweeknd" target="_blank" rel="noopener">Official social links ↗</a><a class="route-link" href="https://forms.umusic-online.com/forms/-OCiMsTRlo3YsYLSAteK" target="_blank" rel="noopener">Official mailing list ↗</a></div></div><p class="route-rule">The campaign’s power is a clean, verifiable India demand report—not spam, fake claims or collecting money before a real event partner is in place.</p></aside></div></div></section>
     <section class="feedback-section" id="feedback"><div class="wrap feedback-grid"><div class="feedback-copy"><div class="kicker">Built with XO India</div><h2 class="display">Make this<br>site<br>better.</h2><p>Tell us what would make this campaign clearer, more useful or more exciting. <strong>Top suggestions & active contributors will receive exclusive XO digital rewards & early campaign perks! 🎁</strong></p></div><div class="feedback-card"><div style="display:flex;align-items:center;gap:10px;background:rgba(255,183,3,0.1);border:1px solid rgba(255,183,3,0.35);padding:10px 14px;border-radius:10px;margin-bottom:18px;font-size:11px;color:#ffe599;line-height:1.5;"><span>🎁</span><div><strong>Contributor Rewards:</strong> Meaningful ideas are reviewed weekly. Verified email contributors receive exclusive XO campaign perks!</div></div><form class="feedback-form" id="feedback-form"><div style="opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;overflow:hidden;"><input type="text" name="fb_hp_field" tabindex="-1" autocomplete="off"></div><label>Email address <span style="color:#ff5a46;font-weight:700;">(Required for Rewards 🎁)</span><input name="email" type="email" required autocomplete="email" placeholder="you@example.com (where we send your contributor perks)"></label><label>What should we improve?<textarea name="idea" required minlength="10" maxlength="500" placeholder="For example: Add city leaderboards, a clearer promoter roadmap, more fan stories…"></textarea></label><label>What are you commenting on?<select name="topic" required><option value="">Choose one</option><option>Design and visuals</option><option>Campaign clarity</option><option>City voting</option><option>How to reach the team</option><option>Something else</option></select></label><div class="feedback-meta" id="feedback-note"><span>Your feedback is securely stored.</span><strong><span id="feedback-total">0</span> ideas submitted</strong></div><button class="button" type="submit">Submit my idea & claim perks →</button></form><div class="feedback-success" id="feedback-success" role="status">Thank you! Your idea has been submitted successfully. Keep an eye on your email for contributor perks! 🎁</div></div></div></section>
   </main>
@@ -750,6 +915,83 @@
       } catch (_) { /* silently fail, keep showing dash */ }
     }
     fetchVoteCount();
+
+    // --- Live City Leaderboard ---
+    async function fetchLeaderboard() {
+      try {
+        let allVotes = [];
+        let page = 0;
+        let pageSize = 1000;
+        while(true) {
+          const { data, error } = await supabaseClient.from('votes').select('city').range(page*pageSize, (page+1)*pageSize - 1);
+          if (error || !data || data.length === 0) break;
+          allVotes.push(...data);
+          if (data.length < pageSize) break;
+          page++;
+        }
+        
+        const cityCounts = {};
+        let distinctCities = 0;
+        allVotes.forEach(v => {
+          const c = v.city ? v.city.trim() : 'Unknown';
+          if (!cityCounts[c]) {
+            cityCounts[c] = 0;
+            distinctCities++;
+          }
+          cityCounts[c]++;
+        });
+        
+        const totalFans = allVotes.length;
+        const totalFansElem = document.getElementById('lb-total-fans');
+        if (totalFansElem) totalFansElem.textContent = totalFans.toLocaleString('en-IN');
+        const citiesElem = document.getElementById('lb-cities');
+        if (citiesElem) citiesElem.textContent = distinctCities.toLocaleString('en-IN');
+        const goalCurrentElem = document.getElementById('lb-goal-current');
+        if (goalCurrentElem) goalCurrentElem.textContent = totalFans.toLocaleString('en-IN');
+        
+        const goalPercent = Math.min(100, (totalFans / 10000) * 100);
+        const goalBarElem = document.getElementById('lb-goal-bar');
+        if (goalBarElem) goalBarElem.style.width = goalPercent + '%';
+
+        const sortedCities = Object.keys(cityCounts).map(city => ({ city, votes: cityCounts[city] }))
+          .sort((a, b) => b.votes - a.votes)
+          .slice(0, 10);
+        
+        const maxVotes = sortedCities.length > 0 ? sortedCities[0].votes : 1;
+        
+        const tableContainer = document.getElementById('leaderboard-table');
+        if (tableContainer) {
+          tableContainer.innerHTML = '';
+          
+          sortedCities.forEach((item, index) => {
+            let rankClass = '';
+            let rankText = '#' + (index + 1);
+            if (index === 0) { rankClass = 'gold'; rankText = '🏆'; }
+            else if (index === 1) { rankClass = 'silver'; rankText = '🥈'; }
+            else if (index === 2) { rankClass = 'bronze'; rankText = '🥉'; }
+            
+            const barWidth = Math.max(5, (item.votes / maxVotes) * 100);
+            
+            const row = document.createElement('div');
+            row.className = 'lb-row';
+            row.innerHTML = `
+              <div class="lb-rank ${rankClass}">${rankText}</div>
+              <div class="lb-city">${item.city}</div>
+              <div class="lb-bar-container">
+                <div class="lb-bar" style="width: ${barWidth}%"></div>
+              </div>
+              <div class="lb-votes">${item.votes.toLocaleString('en-IN')}</div>
+            `;
+            tableContainer.appendChild(row);
+          });
+        }
+      } catch (err) {
+        console.error('Error fetching leaderboard:', err);
+      }
+    }
+    
+    fetchLeaderboard();
+    setInterval(fetchLeaderboard, 30000);
 
     // --- Client-side rate limit (one submit per 30 seconds) ---
     let lastSubmitTime = 0;
