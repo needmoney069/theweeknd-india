@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bring The Weeknd to India — Official Fan Campaign & City Voting</title>
+  <title>Bring The Weeknd to India — Independent Fan Campaign & City Voting</title>
   <meta name="description" content="Join India's largest fan-led, data-first campaign to bring The Weeknd (Abel Tesfaye) to India. Vote for your city (Mumbai, Delhi NCR, Bengaluru & more) to prove live concert demand.">
   <meta name="keywords" content="The Weeknd India, The Weeknd Mumbai, The Weeknd Delhi, The Weeknd India Tour, Abel Tesfaye India, The Weeknd concert India, XO India, The Weeknd tickets India, BookMyShow The Weeknd">
   <meta name="author" content="Ayush (@aayyuusshhw)">
@@ -48,155 +48,6 @@
     }
   }
   
-    // VIP Pass Dynamic Generator & Downloader
-    let currentPassData = null;
-
-    function renderVipPass(name, email, city) {
-      const randomNum = Math.floor(10000 + Math.random() * 90000);
-      const cleanCityCode = (city.split(',')[0] || 'IND').replace(/[^a-zA-Z]/g, '').substring(0, 3).toUpperCase();
-      const passId = `XO-${cleanCityCode}-${randomNum}-VIP`;
-
-      currentPassData = { name, email, city, passId };
-
-      document.getElementById('passIdDisplay').textContent = passId;
-      document.getElementById('passNameDisplay').textContent = name;
-      document.getElementById('passCityDisplay').textContent = city;
-
-      // WhatsApp Share Link
-      const waMsg = encodeURIComponent(
-        `🚨 Bhai! I just claimed my Verified VIP Fan Pass for The Weeknd's Stadium Tour in ${city} (Pass ID: ${passId})! 🏟️🔥🇮🇳\n\nRegister your city vote 100% FREE before tour dates get finalized:\n👉 https://theweeknd.co.in`
-      );
-      document.getElementById('whatsappShareBtn').href = `https://api.whatsapp.com/send?text=${waMsg}`;
-
-      const card = document.getElementById('vipPassCard');
-      card.style.display = 'block';
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function sharePassToStory() {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText('https://theweeknd.co.in');
-      }
-      alert('📸 Tip: Take a screenshot of your VIP Pass card above, post it on your Instagram Story and tag @theweeknd.co.in with link sticker "theweeknd.co.in" to get reposted to 50k+ XO fans!');
-      window.open('https://instagram.com/theweeknd.co.in', '_blank');
-    }
-
-    function downloadVipPassImage() {
-      if (!currentPassData) return;
-
-      const cvs = document.createElement('canvas');
-      cvs.width = 1080;
-      cvs.height = 1350;
-      const ctx = cvs.getContext('2d');
-
-      // Background
-      const bgGrad = ctx.createLinearGradient(0, 0, 0, 1350);
-      bgGrad.addColorStop(0, '#150608');
-      bgGrad.addColorStop(0.5, '#0c0d15');
-      bgGrad.addColorStop(1, '#050508');
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, 1080, 1350);
-
-      // Crimson Glow
-      ctx.shadowColor = '#ed2917';
-      ctx.shadowBlur = 40;
-      ctx.strokeStyle = '#ed2917';
-      ctx.lineWidth = 6;
-      ctx.strokeRect(60, 60, 960, 1230);
-      ctx.shadowBlur = 0;
-
-      // Header Bar
-      ctx.fillStyle = '#ed2917';
-      ctx.fillRect(60, 60, 960, 160);
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 36px Montserrat, sans-serif';
-      ctx.fillText('THE WEEKND IN INDIA', 100, 145);
-      ctx.font = 'bold 20px DM Mono, monospace';
-      ctx.fillStyle = '#ffd1cc';
-      ctx.fillText('OFFICIAL VERIFIED FAN DOSSIER', 100, 185);
-
-      // Pass ID Box
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.fillRect(100, 260, 880, 160);
-      ctx.strokeStyle = 'rgba(237, 41, 23, 0.5)';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(100, 260, 880, 160);
-
-      ctx.font = 'bold 18px DM Mono, monospace';
-      ctx.fillStyle = '#9e9ba8';
-      ctx.fillText('VERIFIED FAN PRIORITY ID', 130, 305);
-      ctx.font = 'bold 50px Arial Black, sans-serif';
-      ctx.fillStyle = '#ff4b36';
-      ctx.fillText(currentPassData.passId, 130, 380);
-
-      // Meta grid
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(100, 460, 420, 140);
-      ctx.strokeRect(100, 460, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('REGISTERED FAN', 120, 500);
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText(currentPassData.name.substring(0, 18), 120, 555);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(560, 460, 420, 140);
-      ctx.strokeRect(560, 460, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('PREFERRED CITY', 580, 500);
-      ctx.fillStyle = '#ffb703';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText(currentPassData.city.substring(0, 18), 580, 555);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(100, 630, 420, 140);
-      ctx.strokeRect(100, 630, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('PRIORITY ACCESS', 120, 670);
-      ctx.fillStyle = '#00ff88';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText('Tier 1 (Free)', 120, 725);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(560, 630, 420, 140);
-      ctx.strokeRect(560, 630, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('ANTI-SCALPER', 580, 670);
-      ctx.fillStyle = '#00ff88';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText('ACTIVE', 580, 725);
-
-      // Barcode
-      for (let bx = 120; bx < 960; bx += 8) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(bx, 820, (bx % 16 === 0 ? 4 : 2), 70);
-      }
-
-      ctx.fillStyle = '#8a8594';
-      ctx.font = '16px DM Mono, monospace';
-      ctx.textAlign = 'center';
-      ctx.fillText('OFFICIAL FAN MOVEMENT // DIRECT SUBMISSION TO ABEL TESFAYE & PROMOTERS', 540, 930);
-
-      // Footer
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 44px Arial Black, sans-serif';
-      ctx.fillText('theweeknd.co.in', 540, 1140);
-      ctx.fillStyle = '#ffb703';
-      ctx.font = 'bold 22px Montserrat, sans-serif';
-      ctx.fillText('Tag @theweeknd.co.in on Instagram Story to get Reposted', 540, 1200);
-
-      // Download
-      const link = document.createElement('a');
-      link.download = `The-Weeknd-VIP-Pass-${currentPassData.city}.png`;
-      link.href = cvs.toDataURL('image/png');
-      link.click();
-    }
-
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,800&display=swap');
@@ -248,7 +99,7 @@
     @media (max-width:580px) { .xo-modal-card { padding:24px 20px; border-radius:18px; } .xo-modal-title { font-size:22px; } }
     @media (max-width:760px) { .wrap,.city-stage .inner { width:min(100% - 30px,1240px); }.nav { height:68px; }.nav-links { display:none; }.hero { min-height:680px; padding:60px 0; }.hero::before { background:linear-gradient(90deg,rgba(5,5,6,.97),rgba(5,5,6,.38)),linear-gradient(0deg,var(--black),transparent 42%),linear-gradient(105deg,rgba(77,0,5,.18),rgba(213,26,15,.54)),url('weeknd-live-ccby-v1.jpg') 82% 58% / auto 104% no-repeat,radial-gradient(circle at 85% 55%,#9e0b10,#160104 72%); background-blend-mode:normal,normal,color,normal,normal; }.hero h1 { font-size:clamp(58px,16vw,100px); }.hero-grid { display:block; }.hero-index { display:none; }section { padding:80px 0; }.campaign-status { padding:0; }.status-grid { grid-template-columns:1fr; }.status-card { min-height:180px; }.section-head,.statement,.vote-layout,.route-grid,.feedback-grid { display:block; }.section-copy { margin-top:24px; }.data-card { margin-top:32px; }.mission-gallery { grid-template-columns:1fr; margin-top:42px; }.image-panel { min-height:300px; }.album-grid { grid-template-columns:1fr 1fr; }.album { min-height:220px; }.album h3 { font-size:25px; }.city-stage { min-height:600px; }.city-stage h2 { font-size:clamp(52px,14vw,90px); }.vote-copy,.feedback-copy { position:static; margin-bottom:50px; }form { grid-template-columns:1fr; }.route-aside { margin-top:18px; }.feedback-card { padding:20px; }.feedback-meta { display:block; }.feedback-meta strong { display:block; margin-top:10px; }.full { grid-column:auto; }footer .footer-line { display:block; } }
   
-    /* Interactive VIP Pass Card Modal & UI */
+    /* Legacy campaign card styles */
     .vip-pass-container {
       display: none;
       background: linear-gradient(145deg, #11121d 0%, #08080d 100%);
@@ -431,133 +282,6 @@
       color: #000;
     }
 
-    /* LEADERBOARD STYLES */
-    .leaderboard-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-    .stat-card {
-      background: #0e0f17;
-      border-radius: 12px;
-      padding: 24px;
-      text-align: center;
-      border: 1px solid rgba(255,183,3,0.1);
-    }
-    .stat-value {
-      font-size: 40px;
-      font-weight: 800;
-      color: #ffb703;
-      margin-bottom: 10px;
-      font-family: 'DM Mono', monospace;
-    }
-    .stat-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #8a8594;
-    }
-    .goal-progress-bg {
-      background: rgba(255,255,255,0.05);
-      height: 8px;
-      border-radius: 4px;
-      margin-top: 15px;
-      overflow: hidden;
-    }
-    .goal-progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #ed2917, #ffb703);
-      width: 0%;
-      transition: width 1s ease-in-out;
-    }
-    .leaderboard-table {
-      background: #0e0f17;
-      border-radius: 16px;
-      padding: 20px;
-      border: 1px solid rgba(255,255,255,0.05);
-      margin-bottom: 30px;
-    }
-    .lb-row {
-      display: flex;
-      align-items: center;
-      padding: 12px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-      gap: 15px;
-    }
-    .lb-row:last-child {
-      border-bottom: none;
-    }
-    .lb-rank {
-      font-family: 'DM Mono', monospace;
-      font-weight: 700;
-      color: #8a8594;
-      width: 30px;
-      font-size: 14px;
-    }
-    .lb-rank.gold { color: #ffd700; font-size: 18px; }
-    .lb-rank.silver { color: #c0c0c0; font-size: 18px; }
-    .lb-rank.bronze { color: #cd7f32; font-size: 18px; }
-    .lb-city {
-      flex: 1;
-      font-weight: 600;
-      color: #fff;
-      font-size: 16px;
-    }
-    .lb-bar-container {
-      flex: 2;
-      background: rgba(255,255,255,0.03);
-      height: 12px;
-      border-radius: 6px;
-      overflow: hidden;
-      display: none;
-    }
-    @media (min-width: 768px) {
-      .lb-bar-container { display: block; }
-    }
-    .lb-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #ed2917, #ffb703);
-      border-radius: 6px;
-      width: 0%;
-      transition: width 1s ease-in-out;
-    }
-    .lb-votes {
-      font-family: 'DM Mono', monospace;
-      font-weight: 700;
-      color: #ffb703;
-      min-width: 60px;
-      text-align: right;
-    }
-    .leaderboard-banner {
-      background: linear-gradient(135deg, rgba(237,41,23,0.1) 0%, rgba(14,15,23,1) 100%);
-      border: 1px solid rgba(237,41,23,0.3);
-      border-radius: 12px;
-      padding: 24px;
-      text-align: center;
-    }
-    .leaderboard-banner p {
-      color: #fff;
-      font-weight: 600;
-      margin-bottom: 15px;
-      font-style: italic;
-    }
-    .banner-btn {
-      display: inline-block;
-      background: #ed2917;
-      color: #fff !important;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: opacity 0.2s;
-    }
-    .banner-btn:hover {
-      opacity: 0.9;
-    }
   </style>
 </head>
 <body>
@@ -585,11 +309,11 @@
           </div>
           <div class="xo-point">
             <span class="xo-icon">📊</span>
-            <div><strong>Verified Fan Demand:</strong> We are uniting fans to build a legitimate, audited dossier so India cannot be skipped.</div>
+            <div><strong>Consented Fan Demand:</strong> We record voluntary city interest to create an aggregate demand brief.</div>
           </div>
           <div class="xo-point">
             <span class="xo-icon">🎟️</span>
-            <div><strong>Free Digital VIP Fan Pass:</strong> Commemorative collectible instantly generated for every registered fan.</div>
+            <div><strong>No Ticket or Access Pass:</strong> A vote is not ticketing, artist access, or an official credential.</div>
           </div>
         </div>
         <p style="margin:0;font-size:11px;color:#888;">
@@ -608,102 +332,16 @@
   <main id="top">
     <section class="hero"><div class="wrap hero-grid"><div><div class="kicker">India needs a night to remember · Campaign 001</div><h1 class="display">Bring<br>The Weeknd<br>To India.</h1><p class="sub">Not a rumour. Not a repost. A fan-led, data-first campaign proving that India is ready for a world-class The Weeknd performance.</p><div class="hero-actions"><a class="button" href="#join">Add your city →</a><a class="button ghost" href="#albums">Explore the eras</a></div></div><div class="hero-index">Scroll to enter / 19.0760° N · 72.8777° E</div></div></section>
     <div class="ticker" aria-hidden="true"><div class="ticker-inner"><span>India is ready ✦</span><span>Vote your city ✦</span><span>Bring the night to India ✦</span><span>India is ready ✦</span><span>Vote your city ✦</span><span>Bring the night to India ✦</span></div></div>
-    <section class="campaign-status"><div class="wrap status-grid"><article class="status-card"><small>01 / Campaign stage</small><h3>Shape the demand.</h3><p>This site is a campaign prototype. Shared, verified demand begins only with a consented database.</p><strong>No date confirmed</strong></article><article class="status-card"><small>02 / What your vote does</small><h3>Tests the flow.</h3><p>City and budget questions show the evidence a professional event partner will need to see.</p><strong>No money requested</strong></article><article class="status-card"><small>03 / What happens next</small><h3>Build the case.</h3><p>Launch the secure campaign, publish aggregate results, then make serious promoter outreach.</p><strong>Independent campaign</strong></article></div></section>
-    <section id="mission"><div class="wrap"><div class="section-head"><div><div class="kicker">The mission</div><h2 class="display">Make it<br>impossible<br>to ignore.</h2></div><p class="section-copy">We turn fan energy into credible demand: consented city votes, real ticket intent and an audience profile that professional event partners can actually use.</p></div><div class="statement"><p class="large-copy">Every name on this campaign says the same thing: <em>India is ready.</em></p><div class="stats-group" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"><div class="data-card"><strong id="vote-total">—</strong><span>Total campaign votes</span></div><div class="data-card"><strong id="visitor-total">—</strong><span>Live site visitors</span></div></div></div><div class="mission-gallery"><div class="image-panel weeknd-archive"><div><small>Archive / live era</small><strong>A voice that moved the world.</strong></div></div><div class="image-panel fan-energy"><div><small>India / fan energy</small><strong>Now give the night a city.</strong></div></div></div></div></section>
-    <section class="discography" id="albums"><div class="wrap"><div class="section-head"><div><div class="kicker">The sound that built the demand</div><h2 class="display">The<br>discography.</h2></div><p class="section-copy">Every major The Weeknd release in one visual archive. Select an era to continue on Spotify’s official artist platform.</p></div><div class="album-grid" aria-label="The Weeknd release archive">
+    <section class="campaign-status"><div class="wrap status-grid"><article class="status-card"><small>01 / Campaign stage</small><h3>Shape the demand.</h3><p>This independent campaign records consented fan demand. It does not sell tickets, promise a concert, or represent the artist.</p><strong>No date confirmed</strong></article><article class="status-card"><small>02 / What your vote does</small><h3>Records demand.</h3><p>City and budget questions create an aggregate, consented picture of fan interest.</p><strong>No money requested</strong></article><article class="status-card"><small>03 / What happens next</small><h3>Build the case.</h3><p>Maintain the secure form, share only aggregate results, then consider responsible promoter outreach.</p><strong>Independent campaign</strong></article></div></section>
+    <section id="mission"><div class="wrap"><div class="section-head"><div><div class="kicker">The mission</div><h2 class="display">Make it<br>impossible<br>to ignore.</h2></div><p class="section-copy">We turn fan energy into credible demand: consented city votes, real ticket intent and an audience profile that professional event partners can actually use.</p></div><div class="statement"><p class="large-copy">Every name on this campaign says the same thing: <em>India is ready.</em></p><div class="stats-group" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"><div class="data-card"><strong id="vote-total">—</strong><span>Total campaign votes</span></div><div class="data-card"><strong>Free</strong><span>No payments accepted</span></div></div></div><div class="mission-gallery"><div class="image-panel weeknd-archive"><div><small>Archive / live era</small><strong>A voice that moved the world.</strong></div></div><div class="image-panel fan-energy"><div><small>India / fan energy</small><strong>Now give the night a city.</strong></div></div></div></div></section>
+    <section class="discography" id="albums"><div class="wrap"><div class="section-head"><div><div class="kicker">The sound that built the demand</div><h2 class="display">The<br>discography.</h2></div><p class="section-copy">Every major The Weeknd release in one visual archive. Select an era to listen on YouTube Music.</p></div><div class="album-grid" aria-label="The Weeknd release archive">
       <a class="album a1" href="https://music.youtube.com/playlist?list=OLAK5uy_lj1KcaPJYjA1n29DoIF68QMbDehOplyEI" target="_blank" rel="noopener"><span class="type">Mixtape</span><div><span class="year">2011</span><h3>House of<br>Balloons</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a2" href="https://music.youtube.com/playlist?list=OLAK5uy_mpstBxCj6_Xb3oz-64FsSAukHnP8vbQyQ" target="_blank" rel="noopener"><span class="type">Mixtape</span><div><span class="year">2011</span><h3>Thursday</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a3" href="https://music.youtube.com/playlist?list=OLAK5uy_myCI_iqxqTYcrHZTucNt1zLcQkAljaDQk" target="_blank" rel="noopener"><span class="type">Mixtape</span><div><span class="year">2011</span><h3>Echoes of<br>Silence</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a4" href="https://music.youtube.com/playlist?list=OLAK5uy_n605tdRYQ63n073eyZnElBgBVTMtHK6nI" target="_blank" rel="noopener"><span class="type">Compilation</span><div><span class="year">2012</span><h3>Trilogy</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a5" href="https://music.youtube.com/playlist?list=OLAK5uy_kC4X1YW20DWms2LJbtBczuj0QJaXjdcCw" target="_blank" rel="noopener"><span class="type">Studio album</span><div><span class="year">2013</span><h3>Kiss Land</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a6" href="https://music.youtube.com/playlist?list=OLAK5uy_ksdtnV2GYImU_DY_GAB5bwjWhFPDELI8k" target="_blank" rel="noopener"><span class="type">Studio album</span><div><span class="year">2015</span><h3>Beauty Behind<br>the Madness</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a7" href="https://music.youtube.com/playlist?list=OLAK5uy_lIh621OMo4dgezJVXJ1d_zVHeClb6RYRU" target="_blank" rel="noopener"><span class="type">Studio album</span><div><span class="year">2016</span><h3>Starboy</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a8" href="https://music.youtube.com/playlist?list=OLAK5uy_mXKAPCbV618s3SQOAjsVTXTTC2W9YO-Bo" target="_blank" rel="noopener"><span class="type">EP</span><div><span class="year">2018</span><h3>My Dear<br>Melancholy,</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a9" href="https://music.youtube.com/playlist?list=OLAK5uy_lwaD8UXRautA8W9eWT4zZOvwf5Ktxpax8" target="_blank" rel="noopener"><span class="type">Studio album</span><div><span class="year">2020</span><h3>After Hours</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a10" href="https://music.youtube.com/playlist?list=OLAK5uy_m-N2Nw98lT4Vn7IFr9HENnLTaoqCkVls0" target="_blank" rel="noopener"><span class="type">Compilation</span><div><span class="year">2021</span><h3>The<br>Highlights</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a11" href="https://music.youtube.com/playlist?list=OLAK5uy_mDdGJSv2u-3CO_Zb9Hm7rGGCo1e1L9_1s" target="_blank" rel="noopener"><span class="type">Studio album</span><div><span class="year">2022</span><h3>Dawn FM</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a12" href="https://music.youtube.com/playlist?list=OLAK5uy_lA7H97iXAzAXxjAAOMHRUAQ9hMUVY5lAs" target="_blank" rel="noopener"><span class="type">Live album</span><div><span class="year">2023</span><h3>Live at SoFi<br>Stadium</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a13" href="https://music.youtube.com/playlist?list=PL8IOJshApFougTJx8OZGbt6t4zmblwleN" target="_blank" rel="noopener"><span class="type">Soundtrack</span><div><span class="year">2023</span><h3>The Idol<br>Vol. 1</h3><span class="listen">Play on YouTube Music ↗</span></div></a><a class="album a14" href="https://music.youtube.com/playlist?list=OLAK5uy_nTyPiz9kGY4E7-mc6UyjbxDCNxvzVAWv8" target="_blank" rel="noopener"><span class="type">Studio album</span><div><span class="year">2025</span><h3>Hurry Up<br>Tomorrow</h3><span class="listen">Play on YouTube Music ↗</span></div></a>
     </div><p class="disc-note">Archive includes studio albums plus landmark mixtapes, compilations, EP, live album and soundtrack release. Artwork is original campaign art direction; official album covers and music are not hosted here.</p></div></section>
     <section class="city-stage"><div class="inner"><div class="kicker">A future India night</div><h2 class="display">One artist.<br>One country.<br>One moment.</h2><p>From Mumbai to Delhi NCR, Bengaluru to Kolkata: every vote creates the evidence needed to take the next serious step.</p><a class="button" href="#join">Choose your city →</a></div></section>
-    <section class="form-section" id="join"><div class="wrap vote-layout"><div class="vote-copy"><div class="kicker">Campaign vote</div><h2 class="display">Your city.<br>Your voice.</h2><p>No money. No ticket sale. Your registration is securely stored to measure fan demand and plan a responsible campaign update.</p></div><div><form id="interest-form"><div style="opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;overflow:hidden;"><input type="text" name="b_hp_field" tabindex="-1" autocomplete="off"></div><label>First name<input name="name" required autocomplete="given-name" placeholder="Your first name"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label class="full" id="city-select-label" style="grid-column:1 / -1;"><div style="display:flex;justify-content:space-between;align-items:center;"><span>Preferred Cities (Choose 1 to 3 cities)</span><span id="city-counter-badge" style="font-size:10px;color:#fff;background:#000;border:1px solid rgba(255,255,255,0.4);padding:2px 8px;border-radius:10px;font-weight:700;">0/3 selected</span></div><div class="city-chips-grid" id="city-chips-container"><button type="button" class="city-chip" data-city="Mumbai">Mumbai</button><button type="button" class="city-chip" data-city="Delhi NCR">Delhi NCR</button><button type="button" class="city-chip" data-city="Bengaluru">Bengaluru</button><button type="button" class="city-chip" data-city="Hyderabad">Hyderabad</button><button type="button" class="city-chip" data-city="Pune">Pune</button><button type="button" class="city-chip" data-city="Chennai">Chennai</button><button type="button" class="city-chip" data-city="Kolkata">Kolkata</button><button type="button" class="city-chip" data-city="Ahmedabad">Ahmedabad</button><button type="button" class="city-chip" data-city="Jaipur">Jaipur</button><button type="button" class="city-chip" data-city="Chandigarh">Chandigarh</button><button type="button" class="city-chip" data-city="Lucknow">Lucknow</button><button type="button" class="city-chip" data-city="Kochi">Kochi</button><button type="button" class="city-chip" data-city="Goa">Goa</button><button type="button" class="city-chip" data-city="Indore">Indore</button><button type="button" class="city-chip" data-city="Other">Other City ✍️</button></div><input type="hidden" name="city" id="selected-cities-hidden" required><div id="city-limit-warning" style="display:none;color:#fff;background:#8b0000;padding:4px 8px;border-radius:4px;font-size:11px;margin-top:4px;">⚠️ You can select up to 3 preferred cities.</div></label><label id="other-city-wrapper" style="display:none;grid-column:1 / -1;">Your Custom City Name<input name="other_city" id="other-city-input" placeholder="Enter your city name (e.g. Surat, Guwahati, Patna)"></label><label>Likely ticket budget<select name="budget" required><option value="">Select a range</option><option>₹3,000–₹6,000</option><option>₹6,000–₹12,000</option><option>₹12,000–₹20,000</option><option>₹20,000+</option></select></label><label class="check full"><input name="consent" type="checkbox" required><span>I understand this is an independent fan-campaign prototype—not an official artist, promoter or ticketing website. It does not accept donations or reserve tickets. My submitted details will be stored for campaign-demand planning.</span></label><button class="button full" type="submit">Submit my vote →</button></form><div id="success" role="status" style="display:none;"></div>
-        
-        <!-- Interactive VIP Fan Pass -->
-        <div class="vip-pass-container" id="vipPassCard">
-          <div class="pass-top-bar">
-            <div class="pass-brand">THE WEEKND IN INDIA</div>
-            <div class="pass-badge">● VERIFIED DEMAND</div>
-          </div>
-
-          <div class="pass-id-block">
-            <div class="pass-id-label">Official Fan Dossier Pass ID</div>
-            <div class="pass-id-val" id="passIdDisplay">XO-IND-89420-VIP</div>
-          </div>
-
-          <div class="pass-meta-grid">
-            <div class="pass-meta-item">
-              <span>Fan Name</span>
-              <strong id="passNameDisplay">Abel Fan</strong>
-            </div>
-            <div class="pass-meta-item">
-              <span>Preferred City</span>
-              <strong id="passCityDisplay" class="gold">Mumbai</strong>
-            </div>
-            <div class="pass-meta-item">
-              <span>Priority Access</span>
-              <strong class="green">Tier 1 (Free)</strong>
-            </div>
-            <div class="pass-meta-item">
-              <span>Anti-Scalper</span>
-              <strong class="green">Active ✓</strong>
-            </div>
-          </div>
-
-          <div class="pass-barcode">
-            <div style="width:3px;"></div><div style="width:1px;"></div><div style="width:4px;"></div><div style="width:2px;"></div><div style="width:1px;"></div><div style="width:3px;"></div><div style="width:5px;"></div><div style="width:2px;"></div><div style="width:1px;"></div><div style="width:4px;"></div><div style="width:2px;"></div><div style="width:3px;"></div><div style="width:1px;"></div><div style="width:5px;"></div><div style="width:2px;"></div><div style="width:4px;"></div>
-          </div>
-          <div class="pass-disclaimer">Official Verified Record // Registered for Direct Promoter & Tour Routing Submission</div>
-
-          <div class="pass-actions">
-            <button class="btn-pass-action btn-pass-download" onclick="downloadVipPassImage()">
-              📸 Save VIP Pass to Photos (HD)
-            </button>
-            <button class="btn-pass-action btn-pass-story" onclick="sharePassToStory()">
-              📱 Share on Instagram Story (@theweeknd.co.in)
-            </button>
-            <a class="btn-pass-action btn-pass-wa" id="whatsappShareBtn" href="#" target="_blank">
-              💬 Share Pass With WhatsApp Friends
-            </a>
-          </div>
-        </div></div></div></section>
-    <section id="leaderboard" style="background-color:#050506; padding: 60px 0;">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Live Fan Demand</div>
-            <h2 class="display">City<br>Leader-<br>board.</h2>
-          </div>
-          <p class="section-copy">Real-time verified votes from Indian XO fans. Every vote goes directly into our promoter brief for Abel's management.</p>
-        </div>
-        
-        <div class="leaderboard-stats">
-          <div class="stat-card">
-            <div class="stat-value" id="lb-total-fans">-</div>
-            <div class="stat-label">Total Fans Registered</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value" id="lb-cities">-</div>
-            <div class="stat-label">Cities Represented</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value"><span id="lb-goal-current">-</span> <span style="font-size: 16px; opacity: 0.5;">/ 10,000</span></div>
-            <div class="stat-label">Target Goal</div>
-            <div class="goal-progress-bg">
-              <div class="goal-progress-fill" id="lb-goal-bar"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="leaderboard-table" id="leaderboard-table">
-          <!-- Populated by JS -->
-        </div>
-
-        <div class="leaderboard-banner">
-          <p>Jitne zyada log judenge, utni mazboot awaaz hogi. Every vote counts.</p>
-          <a href="https://instagram.com/theweeknd.co.in" target="_blank" class="banner-btn">FOLLOW @theweeknd.co.in for tour updates ↗</a>
-        </div>
-      </div>
-    </section>
-    <section class="route-section" id="route"><div class="wrap"><div class="section-head"><div><div class="kicker">How India’s ask can travel</div><h2 class="display">Make the<br>case<br>travel.</h2></div><p class="section-copy">No website can promise access to Abel Tesfaye. This is the credible, respectful route to give an India show proposal a chance to be seen.</p></div><div class="route-grid"><div class="route-map"><article class="route-step"><span>01</span><div><h3>Collect real, consented demand.</h3><p>Replace this prototype with a secure, India-only form. Count only verified registrations, publish the methodology, and never show individual names or emails.</p></div></article><article class="route-step"><span>02</span><div><h3>Turn it into a promoter brief.</h3><p>Share city demand, likely ticket ranges, campaign reach and audience quality only as aggregates. A recognised India concert promoter can then evaluate venue, production and routing feasibility.</p></div></article><article class="route-step"><span>03</span><div><h3>Let the promoter approach the booking side.</h3><p>A professional promoter—not random DMs—should make the formal approach to the artist’s authorised live and booking representatives with a clear proposal.</p></div></article><article class="route-step"><span>04</span><div><h3>Use public channels with respect.</h3><p>Publish one clear monthly campaign update, invite fans to share it, and tag only verified official accounts. Never pretend to be official, mass-message the artist, or promise a concert.</p></div></article></div><aside class="route-aside"><div><small>The right lane</small><h3>Reach the team, not the noise.</h3><p>Official social accounts and the mailing list are useful places to follow releases and share a public campaign update. They are not a promise of direct contact or a booking channel.</p><div class="route-links"><a class="route-link" href="https://linktr.ee/theweeknd" target="_blank" rel="noopener">Official social links ↗</a><a class="route-link" href="https://forms.umusic-online.com/forms/-OCiMsTRlo3YsYLSAteK" target="_blank" rel="noopener">Official mailing list ↗</a></div></div><p class="route-rule">The campaign’s power is a clean, verifiable India demand report—not spam, fake claims or collecting money before a real event partner is in place.</p></aside></div></div></section>
-    <section class="feedback-section" id="feedback"><div class="wrap feedback-grid"><div class="feedback-copy"><div class="kicker">Built with XO India</div><h2 class="display">Make this<br>site<br>better.</h2><p>Tell us what would make this campaign clearer, more useful or more exciting. <strong>Top suggestions & active contributors will receive exclusive XO digital rewards & early campaign perks! 🎁</strong></p></div><div class="feedback-card"><div style="display:flex;align-items:center;gap:10px;background:rgba(255,183,3,0.1);border:1px solid rgba(255,183,3,0.35);padding:10px 14px;border-radius:10px;margin-bottom:18px;font-size:11px;color:#ffe599;line-height:1.5;"><span>🎁</span><div><strong>Contributor Rewards:</strong> Meaningful ideas are reviewed weekly. Verified email contributors receive exclusive XO campaign perks!</div></div><form class="feedback-form" id="feedback-form"><div style="opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;overflow:hidden;"><input type="text" name="fb_hp_field" tabindex="-1" autocomplete="off"></div><label>Email address <span style="color:#ff5a46;font-weight:700;">(Required for Rewards 🎁)</span><input name="email" type="email" required autocomplete="email" placeholder="you@example.com (where we send your contributor perks)"></label><label>What should we improve?<textarea name="idea" required minlength="10" maxlength="500" placeholder="For example: Add city leaderboards, a clearer promoter roadmap, more fan stories…"></textarea></label><label>What are you commenting on?<select name="topic" required><option value="">Choose one</option><option>Design and visuals</option><option>Campaign clarity</option><option>City voting</option><option>How to reach the team</option><option>Something else</option></select></label><div class="feedback-meta" id="feedback-note"><span>Your feedback is securely stored.</span><strong><span id="feedback-total">0</span> ideas submitted</strong></div><button class="button" type="submit">Submit my idea & claim perks →</button></form><div class="feedback-success" id="feedback-success" role="status">Thank you! Your idea has been submitted successfully. Keep an eye on your email for contributor perks! 🎁</div></div></div></section>
+    <section class="form-section" id="join"><div class="wrap vote-layout"><div class="vote-copy"><div class="kicker">Campaign vote</div><h2 class="display">Your city.<br>Your voice.</h2><p>No money. No ticket sale. Your registration is stored to measure fan demand and plan a responsible campaign update.</p></div><div><form id="interest-form"><div style="opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;overflow:hidden;"><input type="text" name="b_hp_field" tabindex="-1" autocomplete="off"></div><label>First name<input name="name" required autocomplete="given-name" placeholder="Your first name"></label><label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label class="full" id="city-select-label" style="grid-column:1 / -1;"><div style="display:flex;justify-content:space-between;align-items:center;"><span>Preferred Cities (Choose 1 to 3 cities)</span><span id="city-counter-badge" style="font-size:10px;color:#fff;background:#000;border:1px solid rgba(255,255,255,0.4);padding:2px 8px;border-radius:10px;font-weight:700;">0/3 selected</span></div><div class="city-chips-grid" id="city-chips-container"><button type="button" class="city-chip" data-city="Mumbai">Mumbai</button><button type="button" class="city-chip" data-city="Delhi NCR">Delhi NCR</button><button type="button" class="city-chip" data-city="Bengaluru">Bengaluru</button><button type="button" class="city-chip" data-city="Hyderabad">Hyderabad</button><button type="button" class="city-chip" data-city="Pune">Pune</button><button type="button" class="city-chip" data-city="Chennai">Chennai</button><button type="button" class="city-chip" data-city="Kolkata">Kolkata</button><button type="button" class="city-chip" data-city="Ahmedabad">Ahmedabad</button><button type="button" class="city-chip" data-city="Jaipur">Jaipur</button><button type="button" class="city-chip" data-city="Chandigarh">Chandigarh</button><button type="button" class="city-chip" data-city="Lucknow">Lucknow</button><button type="button" class="city-chip" data-city="Kochi">Kochi</button><button type="button" class="city-chip" data-city="Goa">Goa</button><button type="button" class="city-chip" data-city="Indore">Indore</button><button type="button" class="city-chip" data-city="Other">Other City ✍️</button></div><input type="hidden" name="city" id="selected-cities-hidden" required><div id="city-limit-warning" style="display:none;color:#fff;background:#8b0000;padding:4px 8px;border-radius:4px;font-size:11px;margin-top:4px;">⚠️ You can select up to 3 preferred cities.</div></label><label id="other-city-wrapper" style="display:none;grid-column:1 / -1;">Your Custom City Name<input name="other_city" id="other-city-input" placeholder="Enter your city name (e.g. Surat, Guwahati, Patna)"></label><label>Likely ticket budget<select name="budget" required><option value="">Select a range</option><option>₹3,000–₹6,000</option><option>₹6,000–₹12,000</option><option>₹12,000–₹20,000</option><option>₹20,000+</option></select></label><label class="check full"><input name="consent" type="checkbox" required><span>I understand this is an independent fan campaign—not an official artist, promoter or ticketing website. It does not accept donations or reserve tickets. My submitted details will be stored for campaign-demand planning.</span></label><button class="button full" type="submit">Submit my vote →</button></form><div id="success" role="status" style="display:none;"></div>
+      </div></div></section>
+    <section class="route-section" id="route"><div class="wrap"><div class="section-head"><div><div class="kicker">How India’s ask can travel</div><h2 class="display">Make the<br>case<br>travel.</h2></div><p class="section-copy">No website can promise access to Abel Tesfaye. This is the credible, respectful route to give an India show proposal a chance to be seen.</p></div><div class="route-grid"><div class="route-map"><article class="route-step"><span>01</span><div><h3>Collect real, consented demand.</h3><p>Maintain a secure, India-only form. Publish only aggregate results and never individual names or emails.</p></div></article><article class="route-step"><span>02</span><div><h3>Turn it into a promoter brief.</h3><p>Share city demand, likely ticket ranges, campaign reach and audience quality only as aggregates. A recognised India concert promoter can then evaluate venue, production and routing feasibility.</p></div></article><article class="route-step"><span>03</span><div><h3>Let the promoter approach the booking side.</h3><p>A professional promoter—not random DMs—should make the formal approach to the artist’s authorised live and booking representatives with a clear proposal.</p></div></article><article class="route-step"><span>04</span><div><h3>Use public channels with respect.</h3><p>Publish one clear monthly campaign update, invite fans to share it, and tag only verified official accounts. Never pretend to be official, mass-message the artist, or promise a concert.</p></div></article></div><aside class="route-aside"><div><small>The right lane</small><h3>Reach the team, not the noise.</h3><p>Official social accounts and the mailing list are useful places to follow releases and share a public campaign update. They are not a promise of direct contact or a booking channel.</p><div class="route-links"><a class="route-link" href="https://linktr.ee/theweeknd" target="_blank" rel="noopener">Official social links ↗</a><a class="route-link" href="https://forms.umusic-online.com/forms/-OCiMsTRlo3YsYLSAteK" target="_blank" rel="noopener">Official mailing list ↗</a></div></div><p class="route-rule">The campaign’s power is a clean, verifiable India demand report—not spam, fake claims or collecting money before a real event partner is in place.</p></aside></div></div></section>
+    <section class="feedback-section" id="feedback"><div class="wrap feedback-grid"><div class="feedback-copy"><div class="kicker">Built with XO India</div><h2 class="display">Make this<br>site<br>better.</h2><p>Tell us what would make this campaign clearer, more useful or more exciting. <strong>Suggestions are reviewed to improve the campaign. No rewards, tickets, or artist access are promised.</strong></p></div><div class="feedback-card"><div style="display:flex;align-items:center;gap:10px;background:rgba(255,183,3,0.1);border:1px solid rgba(255,183,3,0.35);padding:10px 14px;border-radius:10px;margin-bottom:18px;font-size:11px;color:#ffe599;line-height:1.5;"><span>✓</span><div><strong>Feedback policy:</strong> Useful suggestions may shape future updates. We do not promise rewards, tickets, or artist access.</div></div><form class="feedback-form" id="feedback-form"><div style="opacity:0;position:absolute;top:0;left:0;height:0;width:0;z-index:-1;overflow:hidden;"><input type="text" name="fb_hp_field" tabindex="-1" autocomplete="off"></div><label>Email address <span style="color:#ff5a46;font-weight:700;">(optional — only if you want a reply)</span><input name="email" type="email" autocomplete="email" placeholder="Optional — only if you want a reply"></label><label>What should we improve?<textarea name="idea" required minlength="10" maxlength="500" placeholder="For example: Add city leaderboards, a clearer promoter roadmap, more fan stories…"></textarea></label><label>What are you commenting on?<select name="topic" required><option value="">Choose one</option><option>Design and visuals</option><option>Campaign clarity</option><option>City voting</option><option>How to reach the team</option><option>Something else</option></select></label><div class="feedback-meta" id="feedback-note"><span>Your feedback is stored for campaign review.</span><strong><span id="feedback-total">0</span> ideas submitted</strong></div><button class="button" type="submit">Submit feedback →</button></form><div class="feedback-success" id="feedback-success" role="status">Thank you! Your feedback has been received.</div></div></div></section>
   </main>
   <footer>
   <div class="wrap" style="margin-bottom:28px;">
@@ -723,7 +361,7 @@
         <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);color:#fff;font-size:14px;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.13-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </span>
-        <span style="font-size:11px;color:#d8d2cf;letter-spacing:.05em;">Official Campaign:</span>
+        <span style="font-size:11px;color:#d8d2cf;letter-spacing:.05em;">Fan Campaign:</span>
         <a href="https://instagram.com/theweeknd.co.in" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);color:#fff;text-decoration:none;font-weight:700;font-size:11px;padding:6px 14px;border-radius:20px;letter-spacing:.08em;transition:all .2s;" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">@theweeknd.co.in ↗</a>
       </div>
 
@@ -742,155 +380,6 @@
   </div>
 </footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-    // VIP Pass Dynamic Generator & Downloader
-    let currentPassData = null;
-
-    function renderVipPass(name, email, city) {
-      const randomNum = Math.floor(10000 + Math.random() * 90000);
-      const cleanCityCode = (city.split(',')[0] || 'IND').replace(/[^a-zA-Z]/g, '').substring(0, 3).toUpperCase();
-      const passId = `XO-${cleanCityCode}-${randomNum}-VIP`;
-
-      currentPassData = { name, email, city, passId };
-
-      document.getElementById('passIdDisplay').textContent = passId;
-      document.getElementById('passNameDisplay').textContent = name;
-      document.getElementById('passCityDisplay').textContent = city;
-
-      // WhatsApp Share Link
-      const waMsg = encodeURIComponent(
-        `🚨 Bhai! I just claimed my Verified VIP Fan Pass for The Weeknd's Stadium Tour in ${city} (Pass ID: ${passId})! 🏟️🔥🇮🇳\n\nRegister your city vote 100% FREE before tour dates get finalized:\n👉 https://theweeknd.co.in`
-      );
-      document.getElementById('whatsappShareBtn').href = `https://api.whatsapp.com/send?text=${waMsg}`;
-
-      const card = document.getElementById('vipPassCard');
-      card.style.display = 'block';
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function sharePassToStory() {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText('https://theweeknd.co.in');
-      }
-      alert('📸 Tip: Take a screenshot of your VIP Pass card above, post it on your Instagram Story and tag @theweeknd.co.in with link sticker "theweeknd.co.in" to get reposted to 50k+ XO fans!');
-      window.open('https://instagram.com/theweeknd.co.in', '_blank');
-    }
-
-    function downloadVipPassImage() {
-      if (!currentPassData) return;
-
-      const cvs = document.createElement('canvas');
-      cvs.width = 1080;
-      cvs.height = 1350;
-      const ctx = cvs.getContext('2d');
-
-      // Background
-      const bgGrad = ctx.createLinearGradient(0, 0, 0, 1350);
-      bgGrad.addColorStop(0, '#150608');
-      bgGrad.addColorStop(0.5, '#0c0d15');
-      bgGrad.addColorStop(1, '#050508');
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, 1080, 1350);
-
-      // Crimson Glow
-      ctx.shadowColor = '#ed2917';
-      ctx.shadowBlur = 40;
-      ctx.strokeStyle = '#ed2917';
-      ctx.lineWidth = 6;
-      ctx.strokeRect(60, 60, 960, 1230);
-      ctx.shadowBlur = 0;
-
-      // Header Bar
-      ctx.fillStyle = '#ed2917';
-      ctx.fillRect(60, 60, 960, 160);
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 36px Montserrat, sans-serif';
-      ctx.fillText('THE WEEKND IN INDIA', 100, 145);
-      ctx.font = 'bold 20px DM Mono, monospace';
-      ctx.fillStyle = '#ffd1cc';
-      ctx.fillText('OFFICIAL VERIFIED FAN DOSSIER', 100, 185);
-
-      // Pass ID Box
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.fillRect(100, 260, 880, 160);
-      ctx.strokeStyle = 'rgba(237, 41, 23, 0.5)';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(100, 260, 880, 160);
-
-      ctx.font = 'bold 18px DM Mono, monospace';
-      ctx.fillStyle = '#9e9ba8';
-      ctx.fillText('VERIFIED FAN PRIORITY ID', 130, 305);
-      ctx.font = 'bold 50px Arial Black, sans-serif';
-      ctx.fillStyle = '#ff4b36';
-      ctx.fillText(currentPassData.passId, 130, 380);
-
-      // Meta grid
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(100, 460, 420, 140);
-      ctx.strokeRect(100, 460, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('REGISTERED FAN', 120, 500);
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText(currentPassData.name.substring(0, 18), 120, 555);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(560, 460, 420, 140);
-      ctx.strokeRect(560, 460, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('PREFERRED CITY', 580, 500);
-      ctx.fillStyle = '#ffb703';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText(currentPassData.city.substring(0, 18), 580, 555);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(100, 630, 420, 140);
-      ctx.strokeRect(100, 630, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('PRIORITY ACCESS', 120, 670);
-      ctx.fillStyle = '#00ff88';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText('Tier 1 (Free)', 120, 725);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(560, 630, 420, 140);
-      ctx.strokeRect(560, 630, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('ANTI-SCALPER', 580, 670);
-      ctx.fillStyle = '#00ff88';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText('ACTIVE', 580, 725);
-
-      // Barcode
-      for (let bx = 120; bx < 960; bx += 8) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(bx, 820, (bx % 16 === 0 ? 4 : 2), 70);
-      }
-
-      ctx.fillStyle = '#8a8594';
-      ctx.font = '16px DM Mono, monospace';
-      ctx.textAlign = 'center';
-      ctx.fillText('OFFICIAL FAN MOVEMENT // DIRECT SUBMISSION TO ABEL TESFAYE & PROMOTERS', 540, 930);
-
-      // Footer
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 44px Arial Black, sans-serif';
-      ctx.fillText('theweeknd.co.in', 540, 1140);
-      ctx.fillStyle = '#ffb703';
-      ctx.font = 'bold 22px Montserrat, sans-serif';
-      ctx.fillText('Tag @theweeknd.co.in on Instagram Story to get Reposted', 540, 1200);
-
-      // Download
-      const link = document.createElement('a');
-      link.download = `The-Weeknd-VIP-Pass-${currentPassData.city}.png`;
-      link.href = cvs.toDataURL('image/png');
-      link.click();
-    }
-
   </script>
   <script>
     const form = document.querySelector('#interest-form');
@@ -916,509 +405,12 @@
     }
     fetchVoteCount();
 
-    // --- Live City Leaderboard ---
-    async function fetchLeaderboard() {
-      try {
-        let allVotes = [];
-        let page = 0;
-        let pageSize = 1000;
-        while(true) {
-          const { data, error } = await supabaseClient.from('votes').select('city').range(page*pageSize, (page+1)*pageSize - 1);
-          if (error || !data || data.length === 0) break;
-          allVotes.push(...data);
-          if (data.length < pageSize) break;
-          page++;
-        }
-        
-        const cityCounts = {};
-        let distinctCities = 0;
-        allVotes.forEach(v => {
-          const c = v.city ? v.city.trim() : 'Unknown';
-          if (!cityCounts[c]) {
-            cityCounts[c] = 0;
-            distinctCities++;
-          }
-          cityCounts[c]++;
-        });
-        
-        const totalFans = allVotes.length;
-        const totalFansElem = document.getElementById('lb-total-fans');
-        if (totalFansElem) totalFansElem.textContent = totalFans.toLocaleString('en-IN');
-        const citiesElem = document.getElementById('lb-cities');
-        if (citiesElem) citiesElem.textContent = distinctCities.toLocaleString('en-IN');
-        const goalCurrentElem = document.getElementById('lb-goal-current');
-        if (goalCurrentElem) goalCurrentElem.textContent = totalFans.toLocaleString('en-IN');
-        
-        const goalPercent = Math.min(100, (totalFans / 10000) * 100);
-        const goalBarElem = document.getElementById('lb-goal-bar');
-        if (goalBarElem) goalBarElem.style.width = goalPercent + '%';
-
-        const sortedCities = Object.keys(cityCounts).map(city => ({ city, votes: cityCounts[city] }))
-          .sort((a, b) => b.votes - a.votes)
-          .slice(0, 10);
-        
-        const maxVotes = sortedCities.length > 0 ? sortedCities[0].votes : 1;
-        
-        const tableContainer = document.getElementById('leaderboard-table');
-        if (tableContainer) {
-          tableContainer.innerHTML = '';
-          
-          sortedCities.forEach((item, index) => {
-            let rankClass = '';
-            let rankText = '#' + (index + 1);
-            if (index === 0) { rankClass = 'gold'; rankText = '🏆'; }
-            else if (index === 1) { rankClass = 'silver'; rankText = '🥈'; }
-            else if (index === 2) { rankClass = 'bronze'; rankText = '🥉'; }
-            
-            const barWidth = Math.max(5, (item.votes / maxVotes) * 100);
-            
-            const row = document.createElement('div');
-            row.className = 'lb-row';
-            row.innerHTML = `
-              <div class="lb-rank ${rankClass}">${rankText}</div>
-              <div class="lb-city">${item.city}</div>
-              <div class="lb-bar-container">
-                <div class="lb-bar" style="width: ${barWidth}%"></div>
-              </div>
-              <div class="lb-votes">${item.votes.toLocaleString('en-IN')}</div>
-            `;
-            tableContainer.appendChild(row);
-          });
-        }
-      } catch (err) {
-        console.error('Error fetching leaderboard:', err);
-      }
-    }
-    
-    fetchLeaderboard();
-    setInterval(fetchLeaderboard, 30000);
-
-    // --- Client-side rate limit (one submit per 30 seconds) ---
+    // --- Client-side retry cooldown (not a server-side abuse limit) ---
     let lastSubmitTime = 0;
     const COOLDOWN_MS = 5000;
 
     
     
-    // --- Send Professional Confirmation Email via Resend ---
-    async function sendConfirmationEmail(name, email, city, budget) {
-      const emailHtml = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset="utf-8">
-          <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #050506; color: #f6f1ea; margin: 0; padding: 0; }
-            .container { max-width: 600px; margin: 30px auto; background: #0e0e12; border: 1px solid rgba(237, 41, 23, 0.3); border-radius: 12px; overflow: hidden; box-shadow: 0 0 35px rgba(237, 41, 23, 0.15); }
-            .header { background: linear-gradient(135deg, #c31511 0%, #ed2917 50%, #150204 100%); padding: 40px 30px; text-align: center; }
-            .header h1 { margin: 0; font-size: 32px; font-weight: 900; font-style: italic; letter-spacing: -1px; text-transform: uppercase; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-            .header p { margin: 8px 0 0; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #fcd5d1; font-weight: 600; }
-            .content { padding: 35px 30px; }
-            .badge { display: inline-block; background: rgba(237, 41, 23, 0.15); color: #ff5a46; border: 1px solid rgba(237, 41, 23, 0.4); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
-            h2 { font-size: 22px; color: #ffffff; margin: 0 0 16px; font-weight: 700; }
-            p { font-size: 14px; line-height: 1.7; color: #b8b3b7; margin: 0 0 20px; }
-            .vote-card { background: #16161c; border-left: 4px solid #ed2917; padding: 18px 20px; border-radius: 6px; margin: 25px 0; }
-            .vote-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; }
-            .vote-row:last-child { margin-bottom: 0; }
-            .vote-label { color: #8a8589; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
-            .vote-value { color: #ffffff; font-weight: 700; }
-            .quote-box { background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 18px 20px; text-align: center; margin: 25px 0; }
-            .quote-box p { font-style: italic; color: #eae5df; margin: 0; font-size: 14px; }
-            .btn { display: inline-block; background: #ed2917; color: #ffffff !important; text-decoration: none; font-weight: 800; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 28px; border-radius: 6px; text-align: center; margin-top: 10px; transition: all 0.2s; }
-            .footer { background: #070709; padding: 25px 30px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 11px; color: #726e73; line-height: 1.6; }
-            .footer a { color: #ed2917; text-decoration: none; }
-          
-    /* Interactive VIP Pass Card Modal & UI */
-    .vip-pass-container {
-      display: none;
-      background: linear-gradient(145deg, #11121d 0%, #08080d 100%);
-      border: 2px solid #ed2917;
-      border-radius: 20px;
-      padding: 24px 20px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.8), 0 0 35px rgba(237, 41, 23, 0.3);
-      color: #fff;
-      margin-top: 15px;
-      animation: passPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    @keyframes passPopIn {
-      from { opacity: 0; transform: scale(0.92) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    .pass-top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #ed2917;
-      margin: -24px -20px 18px;
-      padding: 14px 20px;
-      border-radius: 18px 18px 0 0;
-    }
-
-    .pass-brand {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 15px;
-      letter-spacing: 1px;
-      color: #fff;
-    }
-
-    .pass-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: #000;
-      color: #00ff88;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      padding: 4px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(0, 255, 136, 0.4);
-    }
-
-    .pass-id-block {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px dashed rgba(237, 41, 23, 0.5);
-      border-radius: 12px;
-      padding: 14px;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .pass-id-label {
-      font-size: 10px;
-      color: #9e9ba8;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 4px;
-    }
-
-    .pass-id-val {
-      font-family: 'DM Mono', monospace;
-      font-size: 22px;
-      font-weight: 800;
-      color: #ff5a46;
-      letter-spacing: 2px;
-    }
-
-    .pass-meta-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 16px;
-      font-size: 12px;
-    }
-
-    .pass-meta-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 10px;
-    }
-
-    .pass-meta-item span {
-      display: block;
-      font-size: 10px;
-      color: #8a8594;
-      text-transform: uppercase;
-      margin-bottom: 2px;
-    }
-
-    .pass-meta-item strong {
-      font-size: 13px;
-      color: #fff;
-    }
-
-    .pass-meta-item strong.gold { color: #ffb703; }
-    .pass-meta-item strong.green { color: #00ff88; }
-
-    .pass-barcode {
-      display: flex;
-      justify-content: center;
-      gap: 3px;
-      height: 28px;
-      opacity: 0.6;
-      margin: 12px 0 6px;
-    }
-
-    .pass-barcode div {
-      background: #fff;
-      height: 100%;
-    }
-
-    .pass-disclaimer {
-      text-align: center;
-      font-size: 9.5px;
-      color: #706c78;
-      margin-bottom: 18px;
-    }
-
-    .pass-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
-
-    .btn-pass-action {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 13px;
-      border-radius: 10px;
-      font-family: 'DM Mono', monospace;
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: none;
-    }
-
-    .btn-pass-download {
-      background: linear-gradient(135deg, #c31511 0%, #ed2917 100%);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(237, 41, 23, 0.4);
-    }
-
-    .btn-pass-download:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    .btn-pass-story {
-      background: #181926;
-      color: #ff5a46;
-      border: 1px solid rgba(237, 41, 23, 0.4);
-    }
-
-    .btn-pass-story:hover {
-      background: rgba(237, 41, 23, 0.2);
-    }
-
-    .btn-pass-wa {
-      background: #0d2818;
-      color: #00ff88;
-      border: 1px solid rgba(0, 255, 136, 0.3);
-    }
-
-    .btn-pass-wa:hover {
-      background: #00ff88;
-      color: #000;
-    }
-
-  </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h1>THE WEEKND IN INDIA</h1>
-              <p>Official Fan Campaign</p>
-            </div>
-            <div class="content">
-              <div class="badge">✓ Verified Fan Demand</div>
-              <h2>Hey ${name}, your vote is officially recorded! 🖤🔥</h2>
-              <p>Thank you for making your voice heard. Every single registration on this campaign proves to concert promoters and the artist's management that India's crowd is ready for an unforgettable night with Abel Tesfaye.</p>
-              
-              <div class="vote-card">
-                <div class="vote-row">
-                  <span class="vote-label">Voter Name</span>
-                  <span class="vote-value">${name}</span>
-                </div>
-                <div class="vote-row">
-                  <span class="vote-label">Preferred City</span>
-                  <span class="vote-value">${city}</span>
-                </div>
-                <div class="vote-row">
-                  <span class="vote-label">Ticket Budget</span>
-                  <span class="vote-value">${budget}</span>
-                </div>
-                <div class="vote-row">
-                  <span class="vote-label">Campaign Status</span>
-                  <span class="vote-value" style="color: #4caf50;">Counted & Aggregated</span>
-                </div>
-              </div>
-
-              <div class="quote-box">
-                <p>"Every single name says the same thing: India is ready. Your vote is precious."</p>
-              </div>
-
-              <p>Help us amplify the sound. Share the movement with your fellow XO fans and friends across India:</p>
-              
-              <center>
-                <a href="https://theweeknd.co.in" class="btn">View Live Campaign ↗</a>
-              </center>
-            </div>
-            <div class="footer">
-              <p><strong>Independent fan-led initiative.</strong> Not affiliated with or endorsed by The Weeknd, XO, or Republic Records.<br>
-              Platform built by <a href="https://instagram.com/aayyuusshhw">Ayush (@aayyuusshhw)</a> • <a href="https://theweeknd.co.in">theweeknd.co.in</a></p>
-            </div>
-          </div>
-        </body>
-        </html>
-      `;
-
-      try {
-        await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer ' + atob(''),
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: 'The Weeknd India <campaign@theweeknd.co.in>',
-            to: [email],
-            subject: 'Your vote is recorded! — The Weeknd India Campaign 🇮🇳',
-            html: emailHtml
-          })
-        });
-      } catch (err) {
-        console.warn('Confirmation email dispatch note:', err);
-      }
-    }
-
-
-    // --- Direct High-Speed Guaranteed Email Dispatcher ---
-    async function triggerInstantFanPassEmail(name, email, city, budget) {
-      const ticketRef = 'XO-IND-' + Math.random().toString(36).substring(2, 8).toUpperCase();
-      const emailHtml = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        </head>
-        <body style="margin:0;padding:20px 10px;background-color:#050506;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#f6f1ea;">
-          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:620px;margin:0 auto;background:#0d0d11;border:1px solid rgba(237,41,23,0.35);border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.8),0 0 30px rgba(237,41,23,0.15);">
-            <tr>
-              <td style="background:linear-gradient(135deg,#7a0004 0%,#c31511 40%,#ed2917 75%,#ff5722 100%);padding:45px 30px;text-align:center;">
-                <span style="display:inline-block;background:rgba(0,0,0,0.3);color:#ffd4ca;border:1px solid rgba(255,255,255,0.25);padding:5px 14px;border-radius:20px;font-size:10px;letter-spacing:2px;font-weight:700;text-transform:uppercase;margin-bottom:12px;">★ FAN DEMAND INITIATIVE ★</span>
-                <h1 style="margin:0;font-size:34px;font-style:italic;font-weight:900;letter-spacing:-1px;color:#ffffff;text-transform:uppercase;text-shadow:0 3px 12px rgba(0,0,0,0.6);">THE WEEKND IN INDIA</h1>
-                <p style="margin:8px 0 0;font-size:12px;letter-spacing:3px;color:#ffe5e2;font-weight:600;text-transform:uppercase;">OFFICIAL CAMPAIGN • TOUR DEMAND INITIATIVE</p>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding:35px 30px;">
-                <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                  <tr>
-                    <td>
-                      <h2 style="margin:0 0 14px;font-size:24px;font-weight:800;color:#ffffff;letter-spacing:-0.5px;">Hey ${name}, you're officially on the record! 🖤🔥</h2>
-                      <p style="margin:0 0 24px;font-size:14px;line-height:1.7;color:#b8b3b7;">
-                        Thank you for standing up for India's XO fanbase. Your registration has been verified and safely aggregated into the official country-wide demand dossier being prepared for leading live concert promoters and representatives.
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="background:#14141a;border:1px solid rgba(255,255,255,0.1);border-left:5px solid #ed2917;border-radius:10px;padding:24px 22px;margin:20px 0;">
-                      <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                          <td style="padding-bottom:14px;border-bottom:1px dashed rgba(255,255,255,0.12);">
-                            <span style="font-size:10px;letter-spacing:1.5px;color:#8a8589;text-transform:uppercase;">FAN PASS REFERENCE</span><br>
-                            <strong style="font-size:18px;color:#ed2917;font-family:monospace;letter-spacing:2px;">${ticketRef}</strong>
-                          </td>
-                          <td align="right" style="padding-bottom:14px;border-bottom:1px dashed rgba(255,255,255,0.12);">
-                            <span style="background:rgba(46,125,50,0.2);color:#66bb6a;border:1px solid rgba(76,175,80,0.4);padding:4px 10px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">● VERIFIED</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top:14px;">
-                            <span style="font-size:10px;letter-spacing:1px;color:#8a8589;text-transform:uppercase;">VOTER NAME</span><br>
-                            <strong style="font-size:14px;color:#ffffff;">${name}</strong>
-                          </td>
-                          <td align="right" style="padding-top:14px;">
-                            <span style="font-size:10px;letter-spacing:1px;color:#8a8589;text-transform:uppercase;">PREFERRED CITY</span><br>
-                            <strong style="font-size:14px;color:#ffffff;">📍 ${city}</strong>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="padding-top:14px;">
-                            <span style="font-size:10px;letter-spacing:1px;color:#8a8589;text-transform:uppercase;">TICKET BUDGET TIER</span><br>
-                            <strong style="font-size:14px;color:#ff9800;">🎟️ ${budget}</strong>
-                          </td>
-                          <td align="right" style="padding-top:14px;">
-                            <span style="font-size:10px;letter-spacing:1px;color:#8a8589;text-transform:uppercase;">CAMPAIGN ROLE</span><br>
-                            <strong style="font-size:14px;color:#ffffff;">Demand Advocate</strong>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding:24px 0 10px;">
-                      <div style="background:rgba(237,41,23,0.06);border:1px solid rgba(237,41,23,0.25);border-radius:10px;padding:18px 20px;text-align:center;">
-                        <p style="margin:0;font-style:italic;font-size:14px;color:#ffdeda;line-height:1.5;">
-                          "One artist. One country. One unforgettable night. Every single name says the same thing: <strong>India is ready.</strong>"
-                        </p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding:20px 0;">
-                      <h3 style="font-size:14px;letter-spacing:1.5px;color:#ffffff;text-transform:uppercase;margin:0 0 14px;">🗺️ What Happens Next?</h3>
-                      <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-size:12px;color:#a8a3a7;line-height:1.6;">
-                        <tr>
-                          <td width="28" valign="top" style="color:#ed2917;font-weight:900;">01.</td>
-                          <td style="padding-bottom:8px;"><strong style="color:#fff;">Data Aggregation:</strong> City demand numbers are compiled into structured promoter pitch reports.</td>
-                        </tr>
-                        <tr>
-                          <td width="28" valign="top" style="color:#ed2917;font-weight:900;">02.</td>
-                          <td style="padding-bottom:8px;"><strong style="color:#fff;">Promoter Engagement:</strong> Aggregate stats shared with verified concert promoters in India.</td>
-                        </tr>
-                        <tr>
-                          <td width="28" valign="top" style="color:#ed2917;font-weight:900;">03.</td>
-                          <td><strong style="color:#fff;">Official Tour Routing:</strong> Giving India the best possible shot for Abel Tesfaye's upcoming world routing.</td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="center" style="padding:15px 0 25px;">
-                      <a href="https://theweeknd.co.in" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#c31511,#ed2917);color:#ffffff;text-decoration:none;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:16px 36px;border-radius:8px;box-shadow:0 4px 20px rgba(237,41,23,0.4);">
-                        VIEW LIVE CAMPAIGN STATS ↗
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#070709;padding:26px 30px;text-align:center;border-top:1px solid rgba(255,255,255,0.08);font-size:11px;color:#726e73;line-height:1.7;">
-                <p style="margin:0 0 8px;">
-                  <strong>Independent Fan Campaign.</strong> Not affiliated with, endorsed by, or officially connected to The Weeknd, XO Records, or Republic Records.
-                </p>
-                <p style="margin:0;">
-                  Platform built by <a href="https://instagram.com/aayyuusshhw" target="_blank" style="color:#ed2917;text-decoration:none;font-weight:700;">Ayush (@aayyuusshhw)</a> • <a href="https://theweeknd.co.in" target="_blank" style="color:#ffffff;text-decoration:none;">theweeknd.co.in</a>
-                </p>
-              </td>
-            </tr>
-          </table>
-        </body>
-        </html>
-      `;
-
-      try {
-        const apiKey = 're_' + 'oiYc2Ecb' + '_' + 'HB46CpH4CKQAc5KALJX6MRfg';
-        await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer ' + apiKey,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: 'The Weeknd India <campaign@theweeknd.co.in>',
-            to: [email],
-            subject: '🎟️ Your Fan Pass is Confirmed! — The Weeknd India',
-            html: emailHtml
-          })
-        });
-      } catch (err) {
-        console.warn('Direct email dispatch note:', err);
-      }
-    }
-
     // --- Multi-City Selection Logic (Choose 1 to 3 cities) ---
     const cityChips = document.querySelectorAll('.city-chip');
     const selectedCitiesHidden = document.querySelector('#selected-cities-hidden');
@@ -1481,6 +473,7 @@
 
     form.addEventListener('submit', async event => {
       event.preventDefault();
+      if (submitButton.disabled) return;
       updateSelectedCitiesField();
 
       if (!selectedCities.length || !selectedCitiesHidden.value.trim()) {
@@ -1538,8 +531,8 @@
         const selectedCity = selectedCitiesHidden.value.trim();
 
         const { error } = await supabaseClient.from('votes').insert({
-          first_name: data.name.trim(),
-          email: data.email.trim().toLowerCase(),
+          first_name: cleanName,
+          email: cleanEmail,
           city: selectedCity,
           budget: data.budget,
           consent: data.consent === 'on'
@@ -1559,14 +552,9 @@
         lastSubmitTime = Date.now();
         form.style.display = 'none';
         success.className = '';
+        success.textContent = 'Your vote has been recorded. Thank you for adding your city to the campaign.';
         success.style.display = 'block';
         fetchVoteCount(); // refresh counter
-
-        // Render Holographic VIP Pass Card On Screen
-        renderVipPass(cleanName, cleanEmail, selectedCity);
-
-        // Trigger Instant Email Dispatch
-        triggerInstantFanPassEmail(cleanName, cleanEmail, selectedCity, data.budget);
 
         // Seamless 1-Click Instagram Follow
         const followCheckbox = document.querySelector('#follow-insta-cb');
@@ -1603,6 +591,7 @@
     let lastFeedbackTime = 0;
     feedbackForm.addEventListener('submit', async event => {
       event.preventDefault();
+      if (feedbackSubmitBtn.disabled) return;
       if (!feedbackForm.reportValidity()) return;
 
       const now = Date.now();
@@ -1634,9 +623,9 @@
 
       const cleanFbEmail = data.email ? data.email.trim().toLowerCase() : '';
       const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!cleanFbEmail || !emailPattern.test(cleanFbEmail)) {
+      if (cleanFbEmail && !emailPattern.test(cleanFbEmail)) {
         feedbackSuccess.className = 'feedback-success error';
-        feedbackSuccess.textContent = 'Please enter a valid email address to receive contributor perks.';
+        feedbackSuccess.textContent = 'Please enter a valid email address or leave it blank.';
         feedbackSuccess.style.display = 'block';
         return;
       }
@@ -1653,16 +642,7 @@
           payload.email = cleanFbEmail;
         }
 
-        let { error } = await supabaseClient.from('feedback').insert(payload);
-
-        // Graceful fallback if 'email' column does not exist in feedback table yet
-        if (error && (error.code === 'PGRST204' || (error.message && error.message.includes('email')))) {
-          const fallback = await supabaseClient.from('feedback').insert({
-            topic: data.topic,
-            idea: cleanFbEmail ? `${cleanIdea}\n[Contact: ${cleanFbEmail}]` : cleanIdea
-          });
-          error = fallback.error;
-        }
+        const { error } = await supabaseClient.from('feedback').insert(payload);
 
         if (error) {
           feedbackSubmitBtn.disabled = false;
@@ -1714,119 +694,6 @@
       })
       .catch(() => {});
   
-    // --- Live Privacy-Safe Visitor & Analytics Tracker ---
-    const visitorTotal = document.querySelector('#visitor-total');
-
-    function getDeviceAnalytics() {
-      const ua = navigator.userAgent || '';
-      let deviceType = 'Desktop';
-      let os = 'Other';
-      let browser = 'Other';
-
-      if (/iPad|Tablet/i.test(ua)) {
-        deviceType = 'Tablet';
-      } else if (/Mobi|Android|iPhone|iPod/i.test(ua)) {
-        deviceType = 'Mobile';
-      }
-
-      if (/iPhone|iPad|iPod/i.test(ua)) os = 'iOS';
-      else if (/Android/i.test(ua)) os = 'Android';
-      else if (/Macintosh|Mac OS X/i.test(ua)) os = 'macOS';
-      else if (/Windows/i.test(ua)) os = 'Windows';
-      else if (/Linux/i.test(ua)) os = 'Linux';
-
-      if (/Instagram/i.test(ua)) browser = 'Instagram In-App';
-      else if (/WhatsApp/i.test(ua)) browser = 'WhatsApp In-App';
-      else if (/FBAN|FBAV/i.test(ua)) browser = 'Facebook In-App';
-      else if (/Twitter|TwitterAndroid/i.test(ua)) browser = 'Twitter / X In-App';
-      else if (/Chrome|CriOS/i.test(ua) && !/Edg/i.test(ua)) browser = 'Chrome';
-      else if (/Safari/i.test(ua) && !/Chrome|CriOS/i.test(ua)) browser = 'Safari';
-      else if (/Firefox|FxiOS/i.test(ua)) browser = 'Firefox';
-      else if (/Edg/i.test(ua)) browser = 'Edge';
-
-      let referrer = 'Direct';
-      if (document.referrer) {
-        try {
-          const ref = new URL(document.referrer);
-          if (ref.hostname.includes('instagram.com')) referrer = 'Instagram';
-          else if (ref.hostname.includes('t.co') || ref.hostname.includes('twitter.com') || ref.hostname.includes('x.com')) referrer = 'Twitter / X';
-          else if (ref.hostname.includes('whatsapp.com')) referrer = 'WhatsApp';
-          else if (ref.hostname.includes('google.')) referrer = 'Google Search';
-          else if (ref.hostname.includes('youtube.com')) referrer = 'YouTube';
-          else if (ref.hostname.includes('reddit.com')) referrer = 'Reddit';
-          else referrer = ref.hostname;
-        } catch (_) {
-          referrer = document.referrer;
-        }
-      }
-
-      const params = new URLSearchParams(window.location.search);
-      const utmSource = params.get('src') || params.get('utm_source') || null;
-
-      return {
-        device_type: deviceType,
-        os: os,
-        browser: browser,
-        referrer: referrer,
-        utm_source: utmSource,
-        screen_size: `${window.screen.width}x${window.screen.height}`,
-        language: navigator.language || 'en-IN'
-      };
-    }
-
-    async function getApproximateGeo() {
-      try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 1800);
-        const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
-        clearTimeout(timeout);
-        if (res.ok) {
-          const d = await res.json();
-          return {
-            city: d.city || '',
-            region: d.region || '',
-            country: d.country_name || d.country_code || 'India'
-          };
-        }
-      } catch (_) {}
-      return { city: '', region: '', country: 'India' };
-    }
-
-    async function trackVisitor() {
-      try {
-        const hasVisited = sessionStorage.getItem('tw_visited');
-        if (!hasVisited) {
-          const dev = getDeviceAnalytics();
-          const geo = await getApproximateGeo();
-
-          const richPayload = {
-            ...dev,
-            city: geo.city || null,
-            region: geo.region || null,
-            country: geo.country || 'India'
-          };
-
-          // Try inserting rich payload
-          let { error } = await supabaseClient.from('page_visits').insert(richPayload);
-          if (error) {
-            // Fallback to basic row if schema columns are not added yet
-            await supabaseClient.from('page_visits').insert({});
-          }
-          sessionStorage.setItem('tw_visited', 'true');
-        }
-
-        // Fetch total count from Supabase
-        const { count, error } = await supabaseClient
-          .from('page_visits')
-          .select('*', { count: 'exact', head: true });
-
-        if (!error && typeof count === 'number') {
-          visitorTotal.textContent = count.toLocaleString('en-IN');
-        }
-      } catch (_) {}
-    }
-    trackVisitor();
-
     // --- Community Transparency Modal Logic ---
     const transparencyModal = document.getElementById('transparency-modal');
     const closeTransparencyBtn = document.getElementById('close-transparency-btn');
@@ -1863,155 +730,6 @@
       setTimeout(openTransparencyModal, 350);
     });
   
-    // VIP Pass Dynamic Generator & Downloader
-    let currentPassData = null;
-
-    function renderVipPass(name, email, city) {
-      const randomNum = Math.floor(10000 + Math.random() * 90000);
-      const cleanCityCode = (city.split(',')[0] || 'IND').replace(/[^a-zA-Z]/g, '').substring(0, 3).toUpperCase();
-      const passId = `XO-${cleanCityCode}-${randomNum}-VIP`;
-
-      currentPassData = { name, email, city, passId };
-
-      document.getElementById('passIdDisplay').textContent = passId;
-      document.getElementById('passNameDisplay').textContent = name;
-      document.getElementById('passCityDisplay').textContent = city;
-
-      // WhatsApp Share Link
-      const waMsg = encodeURIComponent(
-        `🚨 Bhai! I just claimed my Verified VIP Fan Pass for The Weeknd's Stadium Tour in ${city} (Pass ID: ${passId})! 🏟️🔥🇮🇳\n\nRegister your city vote 100% FREE before tour dates get finalized:\n👉 https://theweeknd.co.in`
-      );
-      document.getElementById('whatsappShareBtn').href = `https://api.whatsapp.com/send?text=${waMsg}`;
-
-      const card = document.getElementById('vipPassCard');
-      card.style.display = 'block';
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function sharePassToStory() {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText('https://theweeknd.co.in');
-      }
-      alert('📸 Tip: Take a screenshot of your VIP Pass card above, post it on your Instagram Story and tag @theweeknd.co.in with link sticker "theweeknd.co.in" to get reposted to 50k+ XO fans!');
-      window.open('https://instagram.com/theweeknd.co.in', '_blank');
-    }
-
-    function downloadVipPassImage() {
-      if (!currentPassData) return;
-
-      const cvs = document.createElement('canvas');
-      cvs.width = 1080;
-      cvs.height = 1350;
-      const ctx = cvs.getContext('2d');
-
-      // Background
-      const bgGrad = ctx.createLinearGradient(0, 0, 0, 1350);
-      bgGrad.addColorStop(0, '#150608');
-      bgGrad.addColorStop(0.5, '#0c0d15');
-      bgGrad.addColorStop(1, '#050508');
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, 1080, 1350);
-
-      // Crimson Glow
-      ctx.shadowColor = '#ed2917';
-      ctx.shadowBlur = 40;
-      ctx.strokeStyle = '#ed2917';
-      ctx.lineWidth = 6;
-      ctx.strokeRect(60, 60, 960, 1230);
-      ctx.shadowBlur = 0;
-
-      // Header Bar
-      ctx.fillStyle = '#ed2917';
-      ctx.fillRect(60, 60, 960, 160);
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 36px Montserrat, sans-serif';
-      ctx.fillText('THE WEEKND IN INDIA', 100, 145);
-      ctx.font = 'bold 20px DM Mono, monospace';
-      ctx.fillStyle = '#ffd1cc';
-      ctx.fillText('OFFICIAL VERIFIED FAN DOSSIER', 100, 185);
-
-      // Pass ID Box
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.fillRect(100, 260, 880, 160);
-      ctx.strokeStyle = 'rgba(237, 41, 23, 0.5)';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(100, 260, 880, 160);
-
-      ctx.font = 'bold 18px DM Mono, monospace';
-      ctx.fillStyle = '#9e9ba8';
-      ctx.fillText('VERIFIED FAN PRIORITY ID', 130, 305);
-      ctx.font = 'bold 50px Arial Black, sans-serif';
-      ctx.fillStyle = '#ff4b36';
-      ctx.fillText(currentPassData.passId, 130, 380);
-
-      // Meta grid
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(100, 460, 420, 140);
-      ctx.strokeRect(100, 460, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('REGISTERED FAN', 120, 500);
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText(currentPassData.name.substring(0, 18), 120, 555);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(560, 460, 420, 140);
-      ctx.strokeRect(560, 460, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('PREFERRED CITY', 580, 500);
-      ctx.fillStyle = '#ffb703';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText(currentPassData.city.substring(0, 18), 580, 555);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(100, 630, 420, 140);
-      ctx.strokeRect(100, 630, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('PRIORITY ACCESS', 120, 670);
-      ctx.fillStyle = '#00ff88';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText('Tier 1 (Free)', 120, 725);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.fillRect(560, 630, 420, 140);
-      ctx.strokeRect(560, 630, 420, 140);
-      ctx.fillStyle = '#8a8594';
-      ctx.font = 'bold 16px DM Mono, monospace';
-      ctx.fillText('ANTI-SCALPER', 580, 670);
-      ctx.fillStyle = '#00ff88';
-      ctx.font = 'bold 28px Montserrat, sans-serif';
-      ctx.fillText('ACTIVE', 580, 725);
-
-      // Barcode
-      for (let bx = 120; bx < 960; bx += 8) {
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(bx, 820, (bx % 16 === 0 ? 4 : 2), 70);
-      }
-
-      ctx.fillStyle = '#8a8594';
-      ctx.font = '16px DM Mono, monospace';
-      ctx.textAlign = 'center';
-      ctx.fillText('OFFICIAL FAN MOVEMENT // DIRECT SUBMISSION TO ABEL TESFAYE & PROMOTERS', 540, 930);
-
-      // Footer
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 44px Arial Black, sans-serif';
-      ctx.fillText('theweeknd.co.in', 540, 1140);
-      ctx.fillStyle = '#ffb703';
-      ctx.font = 'bold 22px Montserrat, sans-serif';
-      ctx.fillText('Tag @theweeknd.co.in on Instagram Story to get Reposted', 540, 1200);
-
-      // Download
-      const link = document.createElement('a');
-      link.download = `The-Weeknd-VIP-Pass-${currentPassData.city}.png`;
-      link.href = cvs.toDataURL('image/png');
-      link.click();
-    }
-
   </script>
 </body>
 </html>
