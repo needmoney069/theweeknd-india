@@ -62,6 +62,7 @@ theweeknd-india/
 - **Official Fan Portal:** [theweeknd.co.in](https://theweeknd.co.in)
 - **Built & Maintained by:** [Ayush](https://github.com/needmoney069)
 - **Instagram / Socials:** [@theweeknd.co.in](https://instagram.com/theweeknd.co.in)
+- **YouTube / Fan Shorts:** [The Weeknd X India](https://www.youtube.com/@theweekndindia)
 
 ---
 

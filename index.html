@@ -762,6 +762,30 @@
     .faq-item.active .faq-answer {
       display: block;
     }
+    .community-video { background:#0a090b; border-top:1px solid rgba(255,255,255,.08); }
+    .community-video .section-head { align-items:end; }
+    .video-feature { display:grid; grid-template-columns:minmax(0,1fr) minmax(260px,.72fr); gap:32px; align-items:center; margin-top:36px; }
+    .video-player { position:relative; width:min(100%,380px); aspect-ratio:9/16; margin:auto; overflow:hidden; border:1px solid rgba(237,41,23,.55); border-radius:18px; background:#111; box-shadow:0 25px 90px rgba(237,41,23,.13); }
+    .video-player iframe { width:100%; height:100%; border:0; }
+    .video-feature-copy small, .short-card small { display:block; font-family:'DM Mono',monospace; color:#ff7969; font-size:11px; text-transform:uppercase; letter-spacing:.13em; }
+    .video-feature-copy h3 { font-size:clamp(28px,4vw,48px); line-height:1.06; margin:18px 0; }
+    .video-feature-copy p { color:#b9b4b7; line-height:1.7; max-width:440px; }
+    .video-feature-copy .button { margin-top:26px; }
+    .shorts-heading { display:flex; justify-content:space-between; align-items:end; gap:20px; margin:52px 0 20px; }
+    .shorts-heading h3 { font-size:24px; margin:0; }
+    .shorts-heading a { color:#ff7969; font-family:'DM Mono',monospace; font-size:12px; text-decoration:none; }
+    .short-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
+    .short-card { display:block; color:#fff; text-decoration:none; background:#141216; border:1px solid rgba(255,255,255,.11); border-radius:14px; overflow:hidden; transition:transform .2s,border-color .2s; }
+    .short-card:hover, .short-card:focus-visible { transform:translateY(-4px); border-color:#ed2917; }
+    .short-thumb { position:relative; aspect-ratio:9/12; overflow:hidden; background:#211016; }
+    .short-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .short-thumb::after { content:'▶'; position:absolute; inset:auto 12px 12px auto; width:42px; height:42px; border-radius:50%; display:grid; place-items:center; background:#ed2917; color:#fff; font-size:16px; }
+    .short-card-copy { padding:17px; }
+    .short-card strong { display:block; margin-top:9px; font-size:16px; line-height:1.35; }
+    .short-card em { display:block; color:#aaa3a7; font-size:12px; font-style:normal; margin-top:10px; }
+    .video-note { color:#888; font-size:12px; line-height:1.6; margin:24px 0 0; }
+    @media (max-width:760px) { .video-feature { grid-template-columns:1fr; } .video-feature-copy { text-align:center; } .video-feature-copy p { margin-left:auto; margin-right:auto; } .short-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:420px) { .short-grid { gap:10px; } .short-card-copy { padding:12px; } .short-card strong { font-size:14px; } }
   </style>
 </head>
 <body>
@@ -813,6 +837,7 @@
     <nav class="nav-links" aria-label="Main navigation">
       <a href="#mission">Mission</a>
       <a href="#experience">The Spectacle</a>
+      <a href="#videos">Our Shorts</a>
       <a href="#leaderboard">Leaderboard</a>
       <a href="#albums">Discography</a>
       <a href="#faq">FAQ</a>
@@ -831,6 +856,7 @@
     <button class="drawer-close-btn" id="drawer-close" aria-label="Close menu">&times;</button>
     <a href="#mission" class="drawer-link">Mission</a>
     <a href="#experience" class="drawer-link">The Spectacle</a>
+    <a href="#videos" class="drawer-link">Our Shorts</a>
     <a href="#leaderboard" class="drawer-link">Leaderboard</a>
     <a href="#albums" class="drawer-link">Discography</a>
     <a href="#faq" class="drawer-link">FAQ</a>
@@ -881,6 +907,23 @@
             🏟️ São Paulo 2024 (Stadium Show)
           </button>
         </div>
+      </div>
+    </section>
+    <section class="community-video" id="videos" aria-labelledby="videos-title">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">The Weeknd X India / YouTube</div><h2 class="display" id="videos-title">Watch the<br>movement.</h2></div><p class="section-copy">Fan edits, live moments and one question: which Indian city should hear The Weeknd first? Watch, share and add your city to the campaign.</p></div>
+        <div class="video-feature">
+          <div class="video-player"><iframe src="https://www.youtube-nocookie.com/embed/NRVRuylTWgg" title="The Weeknd Sang Out of Time With Fans — The Weeknd X India" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+          <div class="video-feature-copy"><small>Featured fan edit / Out of Time</small><h3>A moment worth sharing.</h3><p>One crowd, one song, thousands of voices. If India deserves its own night, help us show how many fans are ready.</p><a class="button" href="https://www.youtube.com/@theweekndindia" target="_blank" rel="noopener noreferrer">Visit our YouTube channel ↗</a></div>
+        </div>
+        <div class="shorts-heading"><h3>Latest Shorts</h3><a href="https://www.youtube.com/@theweekndindia/shorts" target="_blank" rel="noopener noreferrer">See all on YouTube ↗</a></div>
+        <div class="short-grid">
+          <a class="short-card" href="https://www.youtube.com/shorts/YABysJvIjSQ" target="_blank" rel="noopener noreferrer" aria-label="Watch The Weeknd Live: Which Indian City? on YouTube"><div class="short-thumb"><img src="https://i.ytimg.com/vi/YABysJvIjSQ/hqdefault.jpg" alt="The Weeknd Live: Which Indian City? video thumbnail" loading="lazy"></div><div class="short-card-copy"><small>Take My Breath / Oct 13</small><strong>The Weeknd Live: Which Indian City?</strong><em>Watch on YouTube ↗</em></div></a>
+          <a class="short-card" href="https://www.youtube.com/shorts/aEUAp2lJiZk" target="_blank" rel="noopener noreferrer" aria-label="Watch The Weeknd — Could You Stay Quiet? on YouTube"><div class="short-thumb"><img src="https://i.ytimg.com/vi/aEUAp2lJiZk/hqdefault.jpg" alt="The Weeknd — Could You Stay Quiet? video thumbnail" loading="lazy"></div><div class="short-card-copy"><small>Die For You / Oct 12</small><strong>The Weeknd — Could You Stay Quiet?</strong><em>Watch on YouTube ↗</em></div></a>
+          <a class="short-card" href="https://www.youtube.com/shorts/NRVRuylTWgg" target="_blank" rel="noopener noreferrer" aria-label="Watch The Weeknd Sang Out of Time With Fans on YouTube"><div class="short-thumb"><img src="https://i.ytimg.com/vi/NRVRuylTWgg/hqdefault.jpg" alt="The Weeknd Sang Out of Time With Fans video thumbnail" loading="lazy"></div><div class="short-card-copy"><small>Out of Time / Oct 12</small><strong>The Weeknd Sang Out of Time With Fans</strong><em>Watch on YouTube ↗</em></div></a>
+          <a class="short-card" href="https://www.youtube.com/shorts/dDBQ5m3Z7W0" target="_blank" rel="noopener noreferrer" aria-label="Watch The Weeknd in India? Which City First? on YouTube"><div class="short-thumb"><img src="https://i.ytimg.com/vi/dDBQ5m3Z7W0/hqdefault.jpg" alt="The Weeknd in India? Which City First? video thumbnail" loading="lazy"></div><div class="short-card-copy"><small>Fan campaign / Oct 11</small><strong>The Weeknd in India? Which City First?</strong><em>Watch on YouTube ↗</em></div></a>
+        </div>
+        <p class="video-note">Independent fan channel. YouTube hosts the videos; availability may vary by region.</p>
       </div>
     </section>
     <section class="discography" id="albums"><div class="wrap"><div class="section-head"><div><div class="kicker">The sound that built the demand</div><h2 class="display">The<br>discography.</h2></div><p class="section-copy">Every major The Weeknd release in one visual archive. Select an era to listen on YouTube Music.</p></div><div class="album-grid" aria-label="The Weeknd release archive">
@@ -1058,6 +1101,11 @@
         <span style="font-size:11px;color:#d8d2cf;letter-spacing:.05em;">Fan Campaign:</span>
         <a href="https://instagram.com/theweeknd.co.in" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);color:#fff;text-decoration:none;font-weight:700;font-size:11px;padding:6px 14px;border-radius:20px;letter-spacing:.08em;transition:all .2s;" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">@theweeknd.co.in ↗</a>
       </div>
+
+      <!-- YouTube Channel Badge -->
+      <a class="creator-badge" href="https://www.youtube.com/@theweekndindia" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:10px;background:#15151a;border:1px solid rgba(237,41,23,.5);padding:10px 18px;border-radius:40px;color:#fff;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:.05em;">
+        <span style="display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#ed2917;color:#fff;">▶</span> The Weeknd X India on YouTube ↗
+      </a>
 
       <!-- Community Transparency Note Button -->
       <div class="creator-badge" style="display:inline-flex;align-items:center;gap:8px;background:#15151a;border:1px solid rgba(255,255,255,.2);padding:10px 18px;border-radius:40px;">
